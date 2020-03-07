@@ -12,7 +12,6 @@ import UIKit
 class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    @IBOutlet var backgroundImage: UIImageView!
     
     @IBOutlet var b0: UIButton!
     @IBOutlet var b1: UIButton!
@@ -126,12 +125,12 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     var level: Int?
     var subBlock:UIImage?
     
-    let bImage1:UIImage = UIImage(named:"Block1.png")!
-    let bImage2:UIImage = UIImage(named:"Block2.png")!
-    let bImage3:UIImage = UIImage(named:"Block3.png")!
-    let bImage4:UIImage = UIImage(named:"Block4.png")!
-    let bImage5:UIImage = UIImage(named:"Block5.png")!
-    let bImage6:UIImage = UIImage(named:"Block6.png")!
+    let bImage1:UIImage = UIImage(named:"block1.png")!
+    let bImage2:UIImage = UIImage(named:"block2.png")!
+    let bImage3:UIImage = UIImage(named:"block3.png")!
+    let bImage4:UIImage = UIImage(named:"block4.png")!
+    let bImage5:UIImage = UIImage(named:"block5.png")!
+    let bImage6:UIImage = UIImage(named:"block6.png")!
     
     var missionArray:Array<UILabel?> = []
     var blockArray:Array<UIButton?> = Array(repeating: nil, count: 81)
@@ -149,8 +148,6 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        backgroundImage.image = UIImage(named: "GameBackground.png")
         
         missionImage1.image = bImage1
         missionImage2.image = bImage2

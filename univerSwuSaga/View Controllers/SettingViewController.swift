@@ -11,7 +11,6 @@ import UIKit
 class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    @IBOutlet var backgroundImage: UIImageView!
     
     @IBOutlet weak var backgroundVolume: UISlider!
     @IBOutlet weak var effectVolume: UISlider!
@@ -30,7 +29,6 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundImage.image = UIImage(named: "DetailsBackground.png")
         statusLabel.text = ""
         
         userScoreLabel.text = appDelegate.userMaxScore

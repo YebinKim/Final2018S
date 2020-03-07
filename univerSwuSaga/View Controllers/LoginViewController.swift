@@ -11,7 +11,6 @@ import UIKit
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    @IBOutlet var backgroundImage: UIImageView!
 
     @IBOutlet var loginIdTextfield: UITextField!
     @IBOutlet var loginPwTextfield: UITextField!
@@ -20,7 +19,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        backgroundImage.image = UIImage(named: "Background.png")
         statusLabel.text = ""
     }
     

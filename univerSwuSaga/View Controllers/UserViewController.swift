@@ -12,7 +12,6 @@ import UIKit
 class UserViewController: UIViewController {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    @IBOutlet var backgroundImage: UIImageView!
     
     @IBOutlet var loginUserLabel: UILabel!
     @IBOutlet var userImage: UIImageView!
@@ -20,8 +19,6 @@ class UserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        backgroundImage.image = UIImage(named: "Background.png")
-        
         loginUserLabel.text = appDelegate.userName
         
         // 프로필 사진 불러오기

@@ -11,7 +11,6 @@ import UIKit
 class JoinViewController: UIViewController, UITextFieldDelegate {
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    @IBOutlet var backgroundImage: UIImageView!
     
     @IBOutlet var idTextfield: UITextField!
     @IBOutlet var pwTextfield: UITextField!
@@ -21,7 +20,6 @@ class JoinViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundImage.image = UIImage(named: "Background.png")
         statusLabel.text = ""
     }
     

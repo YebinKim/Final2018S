@@ -11,7 +11,6 @@ import UIKit
 class RankingDetailsViewController: UIViewController {
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    @IBOutlet var backgroundImage: UIImageView!
     
     @IBOutlet var userImage: UIImageView!
     @IBOutlet var userID: UILabel!
@@ -23,8 +22,6 @@ class RankingDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        backgroundImage.image = UIImage(named: "DetailsBackground.png")
         
         userID.text = selectedData?.id
         userName.text = selectedData?.name

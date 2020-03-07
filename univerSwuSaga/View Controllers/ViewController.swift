@@ -17,8 +17,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundImage.image = UIImage(named: "Background.png")
-        
         appDelegate.ID = nil
         appDelegate.userName = "Guest"
         appDelegate.flagLogin = false

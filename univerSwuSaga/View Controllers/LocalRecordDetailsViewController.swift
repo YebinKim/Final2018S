@@ -12,7 +12,6 @@ import UIKit
 class LocalRecordDetailsViewController: UIViewController, UITextFieldDelegate {
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    @IBOutlet var backgroundImage: UIImageView!
     
     @IBOutlet var localScoreLabel: UILabel!
     @IBOutlet var localDateLabel: UILabel!
@@ -27,7 +26,6 @@ class LocalRecordDetailsViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundImage.image = UIImage(named: "DetailsBackground.png")
         statusLabel.text = ""
 
         if let localScore = detailLocalScore {

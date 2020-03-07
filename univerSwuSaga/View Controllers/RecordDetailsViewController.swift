@@ -11,7 +11,6 @@ import UIKit
 class RecordDetailsViewController: UIViewController {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    @IBOutlet var backgroundImage: UIImageView!
 
     @IBOutlet var userScore: UILabel!
     @IBOutlet var userScoreDate: UILabel!
@@ -23,7 +22,6 @@ class RecordDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundImage.image = UIImage(named: "DetailsBackground.png")
         statusLabel.text = ""
 
         guard let ScoreData = selectedData else { return }

@@ -38,7 +38,7 @@
 /* Begin PBXFileReference section */
 		3E20669F20D03868000957C1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3E2066A320D05121000957C1 /* BayBreeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BayBreeze.wav; sourceTree = "<group>"; };
-		3E223FF620A8A2EE006A7D07 /* univerSwuSaga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = univerSwuSaga.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E223FF620A8A2EE006A7D07 /* PlanetSAGA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlanetSAGA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E223FF920A8A2EE006A7D07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E223FFB20A8A2EE006A7D07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3E223FFE20A8A2EE006A7D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 		3E223FED20A8A2EE006A7D07 = {
 			isa = PBXGroup;
 			children = (
-				3E223FF820A8A2EE006A7D07 /* univerSwuSaga */,
+				3E223FF820A8A2EE006A7D07 /* PlanetSAGA */,
 				3E223FF720A8A2EE006A7D07 /* Products */,
 				3E20669E20D03868000957C1 /* Frameworks */,
 			);
@@ -98,12 +98,12 @@
 		3E223FF720A8A2EE006A7D07 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3E223FF620A8A2EE006A7D07 /* univerSwuSaga.app */,
+				3E223FF620A8A2EE006A7D07 /* PlanetSAGA.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3E223FF820A8A2EE006A7D07 /* univerSwuSaga */ = {
+		3E223FF820A8A2EE006A7D07 /* PlanetSAGA */ = {
 			isa = PBXGroup;
 			children = (
 				3E223FF920A8A2EE006A7D07 /* AppDelegate.swift */,
@@ -114,7 +114,7 @@
 				C212B98F24138DDB00B6A472 /* Resources */,
 				C212B99024138E3B00B6A472 /* Supporting Files */,
 			);
-			path = univerSwuSaga;
+			path = PlanetSAGA;
 			sourceTree = "<group>";
 		};
 		3E79686420D4E92B00F67483 /* Sound */ = {
@@ -195,9 +195,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3E223FF520A8A2EE006A7D07 /* univerSwuSaga */ = {
+		3E223FF520A8A2EE006A7D07 /* PlanetSAGA */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3E22400B20A8A2EE006A7D07 /* Build configuration list for PBXNativeTarget "univerSwuSaga" */;
+			buildConfigurationList = 3E22400B20A8A2EE006A7D07 /* Build configuration list for PBXNativeTarget "PlanetSAGA" */;
 			buildPhases = (
 				3E223FF220A8A2EE006A7D07 /* Sources */,
 				3E223FF320A8A2EE006A7D07 /* Frameworks */,
@@ -207,9 +207,9 @@
 			);
 			dependencies = (
 			);
-			name = univerSwuSaga;
+			name = PlanetSAGA;
 			productName = univerSwuSaga;
-			productReference = 3E223FF620A8A2EE006A7D07 /* univerSwuSaga.app */;
+			productReference = 3E223FF620A8A2EE006A7D07 /* PlanetSAGA.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -227,7 +227,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3E223FF120A8A2EE006A7D07 /* Build configuration list for PBXProject "univerSwuSaga" */;
+			buildConfigurationList = 3E223FF120A8A2EE006A7D07 /* Build configuration list for PBXProject "PlanetSAGA" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -240,7 +240,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3E223FF520A8A2EE006A7D07 /* univerSwuSaga */,
+				3E223FF520A8A2EE006A7D07 /* PlanetSAGA */,
 			);
 		};
 /* End PBXProject section */
@@ -429,12 +429,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "univerSwuSaga/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "PlanetSAGA/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = swu.ac.kr.univerSwuSaga;
+				PRODUCT_BUNDLE_IDENTIFIER = developer.VIVI.PlanetSAGA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -446,12 +446,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "univerSwuSaga/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "PlanetSAGA/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = swu.ac.kr.univerSwuSaga;
+				PRODUCT_BUNDLE_IDENTIFIER = developer.VIVI.PlanetSAGA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -461,7 +461,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3E223FF120A8A2EE006A7D07 /* Build configuration list for PBXProject "univerSwuSaga" */ = {
+		3E223FF120A8A2EE006A7D07 /* Build configuration list for PBXProject "PlanetSAGA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E22400920A8A2EE006A7D07 /* Debug */,
@@ -470,7 +470,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3E22400B20A8A2EE006A7D07 /* Build configuration list for PBXNativeTarget "univerSwuSaga" */ = {
+		3E22400B20A8A2EE006A7D07 /* Build configuration list for PBXNativeTarget "PlanetSAGA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E22400C20A8A2EE006A7D07 /* Debug */,

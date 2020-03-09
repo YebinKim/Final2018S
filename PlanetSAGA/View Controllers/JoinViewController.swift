@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class JoinViewController: UIViewController, UITextFieldDelegate {
 
@@ -59,6 +60,22 @@ class JoinViewController: UIViewController, UITextFieldDelegate {
         let restString: String = "id=" + idTextfield.text! + "&password=" + pwTextfield.text! + "&name=" + nameTextfield.text!
         request.httpBody = restString.data(using: .utf8)
         self.executeRequest(request: request)
+        
+        
+        var userDic = [String:String]()
+        
+        userDic["id"] = idTextfield.text!
+        userDic["pw"] = pwTextfield.text!
+        userDic["name"] = nameTextfield.text!
+        
+        let newData = UserData()
+        newData.id = idTextfield.text!
+        newData.pw = pwTextfield.text!
+        newData.name = nameTextfield.text!
+        
+        let ref = Database.database().reference()
+        let itemRef = ref.child("list")
+        itemRef.setValue(userDic)
     }
     
     func textFieldShouldReturn (_ textField: UITextField) -> Bool {

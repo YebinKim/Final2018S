@@ -3,14 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02A1740ACF8F2778A49D1EFE /* Pods_PlanetSAGA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 714D5A16A460419FE7ABB228 /* Pods_PlanetSAGA.framework */; };
 		3E2066A020D03868000957C1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E20669F20D03868000957C1 /* AVFoundation.framework */; };
 		3E2066A420D05121000957C1 /* BayBreeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E2066A320D05121000957C1 /* BayBreeze.wav */; };
 		3E223FFA20A8A2EE006A7D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E223FF920A8A2EE006A7D07 /* AppDelegate.swift */; };
-		3E223FFC20A8A2EE006A7D07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E223FFB20A8A2EE006A7D07 /* ViewController.swift */; };
+		3E223FFC20A8A2EE006A7D07 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E223FFB20A8A2EE006A7D07 /* MainViewController.swift */; };
 		3E223FFF20A8A2EE006A7D07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E223FFD20A8A2EE006A7D07 /* Main.storyboard */; };
 		3E22400220A8A2EE006A7D07 /* univerSwuSaga.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3E22400020A8A2EE006A7D07 /* univerSwuSaga.xcdatamodeld */; };
 		3E22400420A8A2EE006A7D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E22400320A8A2EE006A7D07 /* Assets.xcassets */; };
@@ -33,14 +34,17 @@
 		3ED8464920BD10AD003C4F63 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464820BD10AD003C4F63 /* SettingViewController.swift */; };
 		3ED8464B20BD10E7003C4F63 /* RankingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464A20BD10E7003C4F63 /* RankingTableViewController.swift */; };
 		C212B99524139B4B00B6A472 /* GameAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C212B99424139B4B00B6A472 /* GameAssets.xcassets */; };
+		C2FB5A6D2416111E00049CF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2FB5A6C2416111E00049CF1 /* GoogleService-Info.plist */; };
+		C2FB5A712416147400049CF1 /* PSDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A702416147400049CF1 /* PSDatabase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2FD8F206B83F8802C78BC151 /* Pods-PlanetSAGA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetSAGA.debug.xcconfig"; path = "Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA.debug.xcconfig"; sourceTree = "<group>"; };
 		3E20669F20D03868000957C1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3E2066A320D05121000957C1 /* BayBreeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BayBreeze.wav; sourceTree = "<group>"; };
 		3E223FF620A8A2EE006A7D07 /* PlanetSAGA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlanetSAGA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E223FF920A8A2EE006A7D07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3E223FFB20A8A2EE006A7D07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3E223FFB20A8A2EE006A7D07 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3E223FFE20A8A2EE006A7D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3E22400120A8A2EE006A7D07 /* univerSwuSaga.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = univerSwuSaga.xcdatamodel; sourceTree = "<group>"; };
 		3E22400320A8A2EE006A7D07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -63,7 +67,11 @@
 		3ED8464620BD107A003C4F63 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		3ED8464820BD10AD003C4F63 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		3ED8464A20BD10E7003C4F63 /* RankingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableViewController.swift; sourceTree = "<group>"; };
+		714D5A16A460419FE7ABB228 /* Pods_PlanetSAGA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanetSAGA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C212B99424139B4B00B6A472 /* GameAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = GameAssets.xcassets; sourceTree = "<group>"; };
+		C2FB5A6C2416111E00049CF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C2FB5A702416147400049CF1 /* PSDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSDatabase.swift; sourceTree = "<group>"; };
+		ECF3CC9469EA7EAD223FE42A /* Pods-PlanetSAGA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetSAGA.release.xcconfig"; path = "Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E2066A020D03868000957C1 /* AVFoundation.framework in Frameworks */,
+				02A1740ACF8F2778A49D1EFE /* Pods_PlanetSAGA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				3E20669F20D03868000957C1 /* AVFoundation.framework */,
+				714D5A16A460419FE7ABB228 /* Pods_PlanetSAGA.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -92,6 +102,7 @@
 				3E223FF820A8A2EE006A7D07 /* PlanetSAGA */,
 				3E223FF720A8A2EE006A7D07 /* Products */,
 				3E20669E20D03868000957C1 /* Frameworks */,
+				D4A3E9A611B345FC67A33C5C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,7 +143,7 @@
 		C212B98E24138DD200B6A472 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3E223FFB20A8A2EE006A7D07 /* ViewController.swift */,
+				3E223FFB20A8A2EE006A7D07 /* MainViewController.swift */,
 				3ED8464220BD1019003C4F63 /* JoinViewController.swift */,
 				3ED8464420BD103C003C4F63 /* LoginViewController.swift */,
 				3ED8464620BD107A003C4F63 /* UserViewController.swift */,
@@ -162,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				3E22400820A8A2EE006A7D07 /* Info.plist */,
+				C2FB5A6C2416111E00049CF1 /* GoogleService-Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -178,6 +190,7 @@
 		C212B99224138FBB00B6A472 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				C2FB5A702416147400049CF1 /* PSDatabase.swift */,
 				3E22400020A8A2EE006A7D07 /* univerSwuSaga.xcdatamodeld */,
 			);
 			path = Database;
@@ -192,6 +205,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D4A3E9A611B345FC67A33C5C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2FD8F206B83F8802C78BC151 /* Pods-PlanetSAGA.debug.xcconfig */,
+				ECF3CC9469EA7EAD223FE42A /* Pods-PlanetSAGA.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -199,9 +221,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E22400B20A8A2EE006A7D07 /* Build configuration list for PBXNativeTarget "PlanetSAGA" */;
 			buildPhases = (
+				2E293E0CA667F0B207575A5A /* [CP] Check Pods Manifest.lock */,
 				3E223FF220A8A2EE006A7D07 /* Sources */,
 				3E223FF320A8A2EE006A7D07 /* Frameworks */,
 				3E223FF420A8A2EE006A7D07 /* Resources */,
+				954BDA815BC568F4E60E7B0C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,12 +281,55 @@
 				3E223FFF20A8A2EE006A7D07 /* Main.storyboard in Resources */,
 				3E78BD9B20D9473600AADBC0 /* SoundClick.wav in Resources */,
 				C212B99524139B4B00B6A472 /* GameAssets.xcassets in Resources */,
+				C2FB5A6D2416111E00049CF1 /* GoogleService-Info.plist in Resources */,
 				3E78BD9920D9473600AADBC0 /* SoundSelected.WAV in Resources */,
 				3E78BD9A20D9473600AADBC0 /* SoundMoveSuccess.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E293E0CA667F0B207575A5A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PlanetSAGA-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		954BDA815BC568F4E60E7B0C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3E223FF220A8A2EE006A7D07 /* Sources */ = {
@@ -280,7 +347,8 @@
 				3E644CF920BD6B0E0089A411 /* RecordTableViewController.swift in Sources */,
 				3E79687220D5636100F67483 /* RankingDetailsViewController.swift in Sources */,
 				3E22400220A8A2EE006A7D07 /* univerSwuSaga.xcdatamodeld in Sources */,
-				3E223FFC20A8A2EE006A7D07 /* ViewController.swift in Sources */,
+				C2FB5A712416147400049CF1 /* PSDatabase.swift in Sources */,
+				3E223FFC20A8A2EE006A7D07 /* MainViewController.swift in Sources */,
 				3ED8464320BD1019003C4F63 /* JoinViewController.swift in Sources */,
 				3E79687E20D69EDE00F67483 /* LocalRecordTableViewController.swift in Sources */,
 				3ED8464B20BD10E7003C4F63 /* RankingTableViewController.swift in Sources */,
@@ -426,6 +494,7 @@
 		};
 		3E22400C20A8A2EE006A7D07 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FD8F206B83F8802C78BC151 /* Pods-PlanetSAGA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -443,6 +512,7 @@
 		};
 		3E22400D20A8A2EE006A7D07 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECF3CC9469EA7EAD223FE42A /* Pods-PlanetSAGA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

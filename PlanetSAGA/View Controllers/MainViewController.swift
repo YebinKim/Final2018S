@@ -1,9 +1,9 @@
 //
-//  ViewController.swift
-//  univerSwuSaga
+//  MainViewController.swift
+//  PlanetSAGA
 //
-//  Created by 김예빈 on 2018. 5. 14..
-//  Copyright © 2018년 김예빈. All rights reserved.
+//  Created by Yebin Kim on 2020/03/09.
+//  Copyright © 2020 김예빈. All rights reserved.
 //
 
 import UIKit

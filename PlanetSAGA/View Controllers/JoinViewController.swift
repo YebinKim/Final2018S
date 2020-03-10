@@ -47,7 +47,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate {
         
         Auth.auth().createUser(withEmail: emailTextfield.text!,
                                password: pwTextfield.text!) { user, error in
-            if let error = error, user != nil {
+            if let error = error, user == nil {
                 self.statusLabel.text = error.localizedDescription
                 print("Error: \(error.localizedDescription)")
             } else {

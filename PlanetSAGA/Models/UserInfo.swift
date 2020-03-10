@@ -15,13 +15,14 @@ struct UserInfo {
     let key: String
     
     var name: String
-    var profilePic: String?
-    var maxScore: Int?
-    var playCounts: Int?
+    var profilePic: String = ""
+    var maxScore: Int = 0
+    var playCounts: Int = 0
     
     init(email: String, name: String, key: String = "") {
         self.ref = nil
         self.key = key
+        
         self.name = name
     }
     
@@ -38,12 +39,25 @@ struct UserInfo {
         self.name = name
     }
     
-    func toAnyObject() -> Any {
+    func toAnyObject() -> [AnyHashable: Any] {
         return [
             "name": name,
-            "profilePic": profilePic ?? "",
-            "maxScore": maxScore ?? 0,
-            "playCounts": playCounts ?? 0
+            "profilePic": profilePic,
+            "maxScore": maxScore,
+            "playCounts": playCounts
+        ]
+    }
+    
+    static func toProfilePic(profilePic: String) -> [AnyHashable: Any] {
+        return [
+            "profilePic": profilePic
+        ]
+    }
+    
+    static func toPlayScore(maxScore: Int, playCounts: Int) -> [AnyHashable: Any] {
+        return [
+            "maxScore": maxScore,
+            "playCounts": playCounts
         ]
     }
     

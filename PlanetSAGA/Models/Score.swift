@@ -16,7 +16,7 @@ struct Score {
     
     var score: Int
     var scoreDate: String
-    var scoreMemo: String?
+    var scoreMemo: String = ""
     
     init(score: Int, scoreDate: String, key: String = "") {
         self.ref = nil
@@ -41,11 +41,11 @@ struct Score {
         self.scoreDate = scoreDate
     }
     
-    func toAnyObject() -> Any {
+    func toAnyObject() -> [AnyHashable: Any] {
         return [
             "score": score,
             "scoreDate": scoreDate,
-            "scoreMemo": scoreMemo ?? ""
+            "scoreMemo": scoreMemo
         ]
     }
     

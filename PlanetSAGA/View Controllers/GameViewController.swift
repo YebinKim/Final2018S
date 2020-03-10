@@ -142,7 +142,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     var score:Int = 0
     
     var timer:Timer?
-//    var count = 20
+    //    var count = 20
     var count = 5
     var timerFlag:Bool = true
     
@@ -161,8 +161,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         levelView.isHidden = false
         level = nil
         
-//        userNameLabel.text = appDelegate.userName
-//        maxScoreLabel.text = appDelegate.userMaxScore
+        setUserInfo()
         
         levelPicker.selectRow(2, inComponent: 0, animated: false)
         
@@ -247,7 +246,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         blockArray[78] = b78
         blockArray[79] = b79
         blockArray[80] = b80
-
+        
         for i in 0 ... 80 {
             let randNum: UInt32 = arc4random_uniform(UInt32(6))
             
@@ -284,6 +283,24 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         missionArray.append(missionLabel4)
         missionArray.append(missionLabel5)
         missionArray.append(missionLabel6)
+    }
+    
+    private func setUserInfo() {
+        if let user = Auth.auth().currentUser {
+            PSDatabase.userInfoRef
+                .queryEqual(toValue: nil, childKey: user.uid)
+                .observeSingleEvent(of: .value, with: { snapshot in
+                guard let child = snapshot.children.allObjects.first,
+                    let snapshot = child as? DataSnapshot,
+                    let userInfo = UserInfo(snapshot: snapshot) else { return }
+                
+                self.userNameLabel.text = userInfo.name
+                self.maxScoreLabel.text = String(userInfo.maxScore)
+            })
+        } else {
+            self.userNameLabel.text = "Guest"
+            self.maxScoreLabel.text = "0"
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -533,14 +550,17 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         
         if (score > Int(maxScoreLabel.text!)!) {
             maxScoreLabel.text = String(score)
-//            appDelegate.userMaxScore = maxScoreLabel.text
+            //            appDelegate.userMaxScore = maxScoreLabel.text
         }
         
         self.delay(bySeconds: 2) {
             if let user = Auth.auth().currentUser {
-                let score = Score(score: self.score, scoreDate: String(Date().timeIntervalSince1970))
-                let scoreRef = PSDatabase.scoreRef.child(user.uid)
+                let now = Date().timeIntervalSince1970
+                let score = Score(score: self.score, scoreDate: String(now))
+                let scoreRef = PSDatabase.scoreRef.child("\(user.uid)\(Int(now))")
                 scoreRef.setValue(score.toAnyObject())
+                
+                self.updateServer()
                 
                 let alert = UIAlertController(title: "Score saved", message: "Your score has been \nsaved on the server", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
@@ -557,28 +577,21 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     func updateServer() {
-        let urlString: String = "http://condi.swu.ac.kr/student/W02iphone/USS_updateScore.php"
-        guard let requestURL = URL(string: urlString) else {
-            return
-        }
+        guard let user = Auth.auth().currentUser else { return }
         
-        var request = URLRequest(url: requestURL)
-        request.httpMethod = "POST"
-        
-//        let playCount = self.appDelegate.userPlayCounts
-//        self.appDelegate.userPlayCounts = String(Int(playCount!)! + 1)
-//
-//        var restString: String = "id=" + self.appDelegate.ID! + "&maxscore=" + self.appDelegate.userMaxScore!
-//        restString += "&playcounts=" + self.appDelegate.userPlayCounts!
-//        request.httpBody = restString.data(using: .utf8)
-//
-//        let session = URLSession.shared
-//        let task = session.dataTask(with: request) { (responseData, response, responseError) in guard responseError == nil else {
-//            print("Error: calling POST")
-//            return
-//            }
-//        }
-//        task.resume()
+        PSDatabase.userInfoRef
+            .queryEqual(toValue: nil, childKey: user.uid)
+            .observeSingleEvent(of: .value, with: { snapshot in
+        guard let child = snapshot.children.allObjects.first,
+            let snapshot = child as? DataSnapshot,
+            let userInfo = UserInfo(snapshot: snapshot) else { return }
+            
+            let maxScore = max(userInfo.maxScore, self.score)
+            let playCounts = userInfo.playCounts + 1
+            
+            let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
+            userInfoRef.updateChildValues(UserInfo.toPlayScore(maxScore: maxScore, playCounts: playCounts))
+        })
     }
     
     func subMission() {

@@ -10,8 +10,6 @@ import UIKit
 
 class RecordTableViewController: UITableViewController {
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     var userScoreFetchedArray: [UserScore] = Array()
     var urlString: String = ""
     var alignFlag: Bool = true
@@ -28,9 +26,9 @@ class RecordTableViewController: UITableViewController {
     }
     
     @IBAction func alignButton(_ sender: UIBarButtonItem) {
-        if let player = appDelegate.clickEffectAudioPlayer {
-            player.play()
-        }
+//        if let player = appDelegate.clickEffectAudioPlayer {
+//            player.play()
+//        }
         
         alignFlag = !alignFlag
         viewWillAppear(true)
@@ -47,35 +45,35 @@ class RecordTableViewController: UITableViewController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
         
-        let restString: String = "id=" + appDelegate.ID!
-        request.httpBody = restString.data(using: .utf8)
-        
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { (responseData, response, responseError) in
-            guard responseError == nil else { print("Error: calling POST"); return; }
-            guard let receivedData = responseData else { print("Error: not receiving Data"); return; }
-            let response = response as! HTTPURLResponse
-            
-            if !(200...299 ~= response.statusCode) { print("HTTP response Error!"); return }
-            do {
-                if let jsonData = try JSONSerialization.jsonObject(with: receivedData, options:.allowFragments) as? [[String: Any]] {
-                    for i in 0...jsonData.count-1 {
-                        let newData: UserScore = UserScore()
-                        var jsonElement = jsonData[i]
-                        newData.scoreNo = jsonElement["ScoreNo"] as! String
-                        newData.id = jsonElement["ID"] as! String
-                        newData.score = jsonElement["Score"] as! String
-                        newData.scoreDate = jsonElement["ScoreDate"] as! String
-                        newData.scoreMemo = jsonElement["ScoreMemo"] as! String
-                        self.userScoreFetchedArray.append(newData)
-                    }
-                    DispatchQueue.main.async { self.tableView.reloadData() }
-                }
-            } catch {
-                print("Error:")
-            }
-        }
-        task.resume()
+//        let restString: String = "id=" + appDelegate.ID!
+//        request.httpBody = restString.data(using: .utf8)
+//
+//        let session = URLSession.shared
+//        let task = session.dataTask(with: request) { (responseData, response, responseError) in
+//            guard responseError == nil else { print("Error: calling POST"); return; }
+//            guard let receivedData = responseData else { print("Error: not receiving Data"); return; }
+//            let response = response as! HTTPURLResponse
+//
+//            if !(200...299 ~= response.statusCode) { print("HTTP response Error!"); return }
+//            do {
+//                if let jsonData = try JSONSerialization.jsonObject(with: receivedData, options:.allowFragments) as? [[String: Any]] {
+//                    for i in 0...jsonData.count-1 {
+//                        let newData: UserScore = UserScore()
+//                        var jsonElement = jsonData[i]
+//                        newData.scoreNo = jsonElement["ScoreNo"] as! String
+//                        newData.id = jsonElement["ID"] as! String
+//                        newData.score = jsonElement["Score"] as! String
+//                        newData.scoreDate = jsonElement["ScoreDate"] as! String
+//                        newData.scoreMemo = jsonElement["ScoreMemo"] as! String
+//                        self.userScoreFetchedArray.append(newData)
+//                    }
+//                    DispatchQueue.main.async { self.tableView.reloadData() }
+//                }
+//            } catch {
+//                print("Error:")
+//            }
+//        }
+//        task.resume()
     }
 
     // MARK: - Table view data source
@@ -94,8 +92,8 @@ class RecordTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Record Cell", for: indexPath)
         
         let item = userScoreFetchedArray[indexPath.row]
-        cell.textLabel?.text = item.score
-        cell.detailTextLabel?.text = item.scoreDate // ----> Right Detail 설정 return cell
+//        cell.textLabel?.text = item.score
+//        cell.detailTextLabel?.text = item.scoreDate // ----> Right Detail 설정 return cell
         
         return cell
     }
@@ -150,9 +148,9 @@ class RecordTableViewController: UITableViewController {
     }
 
     @IBAction func buttonBack(_ sender: UIBarButtonItem) {
-        if let player = appDelegate.clickEffectAudioPlayer {
-            player.play()
-        }
+//        if let player = appDelegate.clickEffectAudioPlayer {
+//            player.play()
+//        }
         
         self.dismiss(animated: true, completion: nil)
     }

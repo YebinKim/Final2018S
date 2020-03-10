@@ -11,8 +11,6 @@ import UIKit
 
 class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     @IBOutlet var b0: UIButton!
     @IBOutlet var b1: UIButton!
     @IBOutlet var b2: UIButton!
@@ -161,8 +159,8 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         levelView.isHidden = false
         level = nil
         
-        userNameLabel.text = appDelegate.userName
-        maxScoreLabel.text = appDelegate.userMaxScore
+//        userNameLabel.text = appDelegate.userName
+//        maxScoreLabel.text = appDelegate.userMaxScore
         
         levelPicker.selectRow(2, inComponent: 0, animated: false)
         
@@ -304,10 +302,6 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         return tempArray[row]
     }
     
-    func getContext () -> NSManagedObjectContext {
-        return appDelegate.persistentContainer.viewContext
-    }
-    
     @IBAction func selectLevel(_ sender: UIButton) {
         levelLabel.text = "Level " + String(levelPicker.selectedRow(inComponent: 0) + 1) + " Start"
         level = Int(levelPicker.selectedRow(inComponent: 0) + 1)
@@ -361,9 +355,9 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                 tempLabel = (sender.titleLabel?.text?.split(separator: "b").map(String.init))!
                 arrNum1 = Int(tempLabel[0])!
                 
-                if let player = appDelegate.selectedEffectAudioPlayer {
-                    player.play()
-                }
+//                if let player = appDelegate.selectedEffectAudioPlayer {
+//                    player.play()
+//                }
                 
                 flagBtn1 = true
             } else if flagBtn1 == true {
@@ -380,9 +374,9 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                     moveLabel.text = "Move Success"
                     moveView.isHidden = false
                     
-                    if let player = appDelegate.moveSuccessEffectAudioPlayer {
-                        player.play()
-                    }
+//                    if let player = appDelegate.moveSuccessEffectAudioPlayer {
+//                        player.play()
+//                    }
                     
                     delay(bySeconds: 1) {
                         self.moveLabel.text = ""
@@ -392,9 +386,9 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                     moveLabel.text = "Move Fail"
                     moveView.isHidden = false
                     
-                    if let player = appDelegate.moveFailEffectAudioPlayer {
-                        player.play()
-                    }
+//                    if let player = appDelegate.moveFailEffectAudioPlayer {
+//                        player.play()
+//                    }
                     
                     delay(bySeconds: 1) {
                         self.moveLabel.text = ""
@@ -543,67 +537,67 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         
         if (score > Int(maxScoreLabel.text!)!) {
             maxScoreLabel.text = String(score)
-            appDelegate.userMaxScore = maxScoreLabel.text
+//            appDelegate.userMaxScore = maxScoreLabel.text
         }
         
         self.delay(bySeconds: 2) {
-            if self.appDelegate.flagLogin == false {
-                let context = self.getContext()
-                let entity = NSEntityDescription.entity(forEntityName: "LocalRecord", in: context)
+//            if self.appDelegate.flagLogin == false {
+//                let context = self.getContext()
+//                let entity = NSEntityDescription.entity(forEntityName: "LocalRecord", in: context)
+//
+//                // LocalRecord record를 새로 생성함
+//                let object = NSManagedObject(entity: entity!, insertInto: context)
+//
+//                object.setValue(String(self.score), forKey: "localscore")
+//                object.setValue(Date(), forKey: "playdate")
+//
+//                do {
+//                    try context.save()
+//                    print("saved!")
+//                } catch let error as NSError {
+//                    print("Could not save \(error), \(error.userInfo)")
+//                }
+//
+//                let alert = UIAlertController(title: "You played as a guest", message: "Can you Join and save score?", preferredStyle: .alert)
+//
+//                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+//                    self.dismiss(animated: true, completion: nil)
+//                }))
+//
+//                alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+//
+//                self.present(alert, animated: true, completion: nil)
+//            } else {
+//                let urlString: String = "http://condi.swu.ac.kr/student/W02iphone/USS_insertScore.php"
+//                guard let requestURL = URL(string: urlString) else {
+//                    return
+//                }
+//
+//                var request = URLRequest(url: requestURL)
+//                request.httpMethod = "POST"
+//
+//                let formatter = DateFormatter()
+//                formatter.dateFormat = "yyyy-MM-dd"
+//                let myDate = formatter.string(from: Date())
                 
-                // LocalRecord record를 새로 생성함
-                let object = NSManagedObject(entity: entity!, insertInto: context)
-                
-                object.setValue(String(self.score), forKey: "localscore")
-                object.setValue(Date(), forKey: "playdate")
-                
-                do {
-                    try context.save()
-                    print("saved!")
-                } catch let error as NSError {
-                    print("Could not save \(error), \(error.userInfo)")
-                }
-                
-                let alert = UIAlertController(title: "You played as a guest", message: "Can you Join and save score?", preferredStyle: .alert)
-                
-                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-                    self.dismiss(animated: true, completion: nil)
-                }))
-                
-                alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-                
-                self.present(alert, animated: true, completion: nil)
-            } else {
-                let urlString: String = "http://condi.swu.ac.kr/student/W02iphone/USS_insertScore.php"
-                guard let requestURL = URL(string: urlString) else {
-                    return
-                }
-                
-                var request = URLRequest(url: requestURL)
-                request.httpMethod = "POST"
-                
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd"
-                let myDate = formatter.string(from: Date())
-                
-                var restString: String = "id=" + self.appDelegate.ID! + "&score=" + String(self.score)
-                restString += "&scoredate=" + myDate + "&scorememo=" + ""
-                request.httpBody = restString.data(using: .utf8)
-                
-                let session = URLSession.shared
-                let task = session.dataTask(with: request) { (responseData, response, responseError) in guard responseError == nil else {
-                    print("Error: calling POST")
-                    return
-                    }
-                }
-                task.resume()
-                
-                self.updateServer()
-                
-                let alert = UIAlertController(title: "Score saved", message: "Your score has been \nsaved on the server", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
+//                var restString: String = "id=" + self.appDelegate.ID! + "&score=" + String(self.score)
+//                restString += "&scoredate=" + myDate + "&scorememo=" + ""
+//                request.httpBody = restString.data(using: .utf8)
+//
+//                let session = URLSession.shared
+//                let task = session.dataTask(with: request) { (responseData, response, responseError) in guard responseError == nil else {
+//                    print("Error: calling POST")
+//                    return
+//                    }
+//                }
+//                task.resume()
+//
+//                self.updateServer()
+//
+//                let alert = UIAlertController(title: "Score saved", message: "Your score has been \nsaved on the server", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//            }
         }
     }
     
@@ -616,20 +610,20 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
         
-        let playCount = self.appDelegate.userPlayCounts
-        self.appDelegate.userPlayCounts = String(Int(playCount!)! + 1)
-        
-        var restString: String = "id=" + self.appDelegate.ID! + "&maxscore=" + self.appDelegate.userMaxScore!
-        restString += "&playcounts=" + self.appDelegate.userPlayCounts!
-        request.httpBody = restString.data(using: .utf8)
-        
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { (responseData, response, responseError) in guard responseError == nil else {
-            print("Error: calling POST")
-            return
-            }
-        }
-        task.resume()
+//        let playCount = self.appDelegate.userPlayCounts
+//        self.appDelegate.userPlayCounts = String(Int(playCount!)! + 1)
+//
+//        var restString: String = "id=" + self.appDelegate.ID! + "&maxscore=" + self.appDelegate.userMaxScore!
+//        restString += "&playcounts=" + self.appDelegate.userPlayCounts!
+//        request.httpBody = restString.data(using: .utf8)
+//
+//        let session = URLSession.shared
+//        let task = session.dataTask(with: request) { (responseData, response, responseError) in guard responseError == nil else {
+//            print("Error: calling POST")
+//            return
+//            }
+//        }
+//        task.resume()
     }
     
     func subMission() {
@@ -675,9 +669,9 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {
-        if let player = appDelegate.clickEffectAudioPlayer {
-            player.play()
-        }
+//        if let player = appDelegate.clickEffectAudioPlayer {
+//            player.play()
+//        }
         
         self.dismiss(animated: true, completion: nil)
     }

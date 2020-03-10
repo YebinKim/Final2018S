@@ -11,28 +11,22 @@ import UIKit
 
 class LocalRecordTableViewController: UITableViewController {
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     var localRecords: [NSManagedObject] = []
-
-    func getContext () -> NSManagedObjectContext {
-        return appDelegate.persistentContainer.viewContext
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let context = self.getContext()
+//        let context = self.getContext()
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LocalRecord")
         
         let sortDescriptor = NSSortDescriptor (key: "playdate", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        do {
-            localRecords = try context.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
+//        do {
+//            localRecords = try context.fetch(fetchRequest)
+//        } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//        }
         
         self.tableView.reloadData()
     }
@@ -41,17 +35,17 @@ class LocalRecordTableViewController: UITableViewController {
         // 삭제한 데이터 셀을 없애기 위해 다시 불러옴
         super.viewDidAppear(animated)
         
-        let context = self.getContext()
+//        let context = self.getContext()
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LocalRecord")
         
         let sortDescriptor = NSSortDescriptor (key: "playdate", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        do {
-            localRecords = try context.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
+//        do {
+//            localRecords = try context.fetch(fetchRequest)
+//        } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//        }
         
         self.tableView.reloadData()
     }
@@ -92,15 +86,15 @@ class LocalRecordTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Core Data 내의 해당 자료 삭제
-            let context = getContext()
-            context.delete(localRecords[indexPath.row])
+//            let context = getContext()
+//            context.delete(localRecords[indexPath.row])
             
-            do {
-                try context.save()
-                print("deleted!")
-            } catch let error as NSError {
-                print("Could not delete \(error), \(error.userInfo)")
-            }
+//            do {
+//                try context.save()
+//                print("deleted!")
+//            } catch let error as NSError {
+//                print("Could not delete \(error), \(error.userInfo)")
+//            }
             
             // 배열에서 해당 자료 삭제
             localRecords.remove(at: indexPath.row)
@@ -140,9 +134,9 @@ class LocalRecordTableViewController: UITableViewController {
     }
 
     @IBAction func buttonBack(_ sender: UIBarButtonItem) {
-        if let player = appDelegate.clickEffectAudioPlayer {
-            player.play()
-        }
+//        if let player = appDelegate.clickEffectAudioPlayer {
+//            player.play()
+//        }
         
         self.dismiss(animated: true, completion: nil)
     }

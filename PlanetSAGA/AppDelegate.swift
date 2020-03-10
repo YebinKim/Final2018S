@@ -16,18 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var ID: String?
-    var userName: String? = "Guest"
-    var userProfilePic: String?
-    var userMaxScore: String? = "0"
-    var userPlayCounts: String?
-    
-    var userScoreNo: String?
-    var userScore: String?
-    var scoreDate: String?
-    var scoreMemo: String?
-    
-    var flagLogin:Bool? = false
+//    var ID: String?
+//    var userName: String? = "Guest"
+//    var userProfilePic: String?
+//    var userMaxScore: String? = "0"
+//    var userPlayCounts: String?
+//
+//    var userScoreNo: String?
+//    var userScore: String?
+//    var scoreDate: String?
+//    var scoreMemo: String?
+//
+//    var flagLogin:Bool? = false
     
     var bakgroundAudioPlayer: AVAudioPlayer?
     
@@ -39,52 +39,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var effectArray:Array<AVAudioPlayer?> = []
     
-    var userInfoFetchedArray: [UserData] = Array()
+//    var userInfoFetchedArray: [UserData] = Array()
     
     func userInfoDownloadDataFromServer() -> Void {
-        let urlString: String = "http://condi.swu.ac.kr/student/W02iphone/USS_UserTable.php"
-        guard let requestURL = URL(string: urlString) else { return }
-        var request = URLRequest(url: requestURL)
-        request.httpMethod = "POST"
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        guard let userID = appDelegate.ID else { return }
-        
-        let restString: String = "id=" + userID
-        request.httpBody = restString.data(using: .utf8)
-        
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { (responseData, response, responseError) in
-            guard responseError == nil else { print("Error: calling POST"); return; }
-            guard let receivedData = responseData else { print("Error: not receiving Data"); return; }
-            let response = response as! HTTPURLResponse
-            
-            if !(200...299 ~= response.statusCode) { print("HTTP response Error!"); return }
-            do {
-                if let jsonData = try JSONSerialization.jsonObject(with: receivedData, options:.allowFragments) as? [[String: Any]] {
-                    for i in 0...jsonData.count-1 {
-                        let newData: UserData = UserData()
-                        var jsonElement = jsonData[i]
-                        newData.id = jsonElement["ID"] as! String
-                        newData.pw = jsonElement["PW"] as! String
-                        newData.name = jsonElement["Name"] as! String
-                        newData.profilePic = jsonElement["ProfilePic"] as! String
-                        newData.maxScore = jsonElement["MaxScore"]  as! String
-                        newData.playCounts = jsonElement["PlayCounts"]  as! String
-                        self.userInfoFetchedArray.append(newData)
-                        
-                        self.ID = newData.id
-                        self.userName = newData.name
-                        self.userProfilePic = newData.profilePic
-                        self.userMaxScore = newData.maxScore
-                        self.userPlayCounts = newData.playCounts
-                    }
-                }
-            } catch {
-                print("Error:")
-            }
-        }
-        task.resume()
+//        let urlString: String = "http://condi.swu.ac.kr/student/W02iphone/USS_UserTable.php"
+//        guard let requestURL = URL(string: urlString) else { return }
+//        var request = URLRequest(url: requestURL)
+//        request.httpMethod = "POST"
+//
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        guard let userID = appDelegate.ID else { return }
+//
+//        let restString: String = "id=" + userID
+//        request.httpBody = restString.data(using: .utf8)
+//
+//        let session = URLSession.shared
+//        let task = session.dataTask(with: request) { (responseData, response, responseError) in
+//            guard responseError == nil else { print("Error: calling POST"); return; }
+//            guard let receivedData = responseData else { print("Error: not receiving Data"); return; }
+//            let response = response as! HTTPURLResponse
+//
+//            if !(200...299 ~= response.statusCode) { print("HTTP response Error!"); return }
+//            do {
+//                if let jsonData = try JSONSerialization.jsonObject(with: receivedData, options:.allowFragments) as? [[String: Any]] {
+//                    for i in 0...jsonData.count-1 {
+//                        let newData: UserData = UserData()
+//                        var jsonElement = jsonData[i]
+//                        newData.id = jsonElement["ID"] as! String
+//                        newData.pw = jsonElement["PW"] as! String
+//                        newData.name = jsonElement["Name"] as! String
+//                        newData.profilePic = jsonElement["ProfilePic"] as! String
+//                        newData.maxScore = jsonElement["MaxScore"]  as! String
+//                        newData.playCounts = jsonElement["PlayCounts"]  as! String
+//                        self.userInfoFetchedArray.append(newData)
+//
+//                        self.ID = newData.id
+//                        self.userName = newData.name
+//                        self.userProfilePic = newData.profilePic
+//                        self.userMaxScore = newData.maxScore
+//                        self.userPlayCounts = newData.playCounts
+//                    }
+//                }
+//            } catch {
+//                print("Error:")
+//            }
+//        }
+//        task.resume()
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -177,7 +177,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentContainer(name: "univerSwuSaga")
+        let container = NSPersistentContainer(name: "PlanetSAGA")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

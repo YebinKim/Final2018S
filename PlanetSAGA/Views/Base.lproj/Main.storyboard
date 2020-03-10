@@ -11,7 +11,7 @@
         <!--Ranking Details View Controller-->
         <scene sceneID="Ymg-uR-o27">
             <objects>
-                <viewController id="vmm-YX-M3V" customClass="RankingDetailsViewController" customModule="univerSwuSaga" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vmm-YX-M3V" customClass="RankingDetailsViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jvU-gM-eqc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -106,7 +106,7 @@
         <!--Ranking-->
         <scene sceneID="cSh-cT-8V8">
             <objects>
-                <tableViewController id="pBQ-cz-w44" customClass="RankingTableViewController" customModule="univerSwuSaga" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="pBQ-cz-w44" customClass="RankingTableViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8cY-pW-aYR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -163,7 +163,7 @@
         <!--Setting View Controller-->
         <scene sceneID="YtM-tx-iFE">
             <objects>
-                <viewController id="Doy-pX-Gsg" customClass="SettingViewController" customModule="univerSwuSaga" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Doy-pX-Gsg" customClass="SettingViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k7Q-5s-8Um">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -358,7 +358,7 @@
         <!--MainView-->
         <scene sceneID="upt-yE-giQ">
             <objects>
-                <viewController storyboardIdentifier="MainView" title="MainView" id="omF-LX-4sS" customClass="ViewController" customModule="univerSwuSaga" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainView" title="MainView" id="omF-LX-4sS" customClass="ViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hmC-DA-xtj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -411,7 +411,7 @@
         <!--User View Controller-->
         <scene sceneID="IWE-Lk-BGe">
             <objects>
-                <viewController id="tD7-vQ-yd3" customClass="UserViewController" customModule="univerSwuSaga" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tD7-vQ-yd3" customClass="UserViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xwh-7M-iFn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -499,7 +499,7 @@
         <!--gameView-->
         <scene sceneID="XMM-89-60w">
             <objects>
-                <viewController title="gameView" modalPresentationStyle="fullScreen" id="v1P-cW-jQ3" customClass="GameViewController" customModule="univerSwuSaga" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="gameView" modalPresentationStyle="fullScreen" id="v1P-cW-jQ3" customClass="GameViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eXC-Ng-0w9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1690,7 +1690,7 @@
         <!--Local Record Details View Controller-->
         <scene sceneID="td0-O4-6Pe">
             <objects>
-                <viewController id="ymQ-wC-vWl" customClass="LocalRecordDetailsViewController" customModule="univerSwuSaga" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ymQ-wC-vWl" customClass="LocalRecordDetailsViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gig-EU-CZl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1699,7 +1699,7 @@
                                 <rect key="frame" x="41" y="313" width="292" height="219"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNp-Vi-ihG">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PW" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNp-Vi-ihG">
                                         <rect key="frame" x="46" y="130" width="33" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -1725,8 +1725,8 @@
                                             <outlet property="delegate" destination="ymQ-wC-vWl" id="Qhj-M0-Tr4"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlS-lD-Eid">
-                                        <rect key="frame" x="58" y="92" width="21" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="E-mail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlS-lD-Eid">
+                                        <rect key="frame" x="18" y="92" width="61" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="0.81176470590000005" green="0.64313725489999995" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1851,7 +1851,7 @@
         <!--My Record-->
         <scene sceneID="Ykd-8w-xZ8">
             <objects>
-                <tableViewController id="d5g-Cy-dCt" customClass="RecordTableViewController" customModule="univerSwuSaga" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="d5g-Cy-dCt" customClass="RecordTableViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="952-LL-Nha">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1914,7 +1914,7 @@
         <!--Record Details View Controller-->
         <scene sceneID="0Yq-X9-DxD">
             <objects>
-                <viewController id="vSK-T0-BjB" customClass="RecordDetailsViewController" customModule="univerSwuSaga" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vSK-T0-BjB" customClass="RecordDetailsViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XBu-Z5-xZU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2024,12 +2024,12 @@
         <!--Login View Controller-->
         <scene sceneID="sIK-fu-VJ3">
             <objects>
-                <viewController id="Ryj-TU-ux2" customClass="LoginViewController" customModule="univerSwuSaga" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ryj-TU-ux2" customClass="LoginViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uc4-XE-aI4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbw-we-axx">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PW" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbw-we-axx">
                                 <rect key="frame" x="81" y="433" width="33" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -2072,8 +2072,8 @@
                                     <action selector="buttonBackPressed:" destination="Ryj-TU-ux2" eventType="touchUpInside" id="VpS-tK-aEr"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPi-7h-Pff">
-                                <rect key="frame" x="93" y="395" width="21" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="E-mail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPi-7h-Pff">
+                                <rect key="frame" x="53" y="395" width="61" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" red="0.81176470588235294" green="0.64313725490196083" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2094,8 +2094,8 @@
                         <viewLayoutGuide key="safeArea" id="hY1-L3-iej"/>
                     </view>
                     <connections>
-                        <outlet property="loginIdTextfield" destination="WFp-5A-Up0" id="W0x-wy-ctA"/>
-                        <outlet property="loginPwTextfield" destination="Y9q-D9-qAC" id="YzF-Px-P2Z"/>
+                        <outlet property="emailTextfield" destination="WFp-5A-Up0" id="lyu-Ta-dhC"/>
+                        <outlet property="pwTextfield" destination="Y9q-D9-qAC" id="T2n-nE-qgy"/>
                         <outlet property="statusLabel" destination="Dop-pf-gEX" id="UAc-kQ-svS"/>
                         <segue destination="tD7-vQ-yd3" kind="presentation" identifier="toLoginSuccess" modalTransitionStyle="flipHorizontal" id="Bz4-pd-QJ0"/>
                     </connections>
@@ -2107,7 +2107,7 @@
         <!--Local Record-->
         <scene sceneID="6Iw-mp-o6z">
             <objects>
-                <tableViewController id="IrP-9C-8l9" customClass="LocalRecordTableViewController" customModule="univerSwuSaga" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="IrP-9C-8l9" customClass="LocalRecordTableViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="w24-bD-ViU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2179,7 +2179,7 @@
         <!--Join View Controller-->
         <scene sceneID="ARo-xr-lpt">
             <objects>
-                <viewController id="Mtv-p5-3ES" customClass="JoinViewController" customModule="univerSwuSaga" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Mtv-p5-3ES" customClass="JoinViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xAv-Vk-3cX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2201,8 +2201,8 @@
                                     <action selector="buttonBackPressed:" destination="Mtv-p5-3ES" eventType="touchUpInside" id="QQZ-NY-QMq"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ID" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94n-Il-Yt8">
-                                <rect key="frame" x="112" y="371" width="21" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="E-mail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94n-Il-Yt8">
+                                <rect key="frame" x="72" y="371" width="61" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" red="0.81176470590000005" green="0.64313725489999995" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2265,7 +2265,7 @@
                         <viewLayoutGuide key="safeArea" id="Nx8-fu-DQj"/>
                     </view>
                     <connections>
-                        <outlet property="idTextfield" destination="z7Z-vx-LdK" id="aCZ-VD-970"/>
+                        <outlet property="emailTextfield" destination="z7Z-vx-LdK" id="iCb-jk-kfy"/>
                         <outlet property="nameTextfield" destination="gjI-Zm-aXy" id="3W8-91-dCs"/>
                         <outlet property="pwTextfield" destination="4Aa-4G-vtf" id="dXk-xN-cAt"/>
                         <outlet property="statusLabel" destination="9wg-5W-3tw" id="1yc-Rq-twm"/>

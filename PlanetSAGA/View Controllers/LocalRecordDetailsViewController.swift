@@ -11,8 +11,6 @@ import UIKit
 
 class LocalRecordDetailsViewController: UIViewController, UITextFieldDelegate {
 
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     @IBOutlet var localScoreLabel: UILabel!
     @IBOutlet var localDateLabel: UILabel!
     
@@ -43,9 +41,9 @@ class LocalRecordDetailsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func buttonSavePressed(_ sender: UIButton) {
-        if let player = appDelegate.clickEffectAudioPlayer {
-            player.play()
-        }
+//        if let player = appDelegate.clickEffectAudioPlayer {
+//            player.play()
+//        }
         
         // 필요한 세 가지 자료가 모두 입력 되었는지 확인
         if idTextfield.text == "" {
@@ -90,9 +88,9 @@ class LocalRecordDetailsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {
-        if let player = appDelegate.clickEffectAudioPlayer {
-            player.play()
-        }
+//        if let player = appDelegate.clickEffectAudioPlayer {
+//            player.play()
+//        }
         
         self.dismiss(animated: true, completion: nil)
     }
@@ -121,19 +119,15 @@ class LocalRecordDetailsViewController: UIViewController, UITextFieldDelegate {
     
     func deleteScore() {
         // Core Data 내의 해당 자료 삭제
-        let context = getContext()
-        context.delete(detailLocalScore!)
-        
-        do {
-            try context.save()
-            print("Score Deleted!")
-        } catch let error as NSError {
-            print("Could not delete \(error), \(error.userInfo)")
-        }
-    }
-    
-    func getContext () -> NSManagedObjectContext {
-        return appDelegate.persistentContainer.viewContext
+//        let context = getContext()
+//        context.delete(detailLocalScore!)
+//        
+//        do {
+//            try context.save()
+//            print("Score Deleted!")
+//        } catch let error as NSError {
+//            print("Could not delete \(error), \(error.userInfo)")
+//        }
     }
     
     func textFieldShouldReturn (_ textField: UITextField) -> Bool {

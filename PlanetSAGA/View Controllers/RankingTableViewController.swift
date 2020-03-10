@@ -10,9 +10,7 @@ import UIKit
 
 class RankingTableViewController: UITableViewController {
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
-    var userRankingFetchedArray: [UserData] = Array()
+//    var userRankingFetchedArray: [UserData] = Array()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +19,7 @@ class RankingTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        userRankingFetchedArray = [] // 배열을 초기화하고 서버에서 자료를 다시 가져옴
+//        userRankingFetchedArray = [] // 배열을 초기화하고 서버에서 자료를 다시 가져옴
         self.userRankingDownloadDataFromServer()
     }
     
@@ -31,36 +29,36 @@ class RankingTableViewController: UITableViewController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = "POST"
         
-        let restString: String = "id=" + appDelegate.ID!
-        request.httpBody = restString.data(using: .utf8)
+//        let restString: String = "id=" + appDelegate.ID!
+//        request.httpBody = restString.data(using: .utf8)
         
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { (responseData, response, responseError) in
-            guard responseError == nil else { print("Error: calling POST"); return; }
-            guard let receivedData = responseData else { print("Error: not receiving Data"); return; }
-            let response = response as! HTTPURLResponse
-            
-            if !(200...299 ~= response.statusCode) { print("HTTP response Error!"); return }
-            do {
-                if let jsonData = try JSONSerialization.jsonObject(with: receivedData, options:.allowFragments) as? [[String: Any]] {
-                    for i in 0...jsonData.count-1 {
-                        let newData: UserData = UserData()
-                        var jsonElement = jsonData[i]
-                        newData.id = jsonElement["ID"] as! String
-                        newData.pw = jsonElement["PW"] as! String
-                        newData.name = jsonElement["Name"] as! String
-                        newData.profilePic = jsonElement["ProfilePic"] as! String
-                        newData.maxScore = jsonElement["MaxScore"]  as! String
-                        newData.playCounts = jsonElement["PlayCounts"]  as! String
-                        self.userRankingFetchedArray.append(newData)
-                    }
-                    DispatchQueue.main.async { self.tableView.reloadData() }
-                }
-            } catch {
-                print("Error:")
-            }
-        }
-        task.resume()
+//        let session = URLSession.shared
+//        let task = session.dataTask(with: request) { (responseData, response, responseError) in
+//            guard responseError == nil else { print("Error: calling POST"); return; }
+//            guard let receivedData = responseData else { print("Error: not receiving Data"); return; }
+//            let response = response as! HTTPURLResponse
+//
+//            if !(200...299 ~= response.statusCode) { print("HTTP response Error!"); return }
+//            do {
+//                if let jsonData = try JSONSerialization.jsonObject(with: receivedData, options:.allowFragments) as? [[String: Any]] {
+//                    for i in 0...jsonData.count-1 {
+//                        let newData: UserData = UserData()
+//                        var jsonElement = jsonData[i]
+//                        newData.id = jsonElement["ID"] as! String
+//                        newData.pw = jsonElement["PW"] as! String
+//                        newData.name = jsonElement["Name"] as! String
+//                        newData.profilePic = jsonElement["ProfilePic"] as! String
+//                        newData.maxScore = jsonElement["MaxScore"]  as! String
+//                        newData.playCounts = jsonElement["PlayCounts"]  as! String
+//                        self.userRankingFetchedArray.append(newData)
+//                    }
+//                    DispatchQueue.main.async { self.tableView.reloadData() }
+//                }
+//            } catch {
+//                print("Error:")
+//            }
+//        }
+//        task.resume()
     }
 
     // MARK: - Table view data source
@@ -72,15 +70,16 @@ class RankingTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return userRankingFetchedArray.count
+//        return userRankingFetchedArray.count
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Ranking Cell", for: indexPath)
         
-        let item = userRankingFetchedArray[indexPath.row]
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = item.maxScore // ----> Right Detail 설정 return cell
+//        let item = userRankingFetchedArray[indexPath.row]
+//        cell.textLabel?.text = item.name
+//        cell.detailTextLabel?.text = item.maxScore // ----> Right Detail 설정 return cell
         
         return cell
     }
@@ -127,17 +126,17 @@ class RankingTableViewController: UITableViewController {
         if segue.identifier == "toRankingDetailView" {
             if let destination = segue.destination as? RankingDetailsViewController {
                 if let selectedIndex = self.tableView.indexPathsForSelectedRows?.first?.row {
-                    let data = userRankingFetchedArray[selectedIndex]
-                    destination.selectedData = data
+//                    let data = userRankingFetchedArray[selectedIndex]
+//                    destination.selectedData = data
                 }
             }
         }
     }
 
     @IBAction func buttonBack(_ sender: UIBarButtonItem) {
-        if let player = appDelegate.clickEffectAudioPlayer {
-            player.play()
-        }
+//        if let player = appDelegate.clickEffectAudioPlayer {
+//            player.play()
+//        }
         
         self.dismiss(animated: true, completion: nil)
     }

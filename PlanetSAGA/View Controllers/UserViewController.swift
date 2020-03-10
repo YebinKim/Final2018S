@@ -11,45 +11,43 @@ import UIKit
 
 class UserViewController: UIViewController {
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     @IBOutlet var loginUserLabel: UILabel!
     @IBOutlet var userImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loginUserLabel.text = appDelegate.userName
+//        loginUserLabel.text = appDelegate.userName
         
         // 프로필 사진 불러오기
-        var imageName = appDelegate.userProfilePic // 숫자.jpg 로 저장된 파일 이름
-        if (imageName != "") {
-            let urlString = "http://condi.swu.ac.kr/student/W02iphone/"
-            imageName = urlString + imageName!
-            let url = URL(string: imageName!)!
-            if let imageData = try? Data(contentsOf: url) {
-                userImage.image = UIImage(data: imageData)
-                // 웹에서 파일 이미지를 접근함
-            }
-        }
+//        var imageName = appDelegate.userProfilePic // 숫자.jpg 로 저장된 파일 이름
+//        if (imageName != "") {
+//            let urlString = "http://condi.swu.ac.kr/student/W02iphone/"
+//            imageName = urlString + imageName!
+//            let url = URL(string: imageName!)!
+//            if let imageData = try? Data(contentsOf: url) {
+//                userImage.image = UIImage(data: imageData)
+//                // 웹에서 파일 이미지를 접근함
+//            }
+//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        loginUserLabel.text = appDelegate.userName
+//        loginUserLabel.text = appDelegate.userName
         
         // 프로필사진 다시 불러오기
-        var imageName = appDelegate.userProfilePic // 숫자.jpg 로 저장된 파일 이름
-        if (imageName != "") {
-            let urlString = "http://condi.swu.ac.kr/student/W02iphone/"
-            imageName = urlString + imageName!
-            let url = URL(string: imageName!)!
-            if let imageData = try? Data(contentsOf: url) {
-                userImage.image = UIImage(data: imageData)
-                // 웹에서 파일 이미지를 접근함
-            }
-        }
+//        var imageName = appDelegate.userProfilePic // 숫자.jpg 로 저장된 파일 이름
+//        if (imageName != "") {
+//            let urlString = "http://condi.swu.ac.kr/student/W02iphone/"
+//            imageName = urlString + imageName!
+//            let url = URL(string: imageName!)!
+//            if let imageData = try? Data(contentsOf: url) {
+//                userImage.image = UIImage(data: imageData)
+//                // 웹에서 파일 이미지를 접근함
+//            }
+//        }
     }
     
     @IBAction func buttonLogoutPressed(_ sender: UIButton) {
@@ -66,13 +64,13 @@ class UserViewController: UIViewController {
             }
             task.resume()
             
-            self.appDelegate.ID = nil
-            self.appDelegate.userName = "Guest"
-            self.appDelegate.userProfilePic = nil
-            self.appDelegate.userMaxScore = "0"
-            self.appDelegate.userPlayCounts = nil
-            
-            self.appDelegate.flagLogin = false
+//            self.appDelegate.ID = nil
+//            self.appDelegate.userName = "Guest"
+//            self.appDelegate.userProfilePic = nil
+//            self.appDelegate.userMaxScore = "0"
+//            self.appDelegate.userPlayCounts = nil
+//
+//            self.appDelegate.flagLogin = false
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let MainView = storyboard.instantiateViewController(withIdentifier: "MainView")
@@ -84,8 +82,8 @@ class UserViewController: UIViewController {
     }
     
     @IBAction func buttonClicked(_ sender: UIButton) {
-        if let player = appDelegate.clickEffectAudioPlayer {
-            player.play()
-        }
+//        if let player = appDelegate.clickEffectAudioPlayer {
+//            player.play()
+//        }
     }
 }

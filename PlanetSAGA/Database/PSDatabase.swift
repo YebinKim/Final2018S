@@ -9,15 +9,21 @@
 import Foundation
 import Firebase
 
-class PSDatabase {
+class PSDatabase: NSObject {
     
-    var ref: DatabaseReference {
-        Database.database().reference()
+    static var userRef: DatabaseReference {
+        Database.database().reference(withPath: "online")
     }
     
-    func addUserData(userData: UserData) {
-         let itemRef = self.ref.child("list")
-         itemRef.setValue(userData)
+    static var userInfoRef: DatabaseReference {
+        Database.database().reference(withPath: "userInfo")
     }
+    
+//    let usersRef = Database.database().reference(withPath: "online")
+    
+//    func addUserInfo(userInfo: UserInfo) {
+//         let itemRef = self.userInfoRef.child("list")
+//         itemRef.setValue(userInfo)
+//    }
     
 }

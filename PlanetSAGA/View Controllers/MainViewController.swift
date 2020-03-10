@@ -11,20 +11,19 @@ import AVFoundation
 
 class ViewController: UIViewController {
 
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     @IBOutlet var backgroundImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        appDelegate.ID = nil
-        appDelegate.userName = "Guest"
-        appDelegate.flagLogin = false
+//        appDelegate.ID = nil
+//        appDelegate.userName = "Guest"
+//        appDelegate.flagLogin = false
     }
     
     @IBAction func buttonClicked(_ sender: UIButton) {
-        if let player = appDelegate.clickEffectAudioPlayer {
-            player.play()
-        }
+//        if let player = appDelegate.clickEffectAudioPlayer {
+//            player.play()
+//        }
     }
 }

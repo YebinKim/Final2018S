@@ -10,7 +10,6 @@ import UIKit
 
 class RecordTableViewController: UITableViewController {
     
-    var userScoreFetchedArray: [UserScore] = Array()
     var urlString: String = ""
     var alignFlag: Bool = true
 
@@ -21,7 +20,6 @@ class RecordTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        userScoreFetchedArray = [] // 배열을 초기화하고 서버에서 자료를 다시 가져옴
         self.userScoreDownloadDataFromServer()
     }
     
@@ -83,13 +81,13 @@ class RecordTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return userScoreFetchedArray.count
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Record Cell", for: indexPath)
         
-        let item = userScoreFetchedArray[indexPath.row]
+//        let item = userScoreFetchedArray[indexPath.row]
 //        cell.textLabel?.text = item.score
 //        cell.detailTextLabel?.text = item.scoreDate // ----> Right Detail 설정 return cell
         
@@ -138,8 +136,8 @@ class RecordTableViewController: UITableViewController {
         if segue.identifier == "toRecordDetailView" {
             if let destination = segue.destination as? RecordDetailsViewController {
                 if let selectedIndex = self.tableView.indexPathsForSelectedRows?.first?.row {
-                    let data = userScoreFetchedArray[selectedIndex]
-                    destination.selectedData = data
+//                    let data = userScoreFetchedArray[selectedIndex]
+//                    destination.selectedData = data
                 }
             }
         }

@@ -6,8 +6,9 @@
 //  Copyright © 2018년 김예빈. All rights reserved.
 //
 
-import CoreData
 import UIKit
+import CoreData
+import Firebase
 
 class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
@@ -141,7 +142,8 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     var score:Int = 0
     
     var timer:Timer?
-    var count = 20
+//    var count = 20
+    var count = 5
     var timerFlag:Bool = true
     
     override func viewDidLoad() {
@@ -535,63 +537,22 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         }
         
         self.delay(bySeconds: 2) {
-//            if self.appDelegate.flagLogin == false {
-//                let context = self.getContext()
-//                let entity = NSEntityDescription.entity(forEntityName: "LocalRecord", in: context)
-//
-//                // LocalRecord record를 새로 생성함
-//                let object = NSManagedObject(entity: entity!, insertInto: context)
-//
-//                object.setValue(String(self.score), forKey: "localscore")
-//                object.setValue(Date(), forKey: "playdate")
-//
-//                do {
-//                    try context.save()
-//                    print("saved!")
-//                } catch let error as NSError {
-//                    print("Could not save \(error), \(error.userInfo)")
-//                }
-//
-//                let alert = UIAlertController(title: "You played as a guest", message: "Can you Join and save score?", preferredStyle: .alert)
-//
-//                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-//                    self.dismiss(animated: true, completion: nil)
-//                }))
-//
-//                alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-//
-//                self.present(alert, animated: true, completion: nil)
-//            } else {
-//                let urlString: String = "http://condi.swu.ac.kr/student/W02iphone/USS_insertScore.php"
-//                guard let requestURL = URL(string: urlString) else {
-//                    return
-//                }
-//
-//                var request = URLRequest(url: requestURL)
-//                request.httpMethod = "POST"
-//
-//                let formatter = DateFormatter()
-//                formatter.dateFormat = "yyyy-MM-dd"
-//                let myDate = formatter.string(from: Date())
+            if let user = Auth.auth().currentUser {
+                let score = Score(score: self.score, scoreDate: String(Date().timeIntervalSince1970))
+                let scoreRef = PSDatabase.scoreRef.child(user.uid)
+                scoreRef.setValue(score.toAnyObject())
                 
-//                var restString: String = "id=" + self.appDelegate.ID! + "&score=" + String(self.score)
-//                restString += "&scoredate=" + myDate + "&scorememo=" + ""
-//                request.httpBody = restString.data(using: .utf8)
-//
-//                let session = URLSession.shared
-//                let task = session.dataTask(with: request) { (responseData, response, responseError) in guard responseError == nil else {
-//                    print("Error: calling POST")
-//                    return
-//                    }
-//                }
-//                task.resume()
-//
-//                self.updateServer()
-//
-//                let alert = UIAlertController(title: "Score saved", message: "Your score has been \nsaved on the server", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//            }
+                let alert = UIAlertController(title: "Score saved", message: "Your score has been \nsaved on the server", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                let alert = UIAlertController(title: "You played as a guest", message: "Can you Join and save score?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+                    self.dismiss(animated: true, completion: nil)
+                }))
+                alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
     

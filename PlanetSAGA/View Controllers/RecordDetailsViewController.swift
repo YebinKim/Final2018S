@@ -15,14 +15,11 @@ class RecordDetailsViewController: UIViewController {
     @IBOutlet var scoreMemo: UITextView!
     @IBOutlet var statusLabel: UILabel!
     
-    var selectedData: UserScore?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         statusLabel.text = ""
 
-        guard let ScoreData = selectedData else { return }
 //        userScore.text = ScoreData.score
 //        userScoreDate.text = ScoreData.scoreDate
 //        scoreMemo.text = ScoreData.scoreMemo

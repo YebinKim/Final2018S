@@ -39,9 +39,7 @@ class RankingDetailsViewController: UIViewController {
     }
 
     @IBAction func buttonBackPressed(_ sender: UIButton) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
         
         self.dismiss(animated: true, completion: nil)
     }

@@ -26,9 +26,7 @@ class RecordTableViewController: UITableViewController {
     }
     
     @IBAction func alignButton(_ sender: UIBarButtonItem) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
         
         alignFlag = !alignFlag
         viewWillAppear(true)
@@ -148,9 +146,7 @@ class RecordTableViewController: UITableViewController {
     }
 
     @IBAction func buttonBack(_ sender: UIBarButtonItem) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
         
         self.dismiss(animated: true, completion: nil)
     }

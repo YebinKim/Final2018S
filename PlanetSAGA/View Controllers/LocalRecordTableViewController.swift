@@ -134,9 +134,7 @@ class LocalRecordTableViewController: UITableViewController {
     }
 
     @IBAction func buttonBack(_ sender: UIBarButtonItem) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
         
         self.dismiss(animated: true, completion: nil)
     }

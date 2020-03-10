@@ -1,5 +1,5 @@
 //
-//  Online.swift
+//  OnlineManager.swift
 //  PlanetSAGA
 //
 //  Created by Yebin Kim on 2020/03/10.
@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-class Online: NSObject {
+final class OnlineManager: NSObject {
     
     static var user: User?
     

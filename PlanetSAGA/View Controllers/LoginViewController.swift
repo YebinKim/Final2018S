@@ -22,17 +22,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
         
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func buttonLoginPressed(_ sender: UIButton) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
         
         if emailTextfield.text == "" {
             statusLabel.text = "Insert ID"; return;

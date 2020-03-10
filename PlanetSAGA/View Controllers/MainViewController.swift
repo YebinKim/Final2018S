@@ -15,15 +15,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        appDelegate.ID = nil
-//        appDelegate.userName = "Guest"
-//        appDelegate.flagLogin = false
     }
     
     @IBAction func buttonClicked(_ sender: UIButton) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
     }
 }

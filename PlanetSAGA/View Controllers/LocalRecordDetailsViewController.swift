@@ -41,9 +41,7 @@ class LocalRecordDetailsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func buttonSavePressed(_ sender: UIButton) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
         
         // 필요한 세 가지 자료가 모두 입력 되었는지 확인
         if idTextfield.text == "" {

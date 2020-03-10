@@ -71,9 +71,7 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
     }
     
     @IBAction func selectOption(_ sender: UISegmentedControl) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
         
         if sender.selectedSegmentIndex == 0 {
             self.gameSetView.isHidden = false
@@ -92,9 +90,7 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
     }
     
     @IBAction func saveChange(_ sender: UIButton) {
-//        if let player = self.appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
         
         guard let myImage = profileImageview.image else {
             let alert = UIAlertController(title: "Select a Picture", message: "Save Failed", preferredStyle: .alert)
@@ -159,7 +155,7 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
 //        var restString: String = "id=" + userID + "&name=" + name
 //        restString += "&image=" + imageFileName
 //        request.httpBody = restString.data(using: .utf8)
-//        
+//
 //        let session2 = URLSession.shared
 //        let task2 = session2.dataTask(with: request) { (responseData, response, responseError) in
 //            guard responseError == nil else { return }
@@ -173,13 +169,11 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
         
         statusLabel.text = "User info changed"
         
-        appDelegate.userInfoDownloadDataFromServer()
+//        appDelegate.userInfoDownloadDataFromServer()
     }
     
     @IBAction func deleteUser(_ sender: UIButton) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
         
         let alert = UIAlertController(title: "User Delete", message: "Are you sure you want to delete it?", preferredStyle: .alert)
         
@@ -215,9 +209,7 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
         
         self.dismiss(animated: true, completion: nil)
     }

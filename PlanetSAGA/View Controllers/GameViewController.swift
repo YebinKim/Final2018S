@@ -355,9 +355,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                 tempLabel = (sender.titleLabel?.text?.split(separator: "b").map(String.init))!
                 arrNum1 = Int(tempLabel[0])!
                 
-//                if let player = appDelegate.selectedEffectAudioPlayer {
-//                    player.play()
-//                }
+                SoundManager.clickEffect()
                 
                 flagBtn1 = true
             } else if flagBtn1 == true {
@@ -374,9 +372,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                     moveLabel.text = "Move Success"
                     moveView.isHidden = false
                     
-//                    if let player = appDelegate.moveSuccessEffectAudioPlayer {
-//                        player.play()
-//                    }
+                    SoundManager.clickEffect()
                     
                     delay(bySeconds: 1) {
                         self.moveLabel.text = ""
@@ -386,9 +382,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                     moveLabel.text = "Move Fail"
                     moveView.isHidden = false
                     
-//                    if let player = appDelegate.moveFailEffectAudioPlayer {
-//                        player.play()
-//                    }
+                    SoundManager.clickEffect()
                     
                     delay(bySeconds: 1) {
                         self.moveLabel.text = ""
@@ -669,9 +663,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
         
         self.dismiss(animated: true, completion: nil)
     }

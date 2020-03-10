@@ -37,7 +37,8 @@
 		C2FB5A6D2416111E00049CF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2FB5A6C2416111E00049CF1 /* GoogleService-Info.plist */; };
 		C2FB5A712416147400049CF1 /* PSDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A702416147400049CF1 /* PSDatabase.swift */; };
 		C2FB5A9524164D1A00049CF1 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A9424164D1A00049CF1 /* UserInfo.swift */; };
-		C2FB5A98241744E300049CF1 /* Online.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A97241744E300049CF1 /* Online.swift */; };
+		C2FB5A98241744E300049CF1 /* OnlineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A97241744E300049CF1 /* OnlineManager.swift */; };
+		C2FB5A9B24175ECA00049CF1 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A9A24175ECA00049CF1 /* SoundManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +75,8 @@
 		C2FB5A6C2416111E00049CF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C2FB5A702416147400049CF1 /* PSDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSDatabase.swift; sourceTree = "<group>"; };
 		C2FB5A9424164D1A00049CF1 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
-		C2FB5A97241744E300049CF1 /* Online.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Online.swift; sourceTree = "<group>"; };
+		C2FB5A97241744E300049CF1 /* OnlineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineManager.swift; sourceTree = "<group>"; };
+		C2FB5A9A24175ECA00049CF1 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		ECF3CC9469EA7EAD223FE42A /* Pods-PlanetSAGA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetSAGA.release.xcconfig"; path = "Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,7 +127,7 @@
 				C212B99124138EA500B6A472 /* Models */,
 				C212B99324138FCA00B6A472 /* Views */,
 				C212B98E24138DD200B6A472 /* View Controllers */,
-				C2FB5A96241744CC00049CF1 /* Online */,
+				C2FB5A9924175EB900049CF1 /* Manager */,
 				C212B99224138FBB00B6A472 /* Database */,
 				C212B98F24138DDB00B6A472 /* Resources */,
 				C212B99024138E3B00B6A472 /* Supporting Files */,
@@ -211,12 +213,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		C2FB5A96241744CC00049CF1 /* Online */ = {
+		C2FB5A9924175EB900049CF1 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				C2FB5A97241744E300049CF1 /* Online.swift */,
+				C2FB5A97241744E300049CF1 /* OnlineManager.swift */,
+				C2FB5A9A24175ECA00049CF1 /* SoundManager.swift */,
 			);
-			path = Online;
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		D4A3E9A611B345FC67A33C5C /* Pods */ = {
@@ -359,6 +362,7 @@
 				3E4285A320BC5A5900AAE028 /* GameViewController.swift in Sources */,
 				3ED8464920BD10AD003C4F63 /* SettingViewController.swift in Sources */,
 				3E644CF920BD6B0E0089A411 /* RecordTableViewController.swift in Sources */,
+				C2FB5A9B24175ECA00049CF1 /* SoundManager.swift in Sources */,
 				3E79687220D5636100F67483 /* RankingDetailsViewController.swift in Sources */,
 				3E22400220A8A2EE006A7D07 /* PlanetSAGA.xcdatamodeld in Sources */,
 				C2FB5A712416147400049CF1 /* PSDatabase.swift in Sources */,
@@ -368,7 +372,7 @@
 				3E79687E20D69EDE00F67483 /* LocalRecordTableViewController.swift in Sources */,
 				3ED8464B20BD10E7003C4F63 /* RankingTableViewController.swift in Sources */,
 				3E223FFA20A8A2EE006A7D07 /* AppDelegate.swift in Sources */,
-				C2FB5A98241744E300049CF1 /* Online.swift in Sources */,
+				C2FB5A98241744E300049CF1 /* OnlineManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

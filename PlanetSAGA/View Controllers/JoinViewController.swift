@@ -23,17 +23,13 @@ class JoinViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {
-        //        if let player = appDelegate.clickEffectAudioPlayer {
-        //            player.play()
-        //        }
+        SoundManager.clickEffect()
         
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func buttonJoinPressed(_ sender: UIButton) {
-        //        if let player = appDelegate.clickEffectAudioPlayer {
-        //            player.play()
-        //        }
+        SoundManager.clickEffect()
         
         // 필요한 세 가지 자료가 모두 입력 되었는지 확인
         if emailTextfield.text == "" {

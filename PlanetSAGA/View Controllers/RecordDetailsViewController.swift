@@ -29,9 +29,7 @@ class RecordDetailsViewController: UIViewController {
     }
     
     @IBAction func buttonSavePressed(_ sender: UIButton) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
         
         let urlString: String = "http://condi.swu.ac.kr/student/W02iphone/USS_updateScoreMemo.php"
         guard let requestURL = URL(string: urlString) else {
@@ -60,9 +58,7 @@ class RecordDetailsViewController: UIViewController {
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
         
         self.dismiss(animated: true, completion: nil)
     }

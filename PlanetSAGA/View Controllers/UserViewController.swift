@@ -6,8 +6,9 @@
 //  Copyright © 2018년 김예빈. All rights reserved.
 //
 
-import CoreData
 import UIKit
+import CoreData
+import Firebase
 
 class UserViewController: UIViewController {
     
@@ -16,65 +17,46 @@ class UserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        loginUserLabel.text = appDelegate.userName
-        
-        // 프로필 사진 불러오기
-//        var imageName = appDelegate.userProfilePic // 숫자.jpg 로 저장된 파일 이름
-//        if (imageName != "") {
-//            let urlString = "http://condi.swu.ac.kr/student/W02iphone/"
-//            imageName = urlString + imageName!
-//            let url = URL(string: imageName!)!
-//            if let imageData = try? Data(contentsOf: url) {
-//                userImage.image = UIImage(data: imageData)
-//                // 웹에서 파일 이미지를 접근함
-//            }
-//        }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        loginUserLabel.text = appDelegate.userName
+        if let user = Auth.auth().currentUser {
+            PSDatabase.userInfoRef
+                .queryEqual(toValue: nil, childKey: user.uid)
+                .observeSingleEvent(of: .value, with: { snapshot in
+                    guard let child = snapshot.children.allObjects.first,
+                        let snapshot = child as? DataSnapshot,
+                        let userInfo = UserInfo(snapshot: snapshot) else { return }
+                    
+                    self.loginUserLabel.text = userInfo.name
+                })
+        }
         
         // 프로필사진 다시 불러오기
-//        var imageName = appDelegate.userProfilePic // 숫자.jpg 로 저장된 파일 이름
-//        if (imageName != "") {
-//            let urlString = "http://condi.swu.ac.kr/student/W02iphone/"
-//            imageName = urlString + imageName!
-//            let url = URL(string: imageName!)!
-//            if let imageData = try? Data(contentsOf: url) {
-//                userImage.image = UIImage(data: imageData)
-//                // 웹에서 파일 이미지를 접근함
-//            }
-//        }
+        //        var imageName = appDelegate.userProfilePic // 숫자.jpg 로 저장된 파일 이름
+        //        if (imageName != "") {
+        //            let urlString = "http://condi.swu.ac.kr/student/W02iphone/"
+        //            imageName = urlString + imageName!
+        //            let url = URL(string: imageName!)!
+        //            if let imageData = try? Data(contentsOf: url) {
+        //                userImage.image = UIImage(data: imageData)
+        //                // 웹에서 파일 이미지를 접근함
+        //            }
+        //        }
     }
     
     @IBAction func buttonLogoutPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "Logout?", message: "", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-            let urlString: String = "http://condi.swu.ac.kr/student/W02iphone/USS_UserLogout.php"
-            guard let requestURL = URL(string: urlString) else { return }
-            var request = URLRequest(url: requestURL)
-            request.httpMethod = "POST"
-            let session = URLSession.shared
-            let task = session.dataTask(with: request) { (responseData, response, responseError) in
-                guard responseError == nil else { return }
+            do {
+                try Auth.auth().signOut()
+            } catch {
+                print("Error: \(error.localizedDescription)")
             }
-            task.resume()
-            
-//            self.appDelegate.ID = nil
-//            self.appDelegate.userName = "Guest"
-//            self.appDelegate.userProfilePic = nil
-//            self.appDelegate.userMaxScore = "0"
-//            self.appDelegate.userPlayCounts = nil
-//
-//            self.appDelegate.flagLogin = false
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let MainView = storyboard.instantiateViewController(withIdentifier: "MainView")
-            self.present(MainView, animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: nil))
         
@@ -82,8 +64,6 @@ class UserViewController: UIViewController {
     }
     
     @IBAction func buttonClicked(_ sender: UIButton) {
-//        if let player = appDelegate.clickEffectAudioPlayer {
-//            player.play()
-//        }
+        SoundManager.clickEffect()
     }
 }

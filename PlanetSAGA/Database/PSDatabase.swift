@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 class PSDatabase: NSObject {
     
@@ -21,6 +22,10 @@ class PSDatabase: NSObject {
     
     static var scoreRef: DatabaseReference {
         Database.database().reference(withPath: "score")
+    }
+    
+    static var storageRef: StorageReference {
+        Storage.storage().reference()
     }
     
 }

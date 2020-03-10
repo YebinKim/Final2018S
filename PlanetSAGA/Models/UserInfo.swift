@@ -15,7 +15,7 @@ struct UserInfo {
     let key: String
     
     var name: String
-    var profilePic: String = ""
+    var profilePicURL: String = ""
     var maxScore: Int = 0
     var playCounts: Int = 0
     
@@ -41,16 +41,16 @@ struct UserInfo {
     
     func toAnyObject() -> [AnyHashable: Any] {
         return [
-            "name": name,
-            "profilePic": profilePic,
-            "maxScore": maxScore,
-            "playCounts": playCounts
+            "name": self.name,
+            "profilePicURL": self.profilePicURL,
+            "maxScore": self.maxScore,
+            "playCounts": self.playCounts
         ]
     }
     
-    static func toProfilePic(profilePic: String) -> [AnyHashable: Any] {
+    static func toProfilePic(profilePicURL: String) -> [AnyHashable: Any] {
         return [
-            "profilePic": profilePic
+            "profilePicURL": profilePicURL
         ]
     }
     

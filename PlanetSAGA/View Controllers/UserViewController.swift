@@ -12,7 +12,7 @@ import Firebase
 
 class UserViewController: UIViewController {
     
-    @IBOutlet var loginUserLabel: UILabel!
+    @IBOutlet var userLabel: UILabel!
     @IBOutlet var userImage: UIImageView!
     
     override func viewDidLoad() {
@@ -30,7 +30,18 @@ class UserViewController: UIViewController {
                         let snapshot = child as? DataSnapshot,
                         let userInfo = UserInfo(snapshot: snapshot) else { return }
                     
-                    self.loginUserLabel.text = userInfo.name
+                    self.userLabel.text = userInfo.name
+                    
+                    let storageRef = PSDatabase.storageRef.child(user.uid)
+                    
+                    // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                    storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                        if let error = error {
+                            print("Error: \(error.localizedDescription)")
+                        } else {
+                            self.userImage.image = UIImage(data: data!)
+                        }
+                    }
                 })
         }
         

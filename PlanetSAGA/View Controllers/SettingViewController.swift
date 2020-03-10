@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseStorage
 
 class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -92,7 +94,7 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
     @IBAction func saveChange(_ sender: UIButton) {
         SoundManager.clickEffect()
         
-        guard let myImage = profileImageview.image else {
+        guard let image = profileImageview.image else {
             let alert = UIAlertController(title: "Select a Picture", message: "Save Failed", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
@@ -102,74 +104,37 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
             return
         }
         
-        let myUrl = URL(string: "http://condi.swu.ac.kr/student/W02iphone/USS_upload.php");
-        var request = URLRequest(url:myUrl!);
-        request.httpMethod = "POST";
-        let boundary = "Boundary-\(NSUUID().uuidString)"
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        guard var imageData = UIImageJPEGRepresentation(image, 1.0) else { return }
         
-        guard let imageData = UIImageJPEGRepresentation(myImage, 1) else { return }
-        
-        var body = Data()
-        var dataString = "--\(boundary)\r\n"
-        dataString += "Content-Disposition: form-data; name=\"userfile\"; filename=\".jpg\"\r\n"
-        dataString += "Content-Type: application/octet-stream\r\n\r\n"
-        if let data = dataString.data(using: .utf8) {
-            body.append(data)
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+        while imageData.count > 1 * 1024 * 1024 {
+            imageData = UIImageJPEGRepresentation(UIImage(data: imageData)!, 0.1)!
         }
         
-        // imageData 위 아래로 boundary 정보 추가
-        body.append(imageData)
-        
-        dataString = "\r\n"
-        dataString += "--\(boundary)--\r\n"
-        if let data = dataString.data(using: .utf8) { body.append(data) }
-        
-        request.httpBody = body
-        
-        var imageFileName: String = ""
-        let semaphore = DispatchSemaphore(value: 0)
-        
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { (responseData, response, responseError) in
-            guard responseError == nil else { print("Error: calling POST"); return; }
-            guard let receivedData = responseData else { print("Error: not receiving Data"); return; }
-            if let utf8Data = String(data: receivedData, encoding: .utf8) { // 서버에 저장한 이미지 파일 이름
-                imageFileName = utf8Data
-                semaphore.signal()
+        if let user = Auth.auth().currentUser {
+            let metaData = StorageMetadata()
+            metaData.contentType = "image/jpg"
+            let storageRef = PSDatabase.storageRef.child(user.uid)
+            storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                } else {
+                    storageRef.downloadURL(completion: { (url, error) in
+                        if let urlString = url?.absoluteString {
+                            let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
+                            userInfoRef.updateChildValues(UserInfo.toProfilePic(profilePicURL: urlString))
+                        }
+                    })
+                }
             }
         }
-        task.resume()
-        // 이미지 파일 이름을 서버로 부터 받은 후 해당 이름을 DB에 저장하기 위해 wait()
-        _ = semaphore.wait(timeout: DispatchTime.distantFuture)
         
-        let urlString: String = "http://condi.swu.ac.kr/student/W02iphone/USS_updateProfile.php"
-        guard let requestURL = URL(string: urlString) else { return }
-        request = URLRequest(url: requestURL)
-        request.httpMethod = "POST"
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        guard let userID = appDelegate.ID  else { return }
-        guard let name = nameTextfield.text  else { return }
-        
-//        var restString: String = "id=" + userID + "&name=" + name
-//        restString += "&image=" + imageFileName
-//        request.httpBody = restString.data(using: .utf8)
-//
-//        let session2 = URLSession.shared
-//        let task2 = session2.dataTask(with: request) { (responseData, response, responseError) in
-//            guard responseError == nil else { return }
-//            guard let receivedData = responseData else { return }
-//            if let utf8Data = String(data: receivedData, encoding: .utf8) {
-//                print(utf8Data)
-//            }
-//        }
-//        task2.resume()
-        _ = self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
         
         statusLabel.text = "User info changed"
         
-//        appDelegate.userInfoDownloadDataFromServer()
     }
     
     @IBAction func deleteUser(_ sender: UIButton) {

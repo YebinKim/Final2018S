@@ -488,8 +488,8 @@
                         <viewLayoutGuide key="safeArea" id="PNJ-70-QOV"/>
                     </view>
                     <connections>
-                        <outlet property="loginUserLabel" destination="L0J-oJ-l5K" id="udo-59-EEY"/>
                         <outlet property="userImage" destination="uVD-Pm-gZm" id="UW8-UN-iUB"/>
+                        <outlet property="userLabel" destination="L0J-oJ-l5K" id="WQ1-1P-Mie"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQQ-Lc-MHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2277,6 +2277,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="exa-WT-hZQ"/>
+        <segue reference="hDh-Qn-FEk"/>
     </inferredMetricsTieBreakers>
 </document>

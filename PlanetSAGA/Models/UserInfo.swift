@@ -48,6 +48,12 @@ struct UserInfo {
         ]
     }
     
+    static func toName(name: String) -> [AnyHashable: Any] {
+        return [
+            "name": name
+        ]
+    }
+    
     static func toProfilePic(profilePicURL: String) -> [AnyHashable: Any] {
         return [
             "profilePicURL": profilePicURL

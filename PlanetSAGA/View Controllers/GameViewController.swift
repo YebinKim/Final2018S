@@ -290,13 +290,13 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             PSDatabase.userInfoRef
                 .queryEqual(toValue: nil, childKey: user.uid)
                 .observeSingleEvent(of: .value, with: { snapshot in
-                guard let child = snapshot.children.allObjects.first,
-                    let snapshot = child as? DataSnapshot,
-                    let userInfo = UserInfo(snapshot: snapshot) else { return }
-                
-                self.userNameLabel.text = userInfo.name
-                self.maxScoreLabel.text = String(userInfo.maxScore)
-            })
+                    guard let child = snapshot.children.allObjects.first,
+                        let snapshot = child as? DataSnapshot,
+                        let userInfo = UserInfo(snapshot: snapshot) else { return }
+                    
+                    self.userNameLabel.text = userInfo.name
+                    self.maxScoreLabel.text = String(userInfo.maxScore)
+                })
         } else {
             self.userNameLabel.text = "Guest"
             self.maxScoreLabel.text = "0"
@@ -550,7 +550,6 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         
         if (score > Int(maxScoreLabel.text!)!) {
             maxScoreLabel.text = String(score)
-            //            appDelegate.userMaxScore = maxScoreLabel.text
         }
         
         self.delay(bySeconds: 2) {
@@ -582,16 +581,16 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         PSDatabase.userInfoRef
             .queryEqual(toValue: nil, childKey: user.uid)
             .observeSingleEvent(of: .value, with: { snapshot in
-        guard let child = snapshot.children.allObjects.first,
-            let snapshot = child as? DataSnapshot,
-            let userInfo = UserInfo(snapshot: snapshot) else { return }
-            
-            let maxScore = max(userInfo.maxScore, self.score)
-            let playCounts = userInfo.playCounts + 1
-            
-            let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
-            userInfoRef.updateChildValues(UserInfo.toPlayScore(maxScore: maxScore, playCounts: playCounts))
-        })
+                guard let child = snapshot.children.allObjects.first,
+                    let snapshot = child as? DataSnapshot,
+                    let userInfo = UserInfo(snapshot: snapshot) else { return }
+                
+                let maxScore = max(userInfo.maxScore, self.score)
+                let playCounts = userInfo.playCounts + 1
+                
+                let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
+                userInfoRef.updateChildValues(UserInfo.toPlayScore(maxScore: maxScore, playCounts: playCounts))
+            })
     }
     
     func subMission() {
@@ -639,7 +638,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBAction func buttonBackPressed(_ sender: UIButton) {
         SoundManager.clickEffect()
         
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func startTimer() {

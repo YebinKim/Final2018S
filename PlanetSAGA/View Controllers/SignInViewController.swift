@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  SignInViewController.swift
 //  univerSwuSaga
 //
 //  Created by 김예빈 on 2018. 5. 22..
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class SignInViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var pwTextfield: UITextField!
@@ -43,7 +43,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.statusLabel.text = error.localizedDescription
                 print("Error: \(error.localizedDescription)")
             } else {
-                self.performSegue(withIdentifier: "toLoginSuccess", sender: self)
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  JoinViewController.swift
+//  SignUpViewController.swift
 //  univerSwuSaga
 //
 //  Created by 김예빈 on 2018. 5. 22..
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class JoinViewController: UIViewController, UITextFieldDelegate {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var pwTextfield: UITextField!
@@ -56,7 +56,7 @@ class JoinViewController: UIViewController, UITextFieldDelegate {
                 let userInfoRef = PSDatabase.userInfoRef.child(user!.user.uid)
                 userInfoRef.setValue(userInfo.toAnyObject())
                 
-                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }

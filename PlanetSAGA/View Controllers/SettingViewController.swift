@@ -12,63 +12,76 @@ import FirebaseStorage
 
 class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var gameSetView: UIView!
+    
+    @IBOutlet weak var maxScoreLabel: UILabel!
+    @IBOutlet weak var playCountsLabel: UILabel!
+    
     @IBOutlet weak var backgroundVolume: UISlider!
     @IBOutlet weak var effectVolume: UISlider!
     
-    @IBOutlet var userSetView: UIView!
-    @IBOutlet var gameSetView: UIView!
+    @IBOutlet weak var userSetView: UIView!
     
-    @IBOutlet var profileImageview: UIImageView!
-    @IBOutlet var userIDLabel: UILabel!
-    @IBOutlet var nameTextfield: UITextField!
-    @IBOutlet var statusLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     
-    @IBOutlet var userScoreLabel: UILabel!
-    @IBOutlet var userPlayCountsLabel: UILabel!
+    @IBOutlet weak var nameTextfield: UITextField!
+    
+    @IBOutlet weak var profileImageview: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         statusLabel.text = ""
         
-//        userScoreLabel.text = appDelegate.userMaxScore
-//        userPlayCountsLabel.text = appDelegate.userPlayCounts
-//
-//        var imageName = appDelegate.userProfilePic // 숫자.jpg 로 저장된 파일 이름
-//        if (imageName != "") {
-//            let urlString = "http://condi.swu.ac.kr/student/W02iphone/"
-//            imageName = urlString + imageName!
-//            let url = URL(string: imageName!)!
-//            if let imageData = try? Data(contentsOf: url) {
-//                profileImageview.image = UIImage(data: imageData)
-//                // 웹에서 파일 이미지를 접근함
-//            }
-//        }
-//
-//        userIDLabel.text = appDelegate.ID
-//        nameTextfield.text = appDelegate.userName
+        if let user = Auth.auth().currentUser {
+            PSDatabase.userInfoRef
+                .queryEqual(toValue: nil, childKey: user.uid)
+                .observeSingleEvent(of: .value, with: { snapshot in
+                    guard let child = snapshot.children.allObjects.first,
+                        let snapshot = child as? DataSnapshot,
+                        let userInfo = UserInfo(snapshot: snapshot) else { return }
+                    
+                    self.maxScoreLabel.text = String(userInfo.maxScore)
+                    self.playCountsLabel.text = String(userInfo.playCounts)
+                    
+                    self.emailLabel.text = user.email
+                    self.nameTextfield.text = userInfo.name
+                    
+                    let storageRef = PSDatabase.storageRef.child(user.uid)
+                    
+                    // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                    storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                        if let error = error, data == nil {
+                            print("Error: \(error.localizedDescription)")
+                        } else {
+                            self.profileImageview.image = UIImage(data: data!)
+                        }
+                    }
+                })
+        }
         
         self.gameSetView.isHidden = false
         self.userSetView.isHidden = true
         
-//        backgroundVolume.value = (appDelegate.bakgroundAudioPlayer?.volume)!
-//        effectVolume.value = (appDelegate.clickEffectAudioPlayer?.volume)!
+        //        backgroundVolume.value = (appDelegate.bakgroundAudioPlayer?.volume)!
+        //        effectVolume.value = (appDelegate.clickEffectAudioPlayer?.volume)!
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        appDelegate.userInfoFetchedArray = [] // 배열을 초기화하고 서버에서 자료를 다시 가져옴
-//        self.appDelegate.userInfoDownloadDataFromServer()
+        //        appDelegate.userInfoFetchedArray = [] // 배열을 초기화하고 서버에서 자료를 다시 가져옴
+        //        self.appDelegate.userInfoDownloadDataFromServer()
     }
     
     @IBAction func adjustBackgroundVolume(_ sender: UISlider) {
-//        appDelegate.bakgroundAudioPlayer?.volume = backgroundVolume.value
+        //        appDelegate.bakgroundAudioPlayer?.volume = backgroundVolume.value
     }
     
     @IBAction func adjustEffectVolume(_ sender: UISlider) {
-        for i in 0 ... 3 {
-//            appDelegate.effectArray[i]?.volume = effectVolume.value
+        for i in 0...3 {
+            //            appDelegate.effectArray[i]?.volume = effectVolume.value
         }
     }
     
@@ -128,10 +141,10 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
                     })
                 }
             }
+            
+            let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
+            userInfoRef.updateChildValues(UserInfo.toName(name: nameTextfield.text!))
         }
-        
-        
-        self.navigationController?.popViewController(animated: true)
         
         statusLabel.text = "User info changed"
         
@@ -149,20 +162,20 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
             var request = URLRequest(url: requestURL)
             request.httpMethod = "POST"
             
-//            guard let id = self.appDelegate.ID else { return }
+            //            guard let id = self.appDelegate.ID else { return }
             
-//            let restString: String = "id=" + id
-//            request.httpBody = restString.data(using: .utf8)
-//            
-//            let session = URLSession.shared
-//            let task = session.dataTask(with: request) { (responseData, response, responseError) in
-//                guard responseError == nil else { return }
-//                guard let receivedData = responseData else { return }
-//                if let utf8Data = String(data: receivedData, encoding: .utf8) {
-//                    print(utf8Data)  // php에서 출력한 echo data가 debug 창에 표시됨
-//                }
-//            }
-//            task.resume()
+            //            let restString: String = "id=" + id
+            //            request.httpBody = restString.data(using: .utf8)
+            //
+            //            let session = URLSession.shared
+            //            let task = session.dataTask(with: request) { (responseData, response, responseError) in
+            //                guard responseError == nil else { return }
+            //                guard let receivedData = responseData else { return }
+            //                if let utf8Data = String(data: receivedData, encoding: .utf8) {
+            //                    print(utf8Data)  // php에서 출력한 echo data가 debug 창에 표시됨
+            //                }
+            //            }
+            //            task.resume()
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let MainView = storyboard.instantiateViewController(withIdentifier: "MainView")
@@ -183,7 +196,6 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
         nameTextfield.becomeFirstResponder()
         textField.resignFirstResponder()
         
-//        appDelegate.userName = nameTextfield.text
         return true
     }
     

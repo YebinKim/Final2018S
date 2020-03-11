@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SignInViewController: UIViewController, UITextFieldDelegate {
+class SignInViewController: UIViewController {
     
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var pwTextfield: UITextField!
@@ -17,60 +17,57 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         statusLabel.text = ""
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {
         SoundManager.clickEffect()
-        
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true)
     }
     
     @IBAction func buttonLoginPressed(_ sender: UIButton) {
         SoundManager.clickEffect()
         
         if emailTextfield.text == "" {
-            statusLabel.text = "Insert ID"; return;
+            statusLabel.text = "Insert ID"
+            return
         }
         if pwTextfield.text == "" {
-            statusLabel.text = "Insert Password"; return;
+            statusLabel.text = "Insert Password"
+            return
         }
         
-        Auth.auth().signIn(withEmail: emailTextfield.text!,
-                           password: pwTextfield.text!) { user, error in
+        guard let email = emailTextfield.text, let password = pwTextfield.text else { return }
+        
+        OnlineManager.signInUser(email: email, password: password) { error in
             if let error = error {
-                self.statusLabel.text = error.localizedDescription
-                print("Error: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.statusLabel.text = error.localizedDescription
+                }
             } else {
-                self.dismiss(animated: true, completion: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "updateUser"), object: nil)
+                self.dismiss(animated: true)
             }
         }
     }
     
+}
+
+extension SignInViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn (_ textField: UITextField) -> Bool {
-        if textField == self.emailTextfield { textField.resignFirstResponder()
+        if textField == self.emailTextfield {
+            textField.resignFirstResponder()
             self.emailTextfield.becomeFirstResponder()
         }
         textField.resignFirstResponder()
+        
         return true
     }
     
-    func delay(bySeconds seconds: Double, dispatchLevel: DispatchLevel = .main, closure: @escaping () -> Void) {
-        let dispatchTime = DispatchTime.now() + seconds
-        dispatchLevel.dispatchQueue.asyncAfter(deadline: dispatchTime, execute: closure)
-    }
-    
-    enum DispatchLevel {
-        case main, userInteractive, userInitiated, utility, background
-        var dispatchQueue: DispatchQueue {
-            switch self {
-            case .main:                 return DispatchQueue.main
-            case .userInteractive:      return DispatchQueue.global(qos: .userInteractive)
-            case .userInitiated:        return DispatchQueue.global(qos: .userInitiated)
-            case .utility:              return DispatchQueue.global(qos: .utility)
-            case .background:           return DispatchQueue.global(qos: .background)
-            }
-        }
-    }
 }

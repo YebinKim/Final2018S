@@ -22,51 +22,38 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        OnlineManager.registerUser()
+        registerCell()
+        
+        addObservers()
+        
         initializeMenuView()
         initializeMenuTableView()
         initializeBackView()
+        
+        updateView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    private func registerCell() {
+        let userInfoCellNib = UINib(nibName: String(describing: UserInfoCell.self), bundle: nil)
+        menuTableView.register(userInfoCellNib, forCellReuseIdentifier: UserInfoCell.identifier)
         
-        if let user = Auth.auth().currentUser {
-//            DispatchQueue.main.async {
-//                self.signButton.setTitle("SignOut", for: .normal)
-//            }
-            
-            PSDatabase.userInfoRef
-                .queryEqual(toValue: nil, childKey: user.uid)
-                .observeSingleEvent(of: .value, with: { snapshot in
-                    guard let child = snapshot.children.allObjects.first,
-                        let snapshot = child as? DataSnapshot,
-                        let userInfo = UserInfo(snapshot: snapshot) else { return }
-
-//                    DispatchQueue.main.async {
-//                        self.nameLabel.text = userInfo.name
-//                    }
-                    
-                    let storageRef = PSDatabase.storageRef.child(user.uid)
-
-                    // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-                    storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-                        if let error = error, data == nil {
-                            print("Error: \(error.localizedDescription)")
-                        } else {
-//                            DispatchQueue.main.async {
-//                                self.profileImageview.image = UIImage(data: data!)
-//                            }
-                        }
-                    }
-                })
-        } else {
-//            DispatchQueue.main.async {
-//                self.signButton.setTitle("SignIn", for: .normal)
-//            }
-        }
+        let menuCellNib = UINib(nibName: String(describing: MenuCell.self), bundle: nil)
+        menuTableView.register(menuCellNib, forCellReuseIdentifier: MenuCell.identifier)
+    }
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateView), name: Notification.Name(rawValue: "updateUser"), object: nil)
     }
     
     private func initializeMenuView() {
+        menuView.translatesAutoresizingMaskIntoConstraints = false
+        menuView.roundCorners(corners: [.topRight, .bottomRight], radius: menuView.frame.width / 10)
+        
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(dismissMenuView))
         swipeGesture.direction = .left
         menuView.addGestureRecognizer(swipeGesture)
@@ -111,15 +98,12 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func buttonLogoutPressed(_ sender: UIButton) {
-        if Auth.auth().currentUser != nil {
+        if OnlineManager.online {
             let alert = UIAlertController(title: "Logout?", message: "", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-                do {
-                    try Auth.auth().signOut()
-                } catch {
-                    print("Error: \(error.localizedDescription)")
-                }
+                OnlineManager.signOutUser()
+                self.updateView()
                 self.dismiss(animated: true, completion: nil)
             }))
             alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: nil))
@@ -133,16 +117,48 @@ class MainViewController: UIViewController {
     @IBAction func buttonClicked(_ sender: UIButton) {
         SoundManager.clickEffect()
     }
+    
+    @objc func updateView() {
+        if OnlineManager.online {
+            DispatchQueue.main.async {
+                if #available(iOS 13.0, *) {
+                    self.signButton.setImage(UIImage(systemName: "person.badge.minus"), for: .normal)
+                } else {
+                    self.signButton.setImage(nil, for: .normal)
+                    self.signButton.setTitle("SignOut", for: .normal)
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                if #available(iOS 13.0, *) {
+                    self.signButton.setImage(UIImage(systemName: "person.badge.plus"), for: .normal)
+                } else {
+                    self.signButton.setImage(nil, for: .normal)
+                    self.signButton.setTitle("SignIn", for: .normal)
+                }
+            }
+        }
+    }
+    
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: UserInfoCell.identifier) as! UserInfoCell
+            cell.configureCell()
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: MenuCell.identifier) as! MenuCell
+            
+            return cell
+        }
     }
     
 }

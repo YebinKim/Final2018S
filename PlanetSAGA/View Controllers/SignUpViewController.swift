@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+class SignUpViewController: UIViewController {
     
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var pwTextfield: UITextField!
@@ -18,17 +18,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         statusLabel.text = ""
     }
     
-    @IBAction func buttonBackPressed(_ sender: UIButton) {
+    @IBAction func backButtonTapped(_ sender: UIButton) {
         SoundManager.clickEffect()
-        
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func buttonJoinPressed(_ sender: UIButton) {
+    @IBAction func signUpButtonTapped(_ sender: UIButton) {
         SoundManager.clickEffect()
         
         // 필요한 세 가지 자료가 모두 입력 되었는지 확인
@@ -45,21 +48,25 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        Auth.auth().createUser(withEmail: emailTextfield.text!,
-                               password: pwTextfield.text!) { user, error in
-            if let error = error, user == nil {
-                self.statusLabel.text = error.localizedDescription
-                print("Error: \(error.localizedDescription)")
+        guard let email = emailTextfield.text,
+            let password = pwTextfield.text,
+            let name = nameTextfield.text else { return }
+        
+        OnlineManager.createUser(email: email, password: password, name: name) { error in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.statusLabel.text = error.localizedDescription
+                }
             } else {
-                let userInfo = UserInfo(email: self.emailTextfield.text!,
-                                        name: self.nameTextfield.text!)
-                let userInfoRef = PSDatabase.userInfoRef.child(user!.user.uid)
-                userInfoRef.setValue(userInfo.toAnyObject())
-                
-                self.navigationController?.popViewController(animated: true)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "updateUser"), object: nil)
+                self.presentingViewController?.presentingViewController?.dismiss(animated: true)
             }
         }
     }
+    
+}
+
+extension SignUpViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.emailTextfield {
@@ -74,4 +81,5 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         return true
     }
+    
 }

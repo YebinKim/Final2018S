@@ -136,7 +136,7 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
                     storageRef.downloadURL(completion: { (url, error) in
                         if let urlString = url?.absoluteString {
                             let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
-                            userInfoRef.updateChildValues(UserInfo.toProfilePic(profilePicURL: urlString))
+                            userInfoRef.updateChildValues(UserInfo.toProfilePic(profileImageURL: urlString))
                         }
                     })
                 }

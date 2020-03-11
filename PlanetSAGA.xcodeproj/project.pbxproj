@@ -32,6 +32,12 @@
 		3ED8464720BD107A003C4F63 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464620BD107A003C4F63 /* MainViewController.swift */; };
 		3ED8464920BD10AD003C4F63 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464820BD10AD003C4F63 /* SettingViewController.swift */; };
 		3ED8464B20BD10E7003C4F63 /* RankingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464A20BD10E7003C4F63 /* RankingTableViewController.swift */; };
+		C20D90572418C14C001F7281 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90562418C14C001F7281 /* Extensions.swift */; };
+		C20D905B2418C1FA001F7281 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90592418C1FA001F7281 /* UserInfoCell.swift */; };
+		C20D905C2418C1FA001F7281 /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D905A2418C1FA001F7281 /* UserInfoCell.xib */; };
+		C20D905F2418C235001F7281 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D905D2418C235001F7281 /* MenuCell.swift */; };
+		C20D90602418C235001F7281 /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D905E2418C235001F7281 /* MenuCell.xib */; };
+		C20D90622419106F001F7281 /* OnlineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90612419106F001F7281 /* OnlineManager.swift */; };
 		C212B99524139B4B00B6A472 /* GameAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C212B99424139B4B00B6A472 /* GameAssets.xcassets */; };
 		C2FB5A6D2416111E00049CF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2FB5A6C2416111E00049CF1 /* GoogleService-Info.plist */; };
 		C2FB5A712416147400049CF1 /* PSDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A702416147400049CF1 /* PSDatabase.swift */; };
@@ -68,6 +74,12 @@
 		3ED8464820BD10AD003C4F63 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		3ED8464A20BD10E7003C4F63 /* RankingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableViewController.swift; sourceTree = "<group>"; };
 		714D5A16A460419FE7ABB228 /* Pods_PlanetSAGA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanetSAGA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C20D90562418C14C001F7281 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		C20D90592418C1FA001F7281 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
+		C20D905A2418C1FA001F7281 /* UserInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInfoCell.xib; sourceTree = "<group>"; };
+		C20D905D2418C235001F7281 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		C20D905E2418C235001F7281 /* MenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
+		C20D90612419106F001F7281 /* OnlineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineManager.swift; sourceTree = "<group>"; };
 		C212B99424139B4B00B6A472 /* GameAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = GameAssets.xcassets; sourceTree = "<group>"; };
 		C2FB5A6C2416111E00049CF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C2FB5A702416147400049CF1 /* PSDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSDatabase.swift; sourceTree = "<group>"; };
@@ -126,6 +138,7 @@
 				C2FB5A9924175EB900049CF1 /* Manager */,
 				C212B99224138FBB00B6A472 /* Database */,
 				C212B98F24138DDB00B6A472 /* Resources */,
+				C20D90552418C134001F7281 /* Utils */,
 				C212B99024138E3B00B6A472 /* Supporting Files */,
 			);
 			path = PlanetSAGA;
@@ -141,6 +154,25 @@
 				3E2066A320D05121000957C1 /* BayBreeze.wav */,
 			);
 			path = Sound;
+			sourceTree = "<group>";
+		};
+		C20D90552418C134001F7281 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C20D90562418C14C001F7281 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C20D90582418C1DE001F7281 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C20D90592418C1FA001F7281 /* UserInfoCell.swift */,
+				C20D905A2418C1FA001F7281 /* UserInfoCell.xib */,
+				C20D905D2418C235001F7281 /* MenuCell.swift */,
+				C20D905E2418C235001F7281 /* MenuCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		C212B98E24138DD200B6A472 /* View Controllers */ = {
@@ -202,6 +234,7 @@
 		C212B99324138FCA00B6A472 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C20D90582418C1DE001F7281 /* Cells */,
 				3E223FFD20A8A2EE006A7D07 /* Main.storyboard */,
 				3E22400520A8A2EE006A7D07 /* LaunchScreen.storyboard */,
 			);
@@ -211,6 +244,7 @@
 		C2FB5A9924175EB900049CF1 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				C20D90612419106F001F7281 /* OnlineManager.swift */,
 				C2FB5A9A24175ECA00049CF1 /* SoundManager.swift */,
 			);
 			path = Manager;
@@ -291,8 +325,10 @@
 				3E78BD9820D9473600AADBC0 /* SoundMoveFail.wav in Resources */,
 				3E223FFF20A8A2EE006A7D07 /* Main.storyboard in Resources */,
 				3E78BD9B20D9473600AADBC0 /* SoundClick.wav in Resources */,
+				C20D90602418C235001F7281 /* MenuCell.xib in Resources */,
 				C212B99524139B4B00B6A472 /* GameAssets.xcassets in Resources */,
 				C2FB5A6D2416111E00049CF1 /* GoogleService-Info.plist in Resources */,
+				C20D905C2418C1FA001F7281 /* UserInfoCell.xib in Resources */,
 				3E78BD9920D9473600AADBC0 /* SoundSelected.WAV in Resources */,
 				3E78BD9A20D9473600AADBC0 /* SoundMoveSuccess.wav in Resources */,
 			);
@@ -347,13 +383,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C20D905B2418C1FA001F7281 /* UserInfoCell.swift in Sources */,
 				3E79688020D6B00B00F67483 /* LocalRecordDetailsViewController.swift in Sources */,
+				C20D905F2418C235001F7281 /* MenuCell.swift in Sources */,
 				3ED8464720BD107A003C4F63 /* MainViewController.swift in Sources */,
 				3E79687420D5636F00F67483 /* RecordDetailsViewController.swift in Sources */,
 				3E79687820D5A05C00F67483 /* User.swift in Sources */,
 				3ED8464520BD103C003C4F63 /* SignInViewController.swift in Sources */,
 				3E79687A20D6488900F67483 /* Score.swift in Sources */,
 				3E4285A320BC5A5900AAE028 /* GameViewController.swift in Sources */,
+				C20D90572418C14C001F7281 /* Extensions.swift in Sources */,
 				3ED8464920BD10AD003C4F63 /* SettingViewController.swift in Sources */,
 				3E644CF920BD6B0E0089A411 /* RecordTableViewController.swift in Sources */,
 				C2FB5A9B24175ECA00049CF1 /* SoundManager.swift in Sources */,
@@ -362,6 +401,7 @@
 				C2FB5A712416147400049CF1 /* PSDatabase.swift in Sources */,
 				C2FB5A9524164D1A00049CF1 /* UserInfo.swift in Sources */,
 				3ED8464320BD1019003C4F63 /* SignUpViewController.swift in Sources */,
+				C20D90622419106F001F7281 /* OnlineManager.swift in Sources */,
 				3E79687E20D69EDE00F67483 /* LocalRecordTableViewController.swift in Sources */,
 				3ED8464B20BD10E7003C4F63 /* RankingTableViewController.swift in Sources */,
 				3E223FFA20A8A2EE006A7D07 /* AppDelegate.swift in Sources */,

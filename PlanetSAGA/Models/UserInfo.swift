@@ -15,9 +15,12 @@ struct UserInfo {
     let key: String
     
     var name: String
-    var profilePicURL: String = ""
+    var profileImageURL: String = ""
     var maxScore: Int = 0
     var playCounts: Int = 0
+    
+    // cache data
+    var profileImage: UIImage?
     
     init(email: String, name: String, key: String = "") {
         self.ref = nil
@@ -42,7 +45,7 @@ struct UserInfo {
     func toAnyObject() -> [AnyHashable: Any] {
         return [
             "name": self.name,
-            "profilePicURL": self.profilePicURL,
+            "profileImageURL": self.profileImageURL,
             "maxScore": self.maxScore,
             "playCounts": self.playCounts
         ]
@@ -54,9 +57,9 @@ struct UserInfo {
         ]
     }
     
-    static func toProfilePic(profilePicURL: String) -> [AnyHashable: Any] {
+    static func toProfilePic(profileImageURL: String) -> [AnyHashable: Any] {
         return [
-            "profilePicURL": profilePicURL
+            "profileImageURL": profileImageURL
         ]
     }
     

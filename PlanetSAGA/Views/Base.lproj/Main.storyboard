@@ -487,7 +487,7 @@
                         <outlet property="menuView" destination="RVX-ra-xZG" id="XPI-pu-bqu"/>
                         <outlet property="menuViewLeadingConstraint" destination="9yj-u3-lGP" id="Jlv-lG-A4h"/>
                         <outlet property="signButton" destination="MeK-PR-psa" id="NWd-pa-mqR"/>
-                        <segue destination="Ryj-TU-ux2" kind="presentation" identifier="toSignIn" modalPresentationStyle="fullScreen" id="qcY-bU-JI1"/>
+                        <segue destination="Ryj-TU-ux2" kind="presentation" identifier="toSignIn" id="qcY-bU-JI1"/>
                         <segue destination="Doy-pX-Gsg" kind="presentation" id="w0h-up-oMJ"/>
                     </connections>
                 </viewController>
@@ -1996,7 +1996,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wbm-fj-Lma" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Ryj-TU-ux2" customClass="SignInViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uc4-XE-aI4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PW" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbw-we-axx">
@@ -2056,8 +2056,7 @@
                                     <color key="titleColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <action selector="buttonLoginPressed:" destination="Ryj-TU-ux2" eventType="touchUpInside" id="Zg7-yk-txa"/>
-                                    <segue destination="Mtv-p5-3ES" kind="presentation" id="J24-ag-Y0I"/>
+                                    <segue destination="Mtv-p5-3ES" kind="presentation" identifier="toSignUp" id="J24-ag-Y0I"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEX-0E-E9I">
@@ -2171,16 +2170,6 @@
                                 <color key="textColor" red="0.54117647059999996" green="0.56862745100000001" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYQ-CW-mrg">
-                                <rect key="frame" x="30" y="15" width="40" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonBackPressed:" destination="Mtv-p5-3ES" eventType="touchUpInside" id="QQZ-NY-QMq"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="E-mail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94n-Il-Yt8">
                                 <rect key="frame" x="72" y="371" width="61" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2231,13 +2220,23 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLj-vS-ZMU">
-                                <rect key="frame" x="166" y="551" width="42" height="22"/>
+                                <rect key="frame" x="158" y="545" width="59" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Join">
+                                <state key="normal" title="SignUp">
                                     <color key="titleColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <action selector="buttonJoinPressed:" destination="Mtv-p5-3ES" eventType="touchUpInside" id="yNz-E2-s8A"/>
+                                    <action selector="signUpButtonTapped:" destination="Mtv-p5-3ES" eventType="touchUpInside" id="WgA-Wh-tgp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYQ-CW-mrg">
+                                <rect key="frame" x="30" y="62" width="40" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="Mtv-p5-3ES" eventType="touchUpInside" id="7Bl-ad-TKK"/>
                                 </connections>
                             </button>
                         </subviews>

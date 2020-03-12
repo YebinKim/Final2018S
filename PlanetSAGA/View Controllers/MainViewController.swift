@@ -61,7 +61,7 @@ class MainViewController: UIViewController {
     private func initializeMenuTableView() {
         menuTableView.delegate = self
         menuTableView.dataSource = self
-        menuTableView.tableFooterView = nil
+        menuTableView.tableFooterView = UIView()
     }
     
     private func initializeBackView() {
@@ -140,7 +140,7 @@ class MainViewController: UIViewController {
     
 }
 
-extension MainViewController: UserInfoCellDelegate {
+extension MainViewController: UserInfoCellDelegate, MenuCellDelegate {
     
     func alertPresent(_ alert: UIAlertController, animated: Bool) {
         self.present(alert, animated: animated)
@@ -150,9 +150,18 @@ extension MainViewController: UserInfoCellDelegate {
         self.dismiss(animated: animated)
     }
     
-    func performSegue(withIdentifier: String, completion: @escaping () -> Void) {
+    func performSegue(withIdentifier: String) {
         self.performSegue(withIdentifier: withIdentifier, sender: nil)
-        completion()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let settingVC = segue.destination as? SettingViewController {
+            if segue.identifier == "toSettingGame" {
+                settingVC.selectedSegmentIndex = 0
+            } else {
+                settingVC.selectedSegmentIndex = 1
+            }
+        }
     }
     
 }
@@ -160,20 +169,40 @@ extension MainViewController: UserInfoCellDelegate {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: UserInfoCell.identifier) as! UserInfoCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: UserInfoCell.identifier) as? UserInfoCell else {
+                print("Error: UserInfoCell configure error")
+                return UITableViewCell()
+            }
             cell.delegate = self
-//            cell.configureCell()
             
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: MenuCell.identifier) as! MenuCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuCell.identifier) as? MenuCell else {
+                print("Error: MenuCell configure error")
+                return UITableViewCell()
+            }
+            cell.delegate = self
+            cell.configureCell(indexPath.row)
             
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            return
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuCell.identifier) as? MenuCell else {
+                print("Error: MenuCell select error")
+                return
+            }
+            cell.delegate = self
+            cell.selectedCell(indexPath.row)
         }
     }
     

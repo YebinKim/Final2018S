@@ -13,7 +13,7 @@ protocol UserInfoCellDelegate {
     
     func alertPresent(_ alert: UIAlertController, animated: Bool)
     func alertDismiss(animated: Bool)
-    func performSegue(withIdentifier: String, completion: @escaping () -> Void)
+    func performSegue(withIdentifier: String)
     
 }
 
@@ -23,7 +23,7 @@ class UserInfoCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var signButton: UIButton!
+    @IBOutlet weak var settingButton: UIButton!
     
     var delegate: UserInfoCellDelegate!
     
@@ -36,13 +36,8 @@ class UserInfoCell: UITableViewCell {
         
         initializeProfileImageView()
         initializeNameLabel()
-        initializeSignButton()
         
         updateView()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
     
     private func addObservers() {
@@ -68,15 +63,6 @@ class UserInfoCell: UITableViewCell {
         nameLabel.text = "Guest"
     }
     
-    private func initializeSignButton() {
-        if #available(iOS 13.0, *) {
-            self.signButton.setImage(UIImage(systemName: "person.badge.plus"), for: .normal)
-        } else {
-            self.signButton.setImage(nil, for: .normal)
-            self.signButton.setTitle("SignIn", for: .normal)
-        }
-    }
-    
     @objc func updateView() {
         if OnlineManager.online {
             DispatchQueue.main.async {
@@ -86,39 +72,17 @@ class UserInfoCell: UITableViewCell {
                     self.profileImageView.contentMode = .scaleAspectFill
                     self.profileImageView.image = image
                 }
-                
-                if #available(iOS 13.0, *) {
-                    self.signButton.setImage(UIImage(systemName: "person.badge.minus"), for: .normal)
-                } else {
-                    self.signButton.setImage(nil, for: .normal)
-                    self.signButton.setTitle("SignOut", for: .normal)
-                }
             }
         } else {
             DispatchQueue.main.async {
                 self.initializeProfileImageView()
                 self.initializeNameLabel()
-                self.initializeSignButton()
             }
         }
     }
     
-    @IBAction func signButtonTapped(_ sender: UIButton) {
-        if OnlineManager.online {
-            let alert = UIAlertController(title: "Logout?", message: "", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "Yes", style: .default) { _ in
-                OnlineManager.signOutUser()
-                self.delegate.alertDismiss(animated: true)
-            })
-            alert.addAction(UIAlertAction(title: "No", style: .destructive))
-            
-            self.delegate.alertPresent(alert, animated: true)
-        } else {
-            self.delegate.performSegue(withIdentifier: "toSignIn") {
-                
-            }
-        }
+    @IBAction func settingButtonTapped(_ sender: UIButton) {
+        self.delegate.performSegue(withIdentifier: "toSettingUser")
     }
     
 }

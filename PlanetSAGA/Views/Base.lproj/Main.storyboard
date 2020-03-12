@@ -108,7 +108,7 @@
             <objects>
                 <tableViewController id="pBQ-cz-w44" customClass="RankingTableViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8cY-pW-aYR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.43921568630000002" green="0.33333333329999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -349,6 +349,7 @@
                         <outlet property="nameTextfield" destination="ntf-M1-Oun" id="2hr-3r-NxB"/>
                         <outlet property="playCountsLabel" destination="Vo3-pw-usT" id="8Va-B7-BBm"/>
                         <outlet property="profileImageview" destination="Bbt-H4-1te" id="c9d-il-R2L"/>
+                        <outlet property="settingSegment" destination="sNU-z4-kfJ" id="Tgc-Qm-Gfz"/>
                         <outlet property="statusLabel" destination="IPq-KD-hZq" id="lhG-BO-DN7"/>
                         <outlet property="userSetView" destination="t2e-uH-Gfd" id="8em-UM-IEq"/>
                     </connections>
@@ -406,30 +407,6 @@
                                     <action selector="signButtonTapped:" destination="tD7-vQ-yd3" eventType="touchUpInside" id="cKW-Wt-nb8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wbh-lX-3Of" userLabel="Ranking Btn">
-                                <rect key="frame" x="94" y="589" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" image="globe" catalog="system">
-                                    <color key="titleColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonClicked:" destination="tD7-vQ-yd3" eventType="touchUpInside" id="BR1-nv-ioT"/>
-                                    <segue destination="pBQ-cz-w44" kind="show" id="fry-dB-Vgp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkr-9w-MM1" userLabel="Record Btn">
-                                <rect key="frame" x="265" y="589" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" image="rosette" catalog="system">
-                                    <color key="titleColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonClicked:" destination="tD7-vQ-yd3" eventType="touchUpInside" id="n2E-cY-zdx"/>
-                                    <segue destination="IrP-9C-8l9" kind="show" id="ITT-VC-i9u"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVX-ra-xZG">
                                 <rect key="frame" x="-300" y="44" width="300" height="768"/>
                                 <subviews>
@@ -448,7 +425,7 @@
                                         </prototypes>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHP-9J-ugY">
-                                        <rect key="frame" x="16" y="8" width="60" height="32"/>
+                                        <rect key="frame" x="24" y="8" width="60" height="32"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -458,7 +435,7 @@
                                 <constraints>
                                     <constraint firstItem="eEN-rF-AJ9" firstAttribute="top" secondItem="pHP-9J-ugY" secondAttribute="bottom" constant="8" id="7lN-gD-eHZ"/>
                                     <constraint firstAttribute="trailing" secondItem="eEN-rF-AJ9" secondAttribute="trailing" id="8Er-AD-Smb"/>
-                                    <constraint firstItem="pHP-9J-ugY" firstAttribute="leading" secondItem="RVX-ra-xZG" secondAttribute="leading" constant="16" id="EOM-u9-PCb"/>
+                                    <constraint firstItem="pHP-9J-ugY" firstAttribute="leading" secondItem="RVX-ra-xZG" secondAttribute="leading" constant="24" id="EOM-u9-PCb"/>
                                     <constraint firstAttribute="bottom" secondItem="eEN-rF-AJ9" secondAttribute="bottom" id="JA8-pG-9XP"/>
                                     <constraint firstItem="eEN-rF-AJ9" firstAttribute="leading" secondItem="RVX-ra-xZG" secondAttribute="leading" id="Uij-5S-xOy"/>
                                     <constraint firstItem="pHP-9J-ugY" firstAttribute="top" secondItem="RVX-ra-xZG" secondAttribute="top" constant="8" id="ZlD-xr-DhN"/>
@@ -488,7 +465,10 @@
                         <outlet property="menuViewLeadingConstraint" destination="9yj-u3-lGP" id="Jlv-lG-A4h"/>
                         <outlet property="signButton" destination="MeK-PR-psa" id="NWd-pa-mqR"/>
                         <segue destination="Ryj-TU-ux2" kind="presentation" identifier="toSignIn" id="qcY-bU-JI1"/>
-                        <segue destination="Doy-pX-Gsg" kind="presentation" id="w0h-up-oMJ"/>
+                        <segue destination="Doy-pX-Gsg" kind="presentation" identifier="toSettingGame" id="w0h-up-oMJ"/>
+                        <segue destination="Doy-pX-Gsg" kind="presentation" identifier="toSettingUser" id="mef-mC-Wi3"/>
+                        <segue destination="pBQ-cz-w44" kind="presentation" identifier="toRanking" id="Z8d-21-DTV"/>
+                        <segue destination="IrP-9C-8l9" kind="presentation" identifier="toRecord" id="z2l-J7-QbI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQQ-Lc-MHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1993,7 +1973,6 @@
         <!--Sign In View Controller-->
         <scene sceneID="sIK-fu-VJ3">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wbm-fj-Lma" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Ryj-TU-ux2" customClass="SignInViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uc4-XE-aI4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
@@ -2080,15 +2059,16 @@
                         <outlet property="statusLabel" destination="Dop-pf-gEX" id="UAc-kQ-svS"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wbm-fj-Lma" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3055" y="1626"/>
         </scene>
-        <!--Local Record-->
+        <!--My Record-->
         <scene sceneID="6Iw-mp-o6z">
             <objects>
                 <tableViewController id="IrP-9C-8l9" customClass="LocalRecordTableViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="w24-bD-ViU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.43921568630000002" green="0.33333333329999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -2126,7 +2106,7 @@
                             <outlet property="delegate" destination="IrP-9C-8l9" id="tH2-vG-3SJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Local Record" id="0ca-tb-maE">
+                    <navigationItem key="navigationItem" title="My Record" id="0ca-tb-maE">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="Hrg-KD-3Na">
                             <color key="tintColor" red="0.43921568630000002" green="0.33333333329999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -2143,7 +2123,6 @@
         <!--Navigation Controller-->
         <scene sceneID="bQJ-PI-vDH">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P23-HJ-30S" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController navigationBarHidden="YES" id="l7H-wI-v6Y" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Abm-j7-6qy">
                         <autoresizingMask key="autoresizingMask"/>
@@ -2152,6 +2131,7 @@
                         <segue destination="tD7-vQ-yd3" kind="relationship" relationship="rootViewController" id="Acr-5G-gV4"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P23-HJ-30S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3054" y="887"/>
         </scene>
@@ -2257,9 +2237,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="globe" catalog="system" width="64" height="60"/>
         <image name="line.horizontal.3" catalog="system" width="64" height="32"/>
         <image name="person.badge.plus" catalog="system" width="64" height="58"/>
-        <image name="rosette" catalog="system" width="50" height="64"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="w0h-up-oMJ"/>
+    </inferredMetricsTieBreakers>
 </document>

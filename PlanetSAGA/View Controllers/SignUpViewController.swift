@@ -58,7 +58,6 @@ class SignUpViewController: UIViewController {
                     self.statusLabel.text = error.localizedDescription
                 }
             } else {
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "updateUser"), object: nil)
                 self.presentingViewController?.presentingViewController?.dismiss(animated: true)
             }
         }

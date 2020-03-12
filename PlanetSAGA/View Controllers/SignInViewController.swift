@@ -50,7 +50,6 @@ class SignInViewController: UIViewController {
                     self.statusLabel.text = error.localizedDescription
                 }
             } else {
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "updateUser"), object: nil)
                 self.dismiss(animated: true)
             }
         }

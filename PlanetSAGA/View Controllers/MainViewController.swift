@@ -22,7 +22,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        OnlineManager.registerUser()
         registerCell()
         
         addObservers()
@@ -87,26 +86,15 @@ class MainViewController: UIViewController {
         })
     }
     
-    @objc func dismissMenuView(sender: UITapGestureRecognizer) {
-        menuViewLeadingConstraint.constant = -self.menuView.frame.width
-        backView.isHidden = true
-        
-        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
-            self.view.layoutIfNeeded()
-            self.backView.alpha = 0.0
-        })
-    }
-    
-    @IBAction func buttonLogoutPressed(_ sender: UIButton) {
+    @IBAction func signButtonTapped(_ sender: UIButton) {
         if OnlineManager.online {
             let alert = UIAlertController(title: "Logout?", message: "", preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            alert.addAction(UIAlertAction(title: "Yes", style: .default) { _ in
                 OnlineManager.signOutUser()
-                self.updateView()
                 self.dismiss(animated: true, completion: nil)
-            }))
-            alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: nil))
+            })
+            alert.addAction(UIAlertAction(title: "No", style: .destructive))
             
             self.present(alert, animated: true)
         } else {
@@ -140,6 +128,33 @@ class MainViewController: UIViewController {
         }
     }
     
+    @objc func dismissMenuView(sender: UITapGestureRecognizer) {
+        menuViewLeadingConstraint.constant = -self.menuView.frame.width
+        backView.isHidden = true
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
+            self.view.layoutIfNeeded()
+            self.backView.alpha = 0.0
+        })
+    }
+    
+}
+
+extension MainViewController: UserInfoCellDelegate {
+    
+    func alertPresent(_ alert: UIAlertController, animated: Bool) {
+        self.present(alert, animated: animated)
+    }
+    
+    func alertDismiss(animated: Bool) {
+        self.dismiss(animated: animated)
+    }
+    
+    func performSegue(withIdentifier: String, completion: @escaping () -> Void) {
+        self.performSegue(withIdentifier: withIdentifier, sender: nil)
+        completion()
+    }
+    
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
@@ -151,7 +166,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: UserInfoCell.identifier) as! UserInfoCell
-            cell.configureCell()
+            cell.delegate = self
+//            cell.configureCell()
             
             return cell
         } else {

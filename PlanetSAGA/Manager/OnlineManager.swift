@@ -14,17 +14,23 @@ class OnlineManager: NSObject {
     static var online: Bool = false
     
     static var user: User?
-    static var userInfo: UserInfo?
+    static var userInfo: UserInfo? {
+        didSet {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "updateUser"), object: nil)
+        }
+    }
     
     static func registerUser() {
-        if let user = Auth.auth().currentUser {
-            self.online = true
-            self.user = User(authData: user)
-            self.updateUserInfo(user.uid)
-        } else {
-            self.online = false
-            self.user = nil
-            self.userInfo = nil
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.AuthStateDidChange, object: Auth.auth(), queue: nil) { _ in
+            if let user = Auth.auth().currentUser {
+                self.online = true
+                self.user = User(authData: user)
+                self.updateUserInfo(user.uid)
+            } else {
+                self.online = false
+                self.user = nil
+                self.userInfo = nil
+            }
         }
     }
     
@@ -40,7 +46,6 @@ class OnlineManager: NSObject {
                 let userInfoRef = PSDatabase.userInfoRef.child(user!.user.uid)
                 userInfoRef.setValue(userInfo.toAnyObject())
                 
-                registerUser()
                 completion(nil)
             }
         }
@@ -53,7 +58,6 @@ class OnlineManager: NSObject {
                 print("Error: \(error.localizedDescription)")
                 completion(error)
             } else {
-                registerUser()
                 completion(nil)
             }
         }
@@ -66,8 +70,6 @@ class OnlineManager: NSObject {
             } catch {
                 print("SignOut Error: \(error.localizedDescription)")
             }
-            
-            registerUser()
         }
     }
     

@@ -403,7 +403,7 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonClicked:" destination="tD7-vQ-yd3" eventType="touchUpInside" id="Ck2-hG-Exb"/>
-                                    <action selector="buttonLogoutPressed:" destination="tD7-vQ-yd3" eventType="touchUpInside" id="wrH-ze-vmA"/>
+                                    <action selector="signButtonTapped:" destination="tD7-vQ-yd3" eventType="touchUpInside" id="cKW-Wt-nb8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wbh-lX-3Of" userLabel="Ranking Btn">

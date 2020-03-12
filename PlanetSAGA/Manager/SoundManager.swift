@@ -64,7 +64,8 @@ final class SoundManager: NSObject, AVAudioPlayerDelegate {
         
         // 반복재생
         bakgroundAudioPlayer?.numberOfLoops = -1
-        bakgroundAudioPlayer?.volume = 0.7
+//        bakgroundAudioPlayer?.volume = 0.7
+        bakgroundAudioPlayer?.volume = 0.0
         
         for i in 0...3 {
             effectArray[i]?.volume = 0.7

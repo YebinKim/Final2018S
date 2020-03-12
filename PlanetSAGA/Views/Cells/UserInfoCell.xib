@@ -20,8 +20,10 @@
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7aH-Lg-hn7">
                         <rect key="frame" x="16" y="8" width="268" height="44"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="byi-BJ-kuD">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="byi-BJ-kuD">
                                 <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.50350492294520544" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="2QM-VX-7dS"/>
                                     <constraint firstAttribute="width" constant="44" id="cKX-KI-VgH"/>
@@ -64,6 +66,7 @@
             <connections>
                 <outlet property="nameLabel" destination="Wk4-WF-tnf" id="Ab3-tL-kOa"/>
                 <outlet property="profileImageView" destination="byi-BJ-kuD" id="dYb-XH-49s"/>
+                <outlet property="signButton" destination="iE8-DM-9SQ" id="Xwp-ch-38w"/>
             </connections>
             <point key="canvasLocation" x="123.18840579710145" y="131.25"/>
         </tableViewCell>

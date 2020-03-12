@@ -1,0 +1,620 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02A1740ACF8F2778A49D1EFE /* Pods_PlanetSAGA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 714D5A16A460419FE7ABB228 /* Pods_PlanetSAGA.framework */; };
+		3E2066A020D03868000957C1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E20669F20D03868000957C1 /* AVFoundation.framework */; };
+		3E2066A420D05121000957C1 /* BayBreeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E2066A320D05121000957C1 /* BayBreeze.wav */; };
+		3E223FFA20A8A2EE006A7D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E223FF920A8A2EE006A7D07 /* AppDelegate.swift */; };
+		3E223FFF20A8A2EE006A7D07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E223FFD20A8A2EE006A7D07 /* Main.storyboard */; };
+		3E22400220A8A2EE006A7D07 /* PlanetSAGA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3E22400020A8A2EE006A7D07 /* PlanetSAGA.xcdatamodeld */; };
+		3E22400420A8A2EE006A7D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E22400320A8A2EE006A7D07 /* Assets.xcassets */; };
+		3E22400720A8A2EE006A7D07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E22400520A8A2EE006A7D07 /* LaunchScreen.storyboard */; };
+		3E4285A320BC5A5900AAE028 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4285A220BC5A5900AAE028 /* GameViewController.swift */; };
+		3E644CF920BD6B0E0089A411 /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E644CF820BD6B0E0089A411 /* RecordTableViewController.swift */; };
+		3E78BD9820D9473600AADBC0 /* SoundMoveFail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E78BD9420D9473600AADBC0 /* SoundMoveFail.wav */; };
+		3E78BD9920D9473600AADBC0 /* SoundSelected.WAV in Resources */ = {isa = PBXBuildFile; fileRef = 3E78BD9520D9473600AADBC0 /* SoundSelected.WAV */; };
+		3E78BD9A20D9473600AADBC0 /* SoundMoveSuccess.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E78BD9620D9473600AADBC0 /* SoundMoveSuccess.wav */; };
+		3E78BD9B20D9473600AADBC0 /* SoundClick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E78BD9720D9473600AADBC0 /* SoundClick.wav */; };
+		3E79687220D5636100F67483 /* RankingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79687120D5636100F67483 /* RankingDetailsViewController.swift */; };
+		3E79687420D5636F00F67483 /* RecordDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79687320D5636F00F67483 /* RecordDetailsViewController.swift */; };
+		3E79687820D5A05C00F67483 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79687720D5A05C00F67483 /* User.swift */; };
+		3E79687A20D6488900F67483 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79687920D6488900F67483 /* Score.swift */; };
+		3E79687E20D69EDE00F67483 /* LocalRecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79687D20D69EDE00F67483 /* LocalRecordTableViewController.swift */; };
+		3E79688020D6B00B00F67483 /* LocalRecordDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79687F20D6B00B00F67483 /* LocalRecordDetailsViewController.swift */; };
+		3ED8464320BD1019003C4F63 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464220BD1019003C4F63 /* SignUpViewController.swift */; };
+		3ED8464520BD103C003C4F63 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464420BD103C003C4F63 /* SignInViewController.swift */; };
+		3ED8464720BD107A003C4F63 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464620BD107A003C4F63 /* MainViewController.swift */; };
+		3ED8464920BD10AD003C4F63 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464820BD10AD003C4F63 /* SettingViewController.swift */; };
+		3ED8464B20BD10E7003C4F63 /* RankingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464A20BD10E7003C4F63 /* RankingTableViewController.swift */; };
+		C20D90572418C14C001F7281 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90562418C14C001F7281 /* Extensions.swift */; };
+		C20D905B2418C1FA001F7281 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90592418C1FA001F7281 /* UserInfoCell.swift */; };
+		C20D905C2418C1FA001F7281 /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D905A2418C1FA001F7281 /* UserInfoCell.xib */; };
+		C20D905F2418C235001F7281 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D905D2418C235001F7281 /* MenuCell.swift */; };
+		C20D90602418C235001F7281 /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D905E2418C235001F7281 /* MenuCell.xib */; };
+		C20D90622419106F001F7281 /* OnlineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90612419106F001F7281 /* OnlineManager.swift */; };
+		C212B99524139B4B00B6A472 /* GameAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C212B99424139B4B00B6A472 /* GameAssets.xcassets */; };
+		C2FB5A6D2416111E00049CF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2FB5A6C2416111E00049CF1 /* GoogleService-Info.plist */; };
+		C2FB5A712416147400049CF1 /* PSDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A702416147400049CF1 /* PSDatabase.swift */; };
+		C2FB5A9524164D1A00049CF1 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A9424164D1A00049CF1 /* UserInfo.swift */; };
+		C2FB5A9B24175ECA00049CF1 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A9A24175ECA00049CF1 /* SoundManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2FD8F206B83F8802C78BC151 /* Pods-PlanetSAGA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetSAGA.debug.xcconfig"; path = "Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA.debug.xcconfig"; sourceTree = "<group>"; };
+		3E20669F20D03868000957C1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3E2066A320D05121000957C1 /* BayBreeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BayBreeze.wav; sourceTree = "<group>"; };
+		3E223FF620A8A2EE006A7D07 /* PlanetSAGA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlanetSAGA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E223FF920A8A2EE006A7D07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3E223FFE20A8A2EE006A7D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3E22400120A8A2EE006A7D07 /* univerSwuSaga.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = univerSwuSaga.xcdatamodel; sourceTree = "<group>"; };
+		3E22400320A8A2EE006A7D07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3E22400620A8A2EE006A7D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3E22400820A8A2EE006A7D07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E4285A220BC5A5900AAE028 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		3E644CF820BD6B0E0089A411 /* RecordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
+		3E78BD9420D9473600AADBC0 /* SoundMoveFail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SoundMoveFail.wav; sourceTree = "<group>"; };
+		3E78BD9520D9473600AADBC0 /* SoundSelected.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SoundSelected.WAV; sourceTree = "<group>"; };
+		3E78BD9620D9473600AADBC0 /* SoundMoveSuccess.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SoundMoveSuccess.wav; sourceTree = "<group>"; };
+		3E78BD9720D9473600AADBC0 /* SoundClick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SoundClick.wav; sourceTree = "<group>"; };
+		3E79687120D5636100F67483 /* RankingDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingDetailsViewController.swift; sourceTree = "<group>"; };
+		3E79687320D5636F00F67483 /* RecordDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailsViewController.swift; sourceTree = "<group>"; };
+		3E79687720D5A05C00F67483 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3E79687920D6488900F67483 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		3E79687D20D69EDE00F67483 /* LocalRecordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRecordTableViewController.swift; sourceTree = "<group>"; };
+		3E79687F20D6B00B00F67483 /* LocalRecordDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRecordDetailsViewController.swift; sourceTree = "<group>"; };
+		3ED8464220BD1019003C4F63 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3ED8464420BD103C003C4F63 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		3ED8464620BD107A003C4F63 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3ED8464820BD10AD003C4F63 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		3ED8464A20BD10E7003C4F63 /* RankingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableViewController.swift; sourceTree = "<group>"; };
+		714D5A16A460419FE7ABB228 /* Pods_PlanetSAGA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanetSAGA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C20D90562418C14C001F7281 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		C20D90592418C1FA001F7281 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
+		C20D905A2418C1FA001F7281 /* UserInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInfoCell.xib; sourceTree = "<group>"; };
+		C20D905D2418C235001F7281 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		C20D905E2418C235001F7281 /* MenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
+		C20D90612419106F001F7281 /* OnlineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineManager.swift; sourceTree = "<group>"; };
+		C212B99424139B4B00B6A472 /* GameAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = GameAssets.xcassets; sourceTree = "<group>"; };
+		C2FB5A6C2416111E00049CF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C2FB5A702416147400049CF1 /* PSDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSDatabase.swift; sourceTree = "<group>"; };
+		C2FB5A9424164D1A00049CF1 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		C2FB5A9A24175ECA00049CF1 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		ECF3CC9469EA7EAD223FE42A /* Pods-PlanetSAGA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetSAGA.release.xcconfig"; path = "Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3E223FF320A8A2EE006A7D07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E2066A020D03868000957C1 /* AVFoundation.framework in Frameworks */,
+				02A1740ACF8F2778A49D1EFE /* Pods_PlanetSAGA.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E20669E20D03868000957C1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E20669F20D03868000957C1 /* AVFoundation.framework */,
+				714D5A16A460419FE7ABB228 /* Pods_PlanetSAGA.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E223FED20A8A2EE006A7D07 = {
+			isa = PBXGroup;
+			children = (
+				3E223FF820A8A2EE006A7D07 /* PlanetSAGA */,
+				3E223FF720A8A2EE006A7D07 /* Products */,
+				3E20669E20D03868000957C1 /* Frameworks */,
+				D4A3E9A611B345FC67A33C5C /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		3E223FF720A8A2EE006A7D07 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E223FF620A8A2EE006A7D07 /* PlanetSAGA.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E223FF820A8A2EE006A7D07 /* PlanetSAGA */ = {
+			isa = PBXGroup;
+			children = (
+				3E223FF920A8A2EE006A7D07 /* AppDelegate.swift */,
+				C212B99124138EA500B6A472 /* Models */,
+				C212B99324138FCA00B6A472 /* Views */,
+				C212B98E24138DD200B6A472 /* View Controllers */,
+				C2FB5A9924175EB900049CF1 /* Manager */,
+				C212B99224138FBB00B6A472 /* Database */,
+				C212B98F24138DDB00B6A472 /* Resources */,
+				C20D90552418C134001F7281 /* Utils */,
+				C212B99024138E3B00B6A472 /* Supporting Files */,
+			);
+			path = PlanetSAGA;
+			sourceTree = "<group>";
+		};
+		3E79686420D4E92B00F67483 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				3E78BD9720D9473600AADBC0 /* SoundClick.wav */,
+				3E78BD9420D9473600AADBC0 /* SoundMoveFail.wav */,
+				3E78BD9620D9473600AADBC0 /* SoundMoveSuccess.wav */,
+				3E78BD9520D9473600AADBC0 /* SoundSelected.WAV */,
+				3E2066A320D05121000957C1 /* BayBreeze.wav */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
+		C20D90552418C134001F7281 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C20D90562418C14C001F7281 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C20D90582418C1DE001F7281 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C20D90592418C1FA001F7281 /* UserInfoCell.swift */,
+				C20D905A2418C1FA001F7281 /* UserInfoCell.xib */,
+				C20D905D2418C235001F7281 /* MenuCell.swift */,
+				C20D905E2418C235001F7281 /* MenuCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		C212B98E24138DD200B6A472 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3ED8464620BD107A003C4F63 /* MainViewController.swift */,
+				3ED8464420BD103C003C4F63 /* SignInViewController.swift */,
+				3ED8464220BD1019003C4F63 /* SignUpViewController.swift */,
+				3ED8464A20BD10E7003C4F63 /* RankingTableViewController.swift */,
+				3E79687120D5636100F67483 /* RankingDetailsViewController.swift */,
+				3E644CF820BD6B0E0089A411 /* RecordTableViewController.swift */,
+				3E79687320D5636F00F67483 /* RecordDetailsViewController.swift */,
+				3E79687D20D69EDE00F67483 /* LocalRecordTableViewController.swift */,
+				3E79687F20D6B00B00F67483 /* LocalRecordDetailsViewController.swift */,
+				3ED8464820BD10AD003C4F63 /* SettingViewController.swift */,
+				3E4285A220BC5A5900AAE028 /* GameViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		C212B98F24138DDB00B6A472 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3E22400320A8A2EE006A7D07 /* Assets.xcassets */,
+				C212B99424139B4B00B6A472 /* GameAssets.xcassets */,
+				3E79686420D4E92B00F67483 /* Sound */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C212B99024138E3B00B6A472 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3E22400820A8A2EE006A7D07 /* Info.plist */,
+				C2FB5A6C2416111E00049CF1 /* GoogleService-Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C212B99124138EA500B6A472 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3E79687720D5A05C00F67483 /* User.swift */,
+				C2FB5A9424164D1A00049CF1 /* UserInfo.swift */,
+				3E79687920D6488900F67483 /* Score.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C212B99224138FBB00B6A472 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				C2FB5A702416147400049CF1 /* PSDatabase.swift */,
+				3E22400020A8A2EE006A7D07 /* PlanetSAGA.xcdatamodeld */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		C212B99324138FCA00B6A472 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C20D90582418C1DE001F7281 /* Cells */,
+				3E223FFD20A8A2EE006A7D07 /* Main.storyboard */,
+				3E22400520A8A2EE006A7D07 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C2FB5A9924175EB900049CF1 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				C20D90612419106F001F7281 /* OnlineManager.swift */,
+				C2FB5A9A24175ECA00049CF1 /* SoundManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		D4A3E9A611B345FC67A33C5C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2FD8F206B83F8802C78BC151 /* Pods-PlanetSAGA.debug.xcconfig */,
+				ECF3CC9469EA7EAD223FE42A /* Pods-PlanetSAGA.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3E223FF520A8A2EE006A7D07 /* PlanetSAGA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E22400B20A8A2EE006A7D07 /* Build configuration list for PBXNativeTarget "PlanetSAGA" */;
+			buildPhases = (
+				2E293E0CA667F0B207575A5A /* [CP] Check Pods Manifest.lock */,
+				3E223FF220A8A2EE006A7D07 /* Sources */,
+				3E223FF320A8A2EE006A7D07 /* Frameworks */,
+				3E223FF420A8A2EE006A7D07 /* Resources */,
+				954BDA815BC568F4E60E7B0C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PlanetSAGA;
+			productName = univerSwuSaga;
+			productReference = 3E223FF620A8A2EE006A7D07 /* PlanetSAGA.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3E223FEE20A8A2EE006A7D07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "김예빈";
+				TargetAttributes = {
+					3E223FF520A8A2EE006A7D07 = {
+						CreatedOnToolsVersion = 9.3;
+					};
+				};
+			};
+			buildConfigurationList = 3E223FF120A8A2EE006A7D07 /* Build configuration list for PBXProject "PlanetSAGA" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3E223FED20A8A2EE006A7D07;
+			productRefGroup = 3E223FF720A8A2EE006A7D07 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3E223FF520A8A2EE006A7D07 /* PlanetSAGA */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3E223FF420A8A2EE006A7D07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E22400720A8A2EE006A7D07 /* LaunchScreen.storyboard in Resources */,
+				3E22400420A8A2EE006A7D07 /* Assets.xcassets in Resources */,
+				3E2066A420D05121000957C1 /* BayBreeze.wav in Resources */,
+				3E78BD9820D9473600AADBC0 /* SoundMoveFail.wav in Resources */,
+				3E223FFF20A8A2EE006A7D07 /* Main.storyboard in Resources */,
+				3E78BD9B20D9473600AADBC0 /* SoundClick.wav in Resources */,
+				C20D90602418C235001F7281 /* MenuCell.xib in Resources */,
+				C212B99524139B4B00B6A472 /* GameAssets.xcassets in Resources */,
+				C2FB5A6D2416111E00049CF1 /* GoogleService-Info.plist in Resources */,
+				C20D905C2418C1FA001F7281 /* UserInfoCell.xib in Resources */,
+				3E78BD9920D9473600AADBC0 /* SoundSelected.WAV in Resources */,
+				3E78BD9A20D9473600AADBC0 /* SoundMoveSuccess.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E293E0CA667F0B207575A5A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PlanetSAGA-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		954BDA815BC568F4E60E7B0C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3E223FF220A8A2EE006A7D07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C20D905B2418C1FA001F7281 /* UserInfoCell.swift in Sources */,
+				3E79688020D6B00B00F67483 /* LocalRecordDetailsViewController.swift in Sources */,
+				C20D905F2418C235001F7281 /* MenuCell.swift in Sources */,
+				3ED8464720BD107A003C4F63 /* MainViewController.swift in Sources */,
+				3E79687420D5636F00F67483 /* RecordDetailsViewController.swift in Sources */,
+				3E79687820D5A05C00F67483 /* User.swift in Sources */,
+				3ED8464520BD103C003C4F63 /* SignInViewController.swift in Sources */,
+				3E79687A20D6488900F67483 /* Score.swift in Sources */,
+				3E4285A320BC5A5900AAE028 /* GameViewController.swift in Sources */,
+				C20D90572418C14C001F7281 /* Extensions.swift in Sources */,
+				3ED8464920BD10AD003C4F63 /* SettingViewController.swift in Sources */,
+				3E644CF920BD6B0E0089A411 /* RecordTableViewController.swift in Sources */,
+				C2FB5A9B24175ECA00049CF1 /* SoundManager.swift in Sources */,
+				3E79687220D5636100F67483 /* RankingDetailsViewController.swift in Sources */,
+				3E22400220A8A2EE006A7D07 /* PlanetSAGA.xcdatamodeld in Sources */,
+				C2FB5A712416147400049CF1 /* PSDatabase.swift in Sources */,
+				C2FB5A9524164D1A00049CF1 /* UserInfo.swift in Sources */,
+				3ED8464320BD1019003C4F63 /* SignUpViewController.swift in Sources */,
+				C20D90622419106F001F7281 /* OnlineManager.swift in Sources */,
+				3E79687E20D69EDE00F67483 /* LocalRecordTableViewController.swift in Sources */,
+				3ED8464B20BD10E7003C4F63 /* RankingTableViewController.swift in Sources */,
+				3E223FFA20A8A2EE006A7D07 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3E223FFD20A8A2EE006A7D07 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E223FFE20A8A2EE006A7D07 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3E22400520A8A2EE006A7D07 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E22400620A8A2EE006A7D07 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3E22400920A8A2EE006A7D07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3E22400A20A8A2EE006A7D07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3E22400C20A8A2EE006A7D07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FD8F206B83F8802C78BC151 /* Pods-PlanetSAGA.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "PlanetSAGA/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = developer.VIVI.PlanetSAGA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3E22400D20A8A2EE006A7D07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECF3CC9469EA7EAD223FE42A /* Pods-PlanetSAGA.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "PlanetSAGA/Supporting Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = developer.VIVI.PlanetSAGA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E223FF120A8A2EE006A7D07 /* Build configuration list for PBXProject "PlanetSAGA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E22400920A8A2EE006A7D07 /* Debug */,
+				3E22400A20A8A2EE006A7D07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E22400B20A8A2EE006A7D07 /* Build configuration list for PBXNativeTarget "PlanetSAGA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E22400C20A8A2EE006A7D07 /* Debug */,
+				3E22400D20A8A2EE006A7D07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3E22400020A8A2EE006A7D07 /* PlanetSAGA.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3E22400120A8A2EE006A7D07 /* univerSwuSaga.xcdatamodel */,
+			);
+			currentVersion = 3E22400120A8A2EE006A7D07 /* univerSwuSaga.xcdatamodel */;
+			path = PlanetSAGA.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3E223FEE20A8A2EE006A7D07 /* Project object */;
+}

@@ -373,7 +373,7 @@
                                 </state>
                                 <connections>
                                     <action selector="buttonClicked:" destination="tD7-vQ-yd3" eventType="touchUpInside" id="qVb-Nn-fIi"/>
-                                    <segue destination="v1P-cW-jQ3" kind="show" id="hDh-Qn-FEk"/>
+                                    <segue destination="v1P-cW-jQ3" kind="presentation" id="lh6-JS-FdN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNn-PP-P2C" userLabel="Menu Btn">
@@ -1362,7 +1362,7 @@
                                     <color key="titleColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <action selector="buttonBackPressed:" destination="v1P-cW-jQ3" eventType="touchUpInside" id="voU-0a-cCJ"/>
+                                    <action selector="buttonBackPressed:for:" destination="v1P-cW-jQ3" eventType="touchUpInside" id="3Qx-Ss-mdb"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XT9-LB-wUJ">

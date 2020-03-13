@@ -140,32 +140,6 @@ class MainViewController: UIViewController {
     
 }
 
-extension MainViewController: UserInfoCellDelegate, MenuCellDelegate {
-    
-    func alertPresent(_ alert: UIAlertController, animated: Bool) {
-        self.present(alert, animated: animated)
-    }
-    
-    func alertDismiss(animated: Bool) {
-        self.dismiss(animated: animated)
-    }
-    
-    func performSegue(withIdentifier: String) {
-        self.performSegue(withIdentifier: withIdentifier, sender: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let settingVC = segue.destination as? SettingViewController {
-            if segue.identifier == "toSettingGame" {
-                settingVC.selectedSegmentIndex = 0
-            } else {
-                settingVC.selectedSegmentIndex = 1
-            }
-        }
-    }
-    
-}
-
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -203,6 +177,32 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             }
             cell.delegate = self
             cell.selectedCell(indexPath.row)
+        }
+    }
+    
+}
+
+extension MainViewController: UserInfoCellDelegate, MenuCellDelegate {
+    
+    func alertPresent(_ alert: UIAlertController, animated: Bool) {
+        self.present(alert, animated: animated)
+    }
+    
+    func alertDismiss(animated: Bool) {
+        self.dismiss(animated: animated)
+    }
+    
+    func performSegue(withIdentifier: String) {
+        self.performSegue(withIdentifier: withIdentifier, sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let settingVC = segue.destination as? SettingViewController {
+            if segue.identifier == "toSettingGame" {
+                settingVC.selectedSegmentIndex = 0
+            } else {
+                settingVC.selectedSegmentIndex = 1
+            }
         }
     }
     

@@ -122,32 +122,36 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet var levelLabel: UILabel!
     @IBOutlet var levelView: UIView!
     var level: Int?
-    var subBlock:UIImage?
+    var subBlock: UIImage?
     
-    let bImage1:UIImage = UIImage(named:"block1.png")!
-    let bImage2:UIImage = UIImage(named:"block2.png")!
-    let bImage3:UIImage = UIImage(named:"block3.png")!
-    let bImage4:UIImage = UIImage(named:"block4.png")!
-    let bImage5:UIImage = UIImage(named:"block5.png")!
-    let bImage6:UIImage = UIImage(named:"block6.png")!
+    let bImage1: UIImage = UIImage(named:"block1.png")!
+    let bImage2: UIImage = UIImage(named:"block2.png")!
+    let bImage3: UIImage = UIImage(named:"block3.png")!
+    let bImage4: UIImage = UIImage(named:"block4.png")!
+    let bImage5: UIImage = UIImage(named:"block5.png")!
+    let bImage6: UIImage = UIImage(named:"block6.png")!
     
-    var missionArray:Array<UILabel?> = []
-    var blockArray:Array<UIButton?> = Array(repeating: nil, count: 81)
+    var missionArray: Array<UILabel?> = []
+    var blockArray: Array<UIButton?> = Array(repeating: nil, count: 81)
     
-    var arrNum1:Int = 0
-    var arrNum2:Int = 0
-    var flagBtn1:Bool = false
+    var arrNum1: Int = 0
+    var arrNum2: Int = 0
+    var flagBtn1: Bool = false
     
-    var streak:Int = 0
-    var score:Int = 0
+    var streak: Int = 0
+    var score: Int = 0
     
-    var timer:Timer?
+    var timer: Timer?
     //    var count = 20
     var count = 5
-    var timerFlag:Bool = true
+    var timerFlag: Bool = true
+    
+    private var touchPoint: CGPoint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        transitioningDelegate = self
         
         missionImage1.image = bImage1
         missionImage2.image = bImage2
@@ -635,10 +639,13 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         return check
     }
     
-    @IBAction func buttonBackPressed(_ sender: UIButton) {
+    @IBAction func buttonBackPressed(_ button: UIButton, for event: UIEvent) {
         SoundManager.clickEffect()
         
-        self.navigationController?.popViewController(animated: true)
+        guard let touch = event.allTouches?.first else { return }
+        self.touchPoint = touch.location(in: self.view)
+        
+        self.dismiss(animated: true)
     }
     
     func startTimer() {
@@ -677,4 +684,18 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             }
         }
     }
+}
+
+extension GameViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return TransitionManager(animationDuration: 1.0, animationType: .present, touchPoint: CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height / 2))
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return TransitionManager(animationDuration: 1.0, animationType: .dismiss, touchPoint: touchPoint!)
+    }
+    
 }

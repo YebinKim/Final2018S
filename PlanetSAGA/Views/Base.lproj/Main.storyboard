@@ -108,7 +108,7 @@
             <objects>
                 <tableViewController id="pBQ-cz-w44" customClass="RankingTableViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8cY-pW-aYR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.43921568630000002" green="0.33333333329999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -467,8 +467,8 @@
                         <segue destination="Ryj-TU-ux2" kind="presentation" identifier="toSignIn" id="qcY-bU-JI1"/>
                         <segue destination="Doy-pX-Gsg" kind="presentation" identifier="toSettingGame" id="w0h-up-oMJ"/>
                         <segue destination="Doy-pX-Gsg" kind="presentation" identifier="toSettingUser" id="mef-mC-Wi3"/>
-                        <segue destination="pBQ-cz-w44" kind="presentation" identifier="toRanking" id="Z8d-21-DTV"/>
-                        <segue destination="IrP-9C-8l9" kind="presentation" identifier="toRecord" id="z2l-J7-QbI"/>
+                        <segue destination="pBQ-cz-w44" kind="show" identifier="toRanking" id="bux-ax-fc1"/>
+                        <segue destination="IrP-9C-8l9" kind="show" identifier="toRecord" id="UO7-Xs-10c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQQ-Lc-MHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2068,7 +2068,7 @@
             <objects>
                 <tableViewController id="IrP-9C-8l9" customClass="LocalRecordTableViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="w24-bD-ViU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.43921568630000002" green="0.33333333329999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -2107,6 +2107,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Record" id="0ca-tb-maE">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Yiu-5x-CWQ"/>
                         <barButtonItem key="leftBarButtonItem" title="Back" id="Hrg-KD-3Na">
                             <color key="tintColor" red="0.43921568630000002" green="0.33333333329999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -2241,6 +2242,6 @@
         <image name="person.badge.plus" catalog="system" width="64" height="58"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="w0h-up-oMJ"/>
+        <segue reference="mef-mC-Wi3"/>
     </inferredMetricsTieBreakers>
 </document>

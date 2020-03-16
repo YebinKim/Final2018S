@@ -12,87 +12,7 @@ import Firebase
 
 class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    @IBOutlet var b0: UIButton!
-    @IBOutlet var b1: UIButton!
-    @IBOutlet var b2: UIButton!
-    @IBOutlet var b3: UIButton!
-    @IBOutlet var b4: UIButton!
-    @IBOutlet var b5: UIButton!
-    @IBOutlet var b6: UIButton!
-    @IBOutlet var b7: UIButton!
-    @IBOutlet var b8: UIButton!
-    @IBOutlet var b9: UIButton!
-    @IBOutlet var b10: UIButton!
-    @IBOutlet var b11: UIButton!
-    @IBOutlet var b12: UIButton!
-    @IBOutlet var b13: UIButton!
-    @IBOutlet var b14: UIButton!
-    @IBOutlet var b15: UIButton!
-    @IBOutlet var b16: UIButton!
-    @IBOutlet var b17: UIButton!
-    @IBOutlet var b18: UIButton!
-    @IBOutlet var b19: UIButton!
-    @IBOutlet var b20: UIButton!
-    @IBOutlet var b21: UIButton!
-    @IBOutlet var b22: UIButton!
-    @IBOutlet var b23: UIButton!
-    @IBOutlet var b24: UIButton!
-    @IBOutlet var b25: UIButton!
-    @IBOutlet var b26: UIButton!
-    @IBOutlet var b27: UIButton!
-    @IBOutlet var b28: UIButton!
-    @IBOutlet var b29: UIButton!
-    @IBOutlet var b30: UIButton!
-    @IBOutlet var b31: UIButton!
-    @IBOutlet var b32: UIButton!
-    @IBOutlet var b33: UIButton!
-    @IBOutlet var b34: UIButton!
-    @IBOutlet var b35: UIButton!
-    @IBOutlet var b36: UIButton!
-    @IBOutlet var b37: UIButton!
-    @IBOutlet var b38: UIButton!
-    @IBOutlet var b39: UIButton!
-    @IBOutlet var b40: UIButton!
-    @IBOutlet var b41: UIButton!
-    @IBOutlet var b42: UIButton!
-    @IBOutlet var b43: UIButton!
-    @IBOutlet var b44: UIButton!
-    @IBOutlet var b45: UIButton!
-    @IBOutlet var b46: UIButton!
-    @IBOutlet var b47: UIButton!
-    @IBOutlet var b48: UIButton!
-    @IBOutlet var b49: UIButton!
-    @IBOutlet var b50: UIButton!
-    @IBOutlet var b51: UIButton!
-    @IBOutlet var b52: UIButton!
-    @IBOutlet var b53: UIButton!
-    @IBOutlet var b54: UIButton!
-    @IBOutlet var b55: UIButton!
-    @IBOutlet var b56: UIButton!
-    @IBOutlet var b57: UIButton!
-    @IBOutlet var b58: UIButton!
-    @IBOutlet var b59: UIButton!
-    @IBOutlet var b60: UIButton!
-    @IBOutlet var b61: UIButton!
-    @IBOutlet var b62: UIButton!
-    @IBOutlet var b63: UIButton!
-    @IBOutlet var b64: UIButton!
-    @IBOutlet var b65: UIButton!
-    @IBOutlet var b66: UIButton!
-    @IBOutlet var b67: UIButton!
-    @IBOutlet var b68: UIButton!
-    @IBOutlet var b69: UIButton!
-    @IBOutlet var b70: UIButton!
-    @IBOutlet var b71: UIButton!
-    @IBOutlet var b72: UIButton!
-    @IBOutlet var b73: UIButton!
-    @IBOutlet var b74: UIButton!
-    @IBOutlet var b75: UIButton!
-    @IBOutlet var b76: UIButton!
-    @IBOutlet var b77: UIButton!
-    @IBOutlet var b78: UIButton!
-    @IBOutlet var b79: UIButton!
-    @IBOutlet var b80: UIButton!
+    @IBOutlet var blockArray: [UIButton]!
     
     @IBOutlet var missionImage1: UIImageView!
     @IBOutlet var missionImage2: UIImageView!
@@ -132,7 +52,6 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     let bImage6: UIImage = UIImage(named:"block6.png")!
     
     var missionArray: Array<UILabel?> = []
-    var blockArray: Array<UIButton?> = Array(repeating: nil, count: 81)
     
     var arrNum1: Int = 0
     var arrNum2: Int = 0
@@ -169,103 +88,21 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         
         levelPicker.selectRow(2, inComponent: 0, animated: false)
         
-        blockArray[0] = b0
-        blockArray[1] = b1
-        blockArray[2] = b2
-        blockArray[3] = b3
-        blockArray[4] = b4
-        blockArray[5] = b5
-        blockArray[6] = b6
-        blockArray[7] = b7
-        blockArray[8] = b8
-        blockArray[9] = b9
-        blockArray[10] = b10
-        blockArray[11] = b11
-        blockArray[12] = b12
-        blockArray[13] = b13
-        blockArray[14] = b14
-        blockArray[15] = b15
-        blockArray[16] = b16
-        blockArray[17] = b17
-        blockArray[18] = b18
-        blockArray[19] = b19
-        blockArray[20] = b20
-        blockArray[21] = b21
-        blockArray[22] = b22
-        blockArray[23] = b23
-        blockArray[24] = b24
-        blockArray[25] = b25
-        blockArray[26] = b26
-        blockArray[27] = b27
-        blockArray[28] = b28
-        blockArray[29] = b29
-        blockArray[30] = b30
-        blockArray[31] = b31
-        blockArray[32] = b32
-        blockArray[33] = b33
-        blockArray[34] = b34
-        blockArray[35] = b35
-        blockArray[36] = b36
-        blockArray[37] = b37
-        blockArray[38] = b38
-        blockArray[39] = b39
-        blockArray[40] = b40
-        blockArray[41] = b41
-        blockArray[42] = b42
-        blockArray[43] = b43
-        blockArray[44] = b44
-        blockArray[45] = b45
-        blockArray[46] = b46
-        blockArray[47] = b47
-        blockArray[48] = b48
-        blockArray[49] = b49
-        blockArray[50] = b50
-        blockArray[51] = b51
-        blockArray[52] = b52
-        blockArray[53] = b53
-        blockArray[54] = b54
-        blockArray[55] = b55
-        blockArray[56] = b56
-        blockArray[57] = b57
-        blockArray[58] = b58
-        blockArray[59] = b59
-        blockArray[60] = b60
-        blockArray[61] = b61
-        blockArray[62] = b62
-        blockArray[63] = b63
-        blockArray[64] = b64
-        blockArray[65] = b65
-        blockArray[66] = b66
-        blockArray[67] = b67
-        blockArray[68] = b68
-        blockArray[69] = b69
-        blockArray[70] = b70
-        blockArray[71] = b71
-        blockArray[72] = b72
-        blockArray[73] = b73
-        blockArray[74] = b74
-        blockArray[75] = b75
-        blockArray[76] = b76
-        blockArray[77] = b77
-        blockArray[78] = b78
-        blockArray[79] = b79
-        blockArray[80] = b80
-        
         for i in 0 ... 80 {
             let randNum: UInt32 = arc4random_uniform(UInt32(6))
             
             if randNum == 0 {
-                blockArray[i]?.setImage(bImage1, for: UIControlState.normal)
+                blockArray[i].setImage(bImage1, for: UIControlState.normal)
             } else if randNum == 1 {
-                blockArray[i]?.setImage(bImage2, for: UIControlState.normal)
+                blockArray[i].setImage(bImage2, for: UIControlState.normal)
             } else if randNum == 2 {
-                blockArray[i]?.setImage(bImage3, for: UIControlState.normal)
+                blockArray[i].setImage(bImage3, for: UIControlState.normal)
             } else if randNum == 3 {
-                blockArray[i]?.setImage(bImage4, for: UIControlState.normal)
+                blockArray[i].setImage(bImage4, for: UIControlState.normal)
             } else if randNum == 4 {
-                blockArray[i]?.setImage(bImage5, for: UIControlState.normal)
+                blockArray[i].setImage(bImage5, for: UIControlState.normal)
             } else if randNum == 5 {
-                blockArray[i]?.setImage(bImage6, for: UIControlState.normal)
+                blockArray[i].setImage(bImage6, for: UIControlState.normal)
             }
         }
         
@@ -387,10 +224,10 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                 arrNum2 = Int(tempLabel[0])!
                 
                 if (arrNum1 == (arrNum2-9)) || (arrNum1 == (arrNum2-1)) || (arrNum1 == (arrNum2+1)) || (arrNum1 == (arrNum2+9)) {
-                    let tempImage:UIImage = (blockArray[arrNum2]?.image(for: UIControlState.normal))!
+                    let tempImage:UIImage = (blockArray[arrNum2].image(for: UIControlState.normal))!
                     
-                    blockArray[arrNum2]?.setImage((blockArray[arrNum1]?.image(for: UIControlState.normal))!, for: UIControlState.normal)
-                    blockArray[arrNum1]?.setImage(tempImage, for: UIControlState.normal)
+                    blockArray[arrNum2].setImage((blockArray[arrNum1].image(for: UIControlState.normal))!, for: UIControlState.normal)
+                    blockArray[arrNum1].setImage(tempImage, for: UIControlState.normal)
                     
                     moveLabel.text = "Move Success"
                     moveView.isHidden = false
@@ -430,20 +267,20 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         for m in 0 ... 8 {
             for j in (9 * m) ... ((9 * m) + 7) {
                 for i in j+1 ... ((9 * m) + 8) {
-                    if blockArray[j]?.image(for: UIControlState.normal) == blockArray[i]?.image(for: UIControlState.normal) {
+                    if blockArray[j].image(for: UIControlState.normal) == blockArray[i].image(for: UIControlState.normal) {
                         streak += 1
                     } else {
                         break
                     }
                 }
                 if streak >= 2 {
-                    subBlock = blockArray[j]?.image(for: UIControlState.normal)
+                    subBlock = blockArray[j].image(for: UIControlState.normal)
                     for k in 0 ... streak {
                         if let _ = level {
                             subMission()
                         }
                         
-                        blockArray[j+k]?.setImage(nil, for: UIControlState.normal)
+                        blockArray[j+k].setImage(nil, for: UIControlState.normal)
                         score += 250
                         scoreLabel.text = String(score)
                     }
@@ -463,7 +300,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             while(j <= (9 * m) + 8) {
                 i = j+9
                 while (i <= 80) {
-                    if blockArray[j]?.image(for: UIControlState.normal) == blockArray[i]?.image(for: UIControlState.normal) {
+                    if blockArray[j].image(for: UIControlState.normal) == blockArray[i].image(for: UIControlState.normal) {
                         streak += 1
                     } else {
                         break
@@ -471,13 +308,13 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                     i += 9
                 }
                 if streak >= 2 {
-                    subBlock = blockArray[j]?.image(for: UIControlState.normal)
+                    subBlock = blockArray[j].image(for: UIControlState.normal)
                     for k in 0 ... streak {
                         if let _ = level {
                             subMission()
                         }
                         
-                        blockArray[j+(k*9)]?.setImage(nil, for: UIControlState.normal)
+                        blockArray[j+(k*9)].setImage(nil, for: UIControlState.normal)
                         score += 250
                         scoreLabel.text = String(score)
                     }
@@ -496,22 +333,22 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         while (j <= 80) {
             i = 0
             while (i <= 8) {
-                if let _ = blockArray[i+j]?.image(for: UIControlState.normal) {
+                if let _ = blockArray[i+j].image(for: UIControlState.normal) {
                 } else {
                     let randNum: UInt32 = arc4random_uniform(UInt32(5))
                     
                     if randNum == 0 {
-                        blockArray[i+j]?.setImage(bImage1, for: UIControlState.normal)
+                        blockArray[i+j].setImage(bImage1, for: UIControlState.normal)
                     } else if randNum == 1 {
-                        blockArray[i+j]?.setImage(bImage2, for: UIControlState.normal)
+                        blockArray[i+j].setImage(bImage2, for: UIControlState.normal)
                     } else if randNum == 2 {
-                        blockArray[i+j]?.setImage(bImage3, for: UIControlState.normal)
+                        blockArray[i+j].setImage(bImage3, for: UIControlState.normal)
                     } else if randNum == 3 {
-                        blockArray[i+j]?.setImage(bImage4, for: UIControlState.normal)
+                        blockArray[i+j].setImage(bImage4, for: UIControlState.normal)
                     } else if randNum == 4 {
-                        blockArray[i+j]?.setImage(bImage5, for: UIControlState.normal)
+                        blockArray[i+j].setImage(bImage5, for: UIControlState.normal)
                     } else if randNum == 5 {
-                        blockArray[i+j]?.setImage(bImage6, for: UIControlState.normal)
+                        blockArray[i+j].setImage(bImage6, for: UIControlState.normal)
                     }
                 }
                 i += 1
@@ -529,7 +366,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         while (j <= 80) {
             i = 0
             while (i <= 8) {
-                if let _ = blockArray[i+j]?.image(for: UIControlState.normal) {
+                if let _ = blockArray[i+j].image(for: UIControlState.normal) {
                 } else {
                     checkSp = true
                 }

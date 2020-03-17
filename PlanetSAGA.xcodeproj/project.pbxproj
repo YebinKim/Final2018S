@@ -40,6 +40,8 @@
 		C20D90622419106F001F7281 /* OnlineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90612419106F001F7281 /* OnlineManager.swift */; };
 		C20D906A241A2117001F7281 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D9069241A2117001F7281 /* TransitionManager.swift */; };
 		C212B99524139B4B00B6A472 /* GameAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C212B99424139B4B00B6A472 /* GameAssets.xcassets */; };
+		C27BCAF4242110F8008ACA2E /* BlockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27BCAF2242110F8008ACA2E /* BlockCollectionViewCell.swift */; };
+		C27BCAF5242110F8008ACA2E /* BlockCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27BCAF3242110F8008ACA2E /* BlockCollectionViewCell.xib */; };
 		C2FB5A6D2416111E00049CF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2FB5A6C2416111E00049CF1 /* GoogleService-Info.plist */; };
 		C2FB5A712416147400049CF1 /* PSDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A702416147400049CF1 /* PSDatabase.swift */; };
 		C2FB5A9524164D1A00049CF1 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A9424164D1A00049CF1 /* UserInfo.swift */; };
@@ -83,6 +85,8 @@
 		C20D90612419106F001F7281 /* OnlineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineManager.swift; sourceTree = "<group>"; };
 		C20D9069241A2117001F7281 /* TransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		C212B99424139B4B00B6A472 /* GameAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = GameAssets.xcassets; sourceTree = "<group>"; };
+		C27BCAF2242110F8008ACA2E /* BlockCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCollectionViewCell.swift; sourceTree = "<group>"; };
+		C27BCAF3242110F8008ACA2E /* BlockCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockCollectionViewCell.xib; sourceTree = "<group>"; };
 		C2FB5A6C2416111E00049CF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C2FB5A702416147400049CF1 /* PSDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSDatabase.swift; sourceTree = "<group>"; };
 		C2FB5A9424164D1A00049CF1 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -173,6 +177,8 @@
 				C20D905A2418C1FA001F7281 /* UserInfoCell.xib */,
 				C20D905D2418C235001F7281 /* MenuCell.swift */,
 				C20D905E2418C235001F7281 /* MenuCell.xib */,
+				C27BCAF2242110F8008ACA2E /* BlockCollectionViewCell.swift */,
+				C27BCAF3242110F8008ACA2E /* BlockCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -330,6 +336,7 @@
 				3E78BD9B20D9473600AADBC0 /* SoundClick.wav in Resources */,
 				C20D90602418C235001F7281 /* MenuCell.xib in Resources */,
 				C212B99524139B4B00B6A472 /* GameAssets.xcassets in Resources */,
+				C27BCAF5242110F8008ACA2E /* BlockCollectionViewCell.xib in Resources */,
 				C2FB5A6D2416111E00049CF1 /* GoogleService-Info.plist in Resources */,
 				C20D905C2418C1FA001F7281 /* UserInfoCell.xib in Resources */,
 				3E78BD9920D9473600AADBC0 /* SoundSelected.WAV in Resources */,
@@ -404,6 +411,7 @@
 				3E22400220A8A2EE006A7D07 /* PlanetSAGA.xcdatamodeld in Sources */,
 				C2FB5A712416147400049CF1 /* PSDatabase.swift in Sources */,
 				C2FB5A9524164D1A00049CF1 /* UserInfo.swift in Sources */,
+				C27BCAF4242110F8008ACA2E /* BlockCollectionViewCell.swift in Sources */,
 				3ED8464320BD1019003C4F63 /* SignUpViewController.swift in Sources */,
 				C20D90622419106F001F7281 /* OnlineManager.swift in Sources */,
 				3E79687E20D69EDE00F67483 /* LocalRecordTableViewController.swift in Sources */,

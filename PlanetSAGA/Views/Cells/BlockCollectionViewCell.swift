@@ -8,43 +8,47 @@
 
 import UIKit
 
+
+
 class BlockCollectionViewCell: UICollectionViewCell {
     
     static let identifier: String = "blockCollectionViewCell"
     
     @IBOutlet weak var blockButton: UIButton!
     
-    let bImage1: UIImage = UIImage(named:"block1.png")!
-    let bImage2: UIImage = UIImage(named:"block2.png")!
-    let bImage3: UIImage = UIImage(named:"block3.png")!
-    let bImage4: UIImage = UIImage(named:"block4.png")!
-    let bImage5: UIImage = UIImage(named:"block5.png")!
-    let bImage6: UIImage = UIImage(named:"block6.png")!
+    private let bImage1 = #imageLiteral(resourceName: "block1").withRenderingMode(.alwaysOriginal)
+    private let bImage2 = #imageLiteral(resourceName: "block5").withRenderingMode(.alwaysOriginal)
+    private let bImage3 = #imageLiteral(resourceName: "block2").withRenderingMode(.alwaysOriginal)
+    private let bImage4 = #imageLiteral(resourceName: "block3").withRenderingMode(.alwaysOriginal)
+    private let bImage5 = #imageLiteral(resourceName: "block4").withRenderingMode(.alwaysOriginal)
+    private let bImage6 = #imageLiteral(resourceName: "block6").withRenderingMode(.alwaysOriginal)
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        blockButton.imageView?.image?.withRenderingMode(.alwaysOriginal)
-        
         initializeBlockImage()
     }
-    
+        
     private func initializeBlockImage() {
         let randNum: UInt32 = arc4random_uniform(UInt32(6))
         
         if randNum == 0 {
-            blockButton.setImage(bImage1, for: UIControlState.normal)
+            blockButton.setImage(bImage1, for: .normal)
         } else if randNum == 1 {
-            blockButton.setImage(bImage2, for: UIControlState.normal)
+            blockButton.setImage(bImage2, for: .normal)
         } else if randNum == 2 {
-            blockButton.setImage(bImage3, for: UIControlState.normal)
+            blockButton.setImage(bImage3, for: .normal)
         } else if randNum == 3 {
-            blockButton.setImage(bImage4, for: UIControlState.normal)
+            blockButton.setImage(bImage4, for: .normal)
         } else if randNum == 4 {
-            blockButton.setImage(bImage5, for: UIControlState.normal)
+            blockButton.setImage(bImage5, for: .normal)
         } else if randNum == 5 {
-            blockButton.setImage(bImage6, for: UIControlState.normal)
+            blockButton.setImage(bImage6, for: .normal)
         }
     }
-
+    
+    @IBAction func blockButtonTapped(_ sender: UIButton) {
+        
+    }
+    
 }

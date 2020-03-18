@@ -11,14 +11,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="BlockCollectionViewCell" customModule="PlanetSAGA" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="42.5" height="42.5"/>
+            <rect key="frame" x="0.0" y="0.0" width="37.5" height="37.5"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="42.5" height="42.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="37.5" height="37.5"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKU-u8-dDi">
-                        <rect key="frame" x="0.0" y="0.0" width="42.5" height="42.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="37.5" height="37.5"/>
+                        <connections>
+                            <action selector="blockButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="yrD-Fc-s6c"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>
@@ -32,7 +35,7 @@
             <connections>
                 <outlet property="blockButton" destination="rKU-u8-dDi" id="hT7-WJ-bhY"/>
             </connections>
-            <point key="canvasLocation" x="115.94202898550725" y="127.90178571428571"/>
+            <point key="canvasLocation" x="114.49275362318842" y="127.23214285714285"/>
         </collectionViewCell>
     </objects>
 </document>

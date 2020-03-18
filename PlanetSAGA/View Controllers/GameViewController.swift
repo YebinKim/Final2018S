@@ -61,8 +61,8 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     var score: Int = 0
     
     var timer: Timer?
-    //    var count = 20
-    var count = 5
+        var count = 20
+//    var count = 5
     var timerFlag: Bool = true
     
     private var touchPoint: CGPoint?
@@ -214,9 +214,9 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                 
                 flagBtn1 = true
             } else if flagBtn1 == true {
-                var tempLabel:Array<String> = Array(repeating: "", count: 2)
-                tempLabel = (sender.titleLabel?.text?.split(separator: "b").map(String.init))!
-                arrNum2 = Int(tempLabel[0])!
+//                var tempLabel:Array<String> = Array(repeating: "", count: 2)
+//                tempLabel = (sender.titleLabel?.text?.split(separator: "b").map(String.init))!
+//                arrNum2 = Int(tempLabel[0])!
                 
                 if (arrNum1 == (arrNum2-9)) || (arrNum1 == (arrNum2-1)) || (arrNum1 == (arrNum2+1)) || (arrNum1 == (arrNum2+9)) {
 //                    let tempImage:UIImage = (blockArray[arrNum2].image(for: UIControlState.normal))!

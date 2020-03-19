@@ -61,8 +61,8 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     var score: Int = 0
     
     var timer: Timer?
-        var count = 20
-//    var count = 5
+    var count = 20
+    //    var count = 5
     var timerFlag: Bool = true
     
     private var touchPoint: CGPoint?
@@ -214,22 +214,22 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                 
                 flagBtn1 = true
             } else if flagBtn1 == true {
-//                var tempLabel:Array<String> = Array(repeating: "", count: 2)
-//                tempLabel = (sender.titleLabel?.text?.split(separator: "b").map(String.init))!
-//                arrNum2 = Int(tempLabel[0])!
+                //                var tempLabel:Array<String> = Array(repeating: "", count: 2)
+                //                tempLabel = (sender.titleLabel?.text?.split(separator: "b").map(String.init))!
+                //                arrNum2 = Int(tempLabel[0])!
                 
                 if (arrNum1 == (arrNum2-9)) || (arrNum1 == (arrNum2-1)) || (arrNum1 == (arrNum2+1)) || (arrNum1 == (arrNum2+9)) {
-//                    let tempImage:UIImage = (blockArray[arrNum2].image(for: UIControlState.normal))!
-//
-//                    blockArray[arrNum2].setImage((blockArray[arrNum1].image(for: UIControlState.normal))!, for: UIControlState.normal)
-//                    blockArray[arrNum1].setImage(tempImage, for: UIControlState.normal)
+                    //                    let tempImage:UIImage = (blockArray[arrNum2].image(for: UIControlState.normal))!
+                    //
+                    //                    blockArray[arrNum2].setImage((blockArray[arrNum1].image(for: UIControlState.normal))!, for: UIControlState.normal)
+                    //                    blockArray[arrNum1].setImage(tempImage, for: UIControlState.normal)
                     
                     moveLabel.text = "Move Success"
                     moveView.isHidden = false
                     
                     SoundManager.clickEffect()
                     
-                    delay(bySeconds: 1) {
+                    delay(1) {
                         self.moveLabel.text = ""
                         self.moveView.isHidden = true
                     }
@@ -239,7 +239,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                     
                     SoundManager.clickEffect()
                     
-                    delay(bySeconds: 1) {
+                    delay(1) {
                         self.moveLabel.text = ""
                         self.moveView.isHidden = true
                     }
@@ -262,23 +262,23 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         for m in 0 ... 8 {
             for j in (9 * m) ... ((9 * m) + 7) {
                 for i in j+1 ... ((9 * m) + 8) {
-//                    if blockArray[j].image(for: UIControlState.normal) == blockArray[i].image(for: UIControlState.normal) {
-//                        streak += 1
-//                    } else {
-//                        break
-//                    }
+                    //                    if blockArray[j].image(for: UIControlState.normal) == blockArray[i].image(for: UIControlState.normal) {
+                    //                        streak += 1
+                    //                    } else {
+                    //                        break
+                    //                    }
                 }
                 if streak >= 2 {
-//                    subBlock = blockArray[j].image(for: UIControlState.normal)
-//                    for k in 0 ... streak {
-//                        if let _ = level {
-//                            subMission()
-//                        }
-//
-//                        blockArray[j+k].setImage(nil, for: UIControlState.normal)
-//                        score += 250
-//                        scoreLabel.text = String(score)
-//                    }
+                    //                    subBlock = blockArray[j].image(for: UIControlState.normal)
+                    //                    for k in 0 ... streak {
+                    //                        if let _ = level {
+                    //                            subMission()
+                    //                        }
+                    //
+                    //                        blockArray[j+k].setImage(nil, for: UIControlState.normal)
+                    //                        score += 250
+                    //                        scoreLabel.text = String(score)
+                    //                    }
                 }
                 streak = 0
             }
@@ -295,24 +295,24 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             while(j <= (9 * m) + 8) {
                 i = j+9
                 while (i <= 80) {
-//                    if blockArray[j].image(for: UIControlState.normal) == blockArray[i].image(for: UIControlState.normal) {
-//                        streak += 1
-//                    } else {
-//                        break
-//                    }
+                    //                    if blockArray[j].image(for: UIControlState.normal) == blockArray[i].image(for: UIControlState.normal) {
+                    //                        streak += 1
+                    //                    } else {
+                    //                        break
+                    //                    }
                     i += 9
                 }
                 if streak >= 2 {
-//                    subBlock = blockArray[j].image(for: UIControlState.normal)
-//                    for k in 0 ... streak {
-//                        if let _ = level {
-//                            subMission()
-//                        }
-//
-//                        blockArray[j+(k*9)].setImage(nil, for: UIControlState.normal)
-//                        score += 250
-//                        scoreLabel.text = String(score)
-//                    }
+                    //                    subBlock = blockArray[j].image(for: UIControlState.normal)
+                    //                    for k in 0 ... streak {
+                    //                        if let _ = level {
+                    //                            subMission()
+                    //                        }
+                    //
+                    //                        blockArray[j+(k*9)].setImage(nil, for: UIControlState.normal)
+                    //                        score += 250
+                    //                        scoreLabel.text = String(score)
+                    //                    }
                 }
                 streak = 0
                 j += 1
@@ -328,24 +328,24 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         while (j <= 80) {
             i = 0
             while (i <= 8) {
-//                if let _ = blockArray[i+j].image(for: UIControlState.normal) {
-//                } else {
-//                    let randNum: UInt32 = arc4random_uniform(UInt32(5))
-//
-//                    if randNum == 0 {
-//                        blockArray[i+j].setImage(bImage1, for: UIControlState.normal)
-//                    } else if randNum == 1 {
-//                        blockArray[i+j].setImage(bImage2, for: UIControlState.normal)
-//                    } else if randNum == 2 {
-//                        blockArray[i+j].setImage(bImage3, for: UIControlState.normal)
-//                    } else if randNum == 3 {
-//                        blockArray[i+j].setImage(bImage4, for: UIControlState.normal)
-//                    } else if randNum == 4 {
-//                        blockArray[i+j].setImage(bImage5, for: UIControlState.normal)
-//                    } else if randNum == 5 {
-//                        blockArray[i+j].setImage(bImage6, for: UIControlState.normal)
-//                    }
-//                }
+                //                if let _ = blockArray[i+j].image(for: UIControlState.normal) {
+                //                } else {
+                //                    let randNum: UInt32 = arc4random_uniform(UInt32(5))
+                //
+                //                    if randNum == 0 {
+                //                        blockArray[i+j].setImage(bImage1, for: UIControlState.normal)
+                //                    } else if randNum == 1 {
+                //                        blockArray[i+j].setImage(bImage2, for: UIControlState.normal)
+                //                    } else if randNum == 2 {
+                //                        blockArray[i+j].setImage(bImage3, for: UIControlState.normal)
+                //                    } else if randNum == 3 {
+                //                        blockArray[i+j].setImage(bImage4, for: UIControlState.normal)
+                //                    } else if randNum == 4 {
+                //                        blockArray[i+j].setImage(bImage5, for: UIControlState.normal)
+                //                    } else if randNum == 5 {
+                //                        blockArray[i+j].setImage(bImage6, for: UIControlState.normal)
+                //                    }
+                //                }
                 i += 1
             }
             j += 9
@@ -361,10 +361,10 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         while (j <= 80) {
             i = 0
             while (i <= 8) {
-//                if let _ = blockArray[i+j].image(for: UIControlState.normal) {
-//                } else {
-//                    checkSp = true
-//                }
+                //                if let _ = blockArray[i+j].image(for: UIControlState.normal) {
+                //                } else {
+                //                    checkSp = true
+                //                }
                 i += 1
             }
             j += 9
@@ -388,7 +388,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             maxScoreLabel.text = String(score)
         }
         
-        self.delay(bySeconds: 2) {
+        delay(2) {
             if let user = Auth.auth().currentUser {
                 let now = Date().timeIntervalSince1970
                 let score = Score(score: self.score, scoreDate: String(now))
@@ -499,23 +499,11 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         }
     }
     
-    func delay(bySeconds seconds: Double, dispatchLevel: DispatchLevel = .main, closure: @escaping () -> Void) {
+    func delay(_ seconds: Double, closure: @escaping () -> Void) {
         let dispatchTime = DispatchTime.now() + seconds
-        dispatchLevel.dispatchQueue.asyncAfter(deadline: dispatchTime, execute: closure)
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: closure)
     }
     
-    enum DispatchLevel {
-        case main, userInteractive, userInitiated, utility, background
-        var dispatchQueue: DispatchQueue {
-            switch self {
-            case .main:                 return DispatchQueue.main
-            case .userInteractive:      return DispatchQueue.global(qos: .userInteractive)
-            case .userInitiated:        return DispatchQueue.global(qos: .userInitiated)
-            case .utility:              return DispatchQueue.global(qos: .utility)
-            case .background:           return DispatchQueue.global(qos: .background)
-            }
-        }
-    }
 }
 
 extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSource {

@@ -14,6 +14,10 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     @IBOutlet var blockCollectionView: UICollectionView!
     
+    @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var menuTableView: UITableView!
+    @IBOutlet weak var menuViewLeadingConstraint: NSLayoutConstraint!
+    
     @IBOutlet var missionImage1: UIImageView!
     @IBOutlet var missionImage2: UIImageView!
     @IBOutlet var missionImage3: UIImageView!
@@ -28,10 +32,6 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet var missionLabel5: UILabel!
     @IBOutlet var missionLabel6: UILabel!
     
-    @IBOutlet var moveView: UIView!
-    @IBOutlet var moveLabel: UILabel!
-    
-    @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var maxScoreLabel: UILabel!
     @IBOutlet var timerLabel: UILabel!
     @IBOutlet var scoreLabel: UILabel!
@@ -43,6 +43,8 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet var levelView: UIView!
     var level: Int?
     var subBlock: UIImage?
+    
+    private var backView: UIView!
     
     let bImage1: UIImage = UIImage(named:"block1.png")!
     let bImage2: UIImage = UIImage(named:"block2.png")!
@@ -72,6 +74,10 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         
         registerCell()
         
+        initializeMenuView()
+        initializeMenuTableView()
+        initializeBackView()
+        
         transitioningDelegate = self
         initializeABlockCollectionView()
         
@@ -82,7 +88,6 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         missionImage5.image = bImage5
         missionImage6.image = bImage6
         
-        moveView.isHidden = true
         resultView.isHidden = true
         levelView.isHidden = false
         level = nil
@@ -116,6 +121,33 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         blockCollectionView.register(blockCellNib, forCellWithReuseIdentifier: BlockCollectionViewCell.identifier)
     }
     
+    private func initializeMenuView() {
+        menuView.translatesAutoresizingMaskIntoConstraints = false
+        menuView.roundCorners(corners: [.topRight, .bottomRight], radius: menuView.frame.width / 10)
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(dismissMenuView))
+        swipeGesture.direction = .left
+        menuView.addGestureRecognizer(swipeGesture)
+    }
+    
+    private func initializeMenuTableView() {
+        menuTableView.delegate = self
+        menuTableView.dataSource = self
+        menuTableView.tableFooterView = UIView()
+    }
+    
+    private func initializeBackView() {
+        backView = UIView(frame: self.view.frame)
+        backView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        backView.isHidden = true
+        backView.alpha = 0.0
+        self.view.addSubview(backView)
+        self.view.bringSubview(toFront: self.menuView)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissMenuView))
+        backView.addGestureRecognizer(tapGesture)
+    }
+    
     private func initializeABlockCollectionView() {
         blockCollectionView.delegate = self
         blockCollectionView.dataSource = self
@@ -130,11 +162,9 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                         let snapshot = child as? DataSnapshot,
                         let userInfo = UserInfo(snapshot: snapshot) else { return }
                     
-                    self.userNameLabel.text = userInfo.name
                     self.maxScoreLabel.text = String(userInfo.maxScore)
                 })
         } else {
-            self.userNameLabel.text = "Guest"
             self.maxScoreLabel.text = "0"
         }
     }
@@ -203,7 +233,6 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     @IBAction func movedBlock(_ sender: UIButton) {
         if timerFlag == false {
-            moveLabel.text = ""
             
             if flagBtn1 == false {
                 var tempLabel:Array<String> = Array(repeating: "", count: 2)
@@ -224,25 +253,13 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                     //                    blockArray[arrNum2].setImage((blockArray[arrNum1].image(for: UIControlState.normal))!, for: UIControlState.normal)
                     //                    blockArray[arrNum1].setImage(tempImage, for: UIControlState.normal)
                     
-                    moveLabel.text = "Move Success"
-                    moveView.isHidden = false
+                    print("Move Success")
                     
                     SoundManager.clickEffect()
-                    
-                    delay(1) {
-                        self.moveLabel.text = ""
-                        self.moveView.isHidden = true
-                    }
                 } else {
-                    moveLabel.text = "Move Fail"
-                    moveView.isHidden = false
+                    print("Move Fail")
                     
                     SoundManager.clickEffect()
-                    
-                    delay(1) {
-                        self.moveLabel.text = ""
-                        self.moveView.isHidden = true
-                    }
                 }
                 flagBtn1 = false
                 
@@ -504,6 +521,26 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: closure)
     }
     
+    @IBAction func pauseButtonTapped(_ sender: UIButton) {
+        menuViewLeadingConstraint.constant = 0
+        backView.isHidden = false
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
+            self.view.layoutIfNeeded()
+            self.backView.alpha = 1.0
+        })
+    }
+    
+    @objc func dismissMenuView(sender: UITapGestureRecognizer) {
+        menuViewLeadingConstraint.constant = -self.menuView.frame.width
+        backView.isHidden = true
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
+            self.view.layoutIfNeeded()
+            self.backView.alpha = 0.0
+        })
+    }
+    
 }
 
 extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -516,6 +553,18 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell: BlockCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: BlockCollectionViewCell.identifier, for: indexPath) as! BlockCollectionViewCell
         
         return cell
+    }
+    
+}
+
+extension GameViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
     
 }

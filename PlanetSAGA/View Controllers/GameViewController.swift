@@ -550,9 +550,22 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: BlockCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: BlockCollectionViewCell.identifier, for: indexPath) as! BlockCollectionViewCell
+        let cell: BlockCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: BlockCollectionViewCell.identifier,
+                                                                               for: indexPath) as! BlockCollectionViewCell
+        cell.delegate = self
         
         return cell
+    }
+    
+}
+
+extension GameViewController: BlockCollectionViewCellDelegate {
+    
+    func blockButtonTapped(_ sender: UIButton) {
+        guard let indexPath = blockCollectionView.indexPathForItem(at: blockCollectionView.convert(sender.center,
+                                                                                                   from: sender.superview)) else { return }
+        
+        print(indexPath.row)
     }
     
 }

@@ -8,13 +8,19 @@
 
 import UIKit
 
-
+protocol BlockCollectionViewCellDelegate {
+    
+    func blockButtonTapped(_ sender: UIButton)
+    
+}
 
 class BlockCollectionViewCell: UICollectionViewCell {
     
     static let identifier: String = "blockCollectionViewCell"
     
     @IBOutlet weak var blockButton: UIButton!
+    
+    var delegate: BlockCollectionViewCellDelegate!
     
     private let bImage1 = #imageLiteral(resourceName: "block1").withRenderingMode(.alwaysOriginal)
     private let bImage2 = #imageLiteral(resourceName: "block5").withRenderingMode(.alwaysOriginal)
@@ -48,7 +54,7 @@ class BlockCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func blockButtonTapped(_ sender: UIButton) {
-        
+        delegate.blockButtonTapped(sender)
     }
     
 }

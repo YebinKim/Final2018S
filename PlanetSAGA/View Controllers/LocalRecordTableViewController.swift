@@ -35,6 +35,8 @@ class LocalRecordTableViewController: UITableViewController {
         // 삭제한 데이터 셀을 없애기 위해 다시 불러옴
         super.viewDidAppear(animated)
         
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
 //        let context = self.getContext()
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LocalRecord")
         
@@ -136,6 +138,6 @@ class LocalRecordTableViewController: UITableViewController {
     @IBAction func buttonBack(_ sender: UIBarButtonItem) {
         SoundManager.clickEffect()
         
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 }

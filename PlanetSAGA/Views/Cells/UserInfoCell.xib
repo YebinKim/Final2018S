@@ -20,8 +20,14 @@
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7aH-Lg-hn7">
                         <rect key="frame" x="16" y="8" width="268" height="44"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WfA-3v-b2i">
+                                <rect key="frame" x="0.0" y="0.0" width="8" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="8" id="Ylt-rN-zod"/>
+                                </constraints>
+                            </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="byi-BJ-kuD">
-                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                <rect key="frame" x="8" y="0.0" width="44" height="44"/>
                                 <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.50350492294520544" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
@@ -30,28 +36,45 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gK8-94-MwC">
-                                <rect key="frame" x="44" y="0.0" width="16" height="44"/>
+                                <rect key="frame" x="52" y="0.0" width="16" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="2pp-GU-kNm"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wk4-WF-tnf">
-                                <rect key="frame" x="60" y="0.0" width="164" height="44"/>
+                                <rect key="frame" x="68" y="0.0" width="180" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iE8-DM-9SQ">
-                                <rect key="frame" x="224" y="0.0" width="44" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="ulV-ZM-8fY"/>
-                                </constraints>
-                                <color key="tintColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" image="person.badge.plus" catalog="system"/>
-                                <connections>
-                                    <action selector="signButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OWb-qQ-ZxM"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="54m-zK-HOx">
+                                <rect key="frame" x="248" y="0.0" width="20" height="44"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xk-Hm-kXe">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="12"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="12" id="Ndt-hf-yQt"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iE8-DM-9SQ">
+                                        <rect key="frame" x="0.0" y="12" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="wlX-Pg-d7I"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" image="ic_setting"/>
+                                        <connections>
+                                            <action selector="settingButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JAG-lw-3W4"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UPv-8B-0P8">
+                                        <rect key="frame" x="0.0" y="32" width="20" height="12"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="12" id="gen-a4-yuI"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                     </stackView>
                 </subviews>
@@ -66,12 +89,12 @@
             <connections>
                 <outlet property="nameLabel" destination="Wk4-WF-tnf" id="Ab3-tL-kOa"/>
                 <outlet property="profileImageView" destination="byi-BJ-kuD" id="dYb-XH-49s"/>
-                <outlet property="signButton" destination="iE8-DM-9SQ" id="Xwp-ch-38w"/>
+                <outlet property="settingButton" destination="iE8-DM-9SQ" id="5Ll-fI-DKg"/>
             </connections>
             <point key="canvasLocation" x="123.18840579710145" y="131.25"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="person.badge.plus" catalog="system" width="64" height="58"/>
+        <image name="ic_setting" width="512" height="512"/>
     </resources>
 </document>

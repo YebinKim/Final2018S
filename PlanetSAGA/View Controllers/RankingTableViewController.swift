@@ -20,6 +20,8 @@ class RankingTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
         //        userRankingFetchedArray = [] // 배열을 초기화하고 서버에서 자료를 다시 가져옴
         self.userRankingDownloadDataFromServer()
     }
@@ -79,6 +81,6 @@ class RankingTableViewController: UITableViewController {
     @IBAction func buttonBack(_ sender: UIBarButtonItem) {
         SoundManager.clickEffect()
         
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 }

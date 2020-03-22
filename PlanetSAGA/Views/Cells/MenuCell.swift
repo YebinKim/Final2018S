@@ -8,19 +8,52 @@
 
 import UIKit
 
-class MenuCell: UITableViewCell {
+protocol MenuCellDelegate {
+    
+    func performSegue(withIdentifier: String)
+    
+}
 
+class MenuCell: UITableViewCell {
+    
     static let identifier: String = "menuCell"
+    
+    @IBOutlet weak var menuNameLabel: UILabel!
+    @IBOutlet weak var menuIconImageView: UIImageView!
+    
+    var delegate: MenuCellDelegate!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    func configureCell(_ row: Int) {
+        switch row {
+        case 1:
+            self.menuNameLabel.text = "게임 옵션"
+        case 2:
+            self.menuNameLabel.text = "나의 점수"
+        case 3:
+            self.menuNameLabel.text = "전체 랭킹"
+        default:
+            break
+        }
+    }
+    
+    func selectedCell(_ row: Int) {
+        switch row {
+        case 1:
+            self.delegate.performSegue(withIdentifier: "toSettingGame")
+        case 2:
+            self.delegate.performSegue(withIdentifier: "toRecord")
+        case 3:
+            self.delegate.performSegue(withIdentifier: "toRanking")
+        default:
+            break
+        }
+    }
 }

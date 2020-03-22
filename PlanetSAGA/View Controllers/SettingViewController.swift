@@ -12,6 +12,8 @@ import FirebaseStorage
 
 class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var settingSegment: UISegmentedControl!
+    
     @IBOutlet weak var gameSetView: UIView!
     
     @IBOutlet weak var maxScoreLabel: UILabel!
@@ -29,10 +31,14 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
     
     @IBOutlet weak var profileImageview: UIImageView!
     
+    var selectedSegmentIndex: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         statusLabel.text = ""
+        
+        settingSegment.selectedSegmentIndex = selectedSegmentIndex
         
         if let user = Auth.auth().currentUser {
             PSDatabase.userInfoRef

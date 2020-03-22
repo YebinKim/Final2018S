@@ -46,12 +46,12 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     private var backView: UIView!
     
-    let bImage1: UIImage = UIImage(named:"block1.png")!
-    let bImage2: UIImage = UIImage(named:"block2.png")!
-    let bImage3: UIImage = UIImage(named:"block3.png")!
-    let bImage4: UIImage = UIImage(named:"block4.png")!
-    let bImage5: UIImage = UIImage(named:"block5.png")!
-    let bImage6: UIImage = UIImage(named:"block6.png")!
+    let blockImages: [UIImage] = [#imageLiteral(resourceName: "block1").withRenderingMode(.alwaysOriginal),
+                                  #imageLiteral(resourceName: "block2").withRenderingMode(.alwaysOriginal),
+                                  #imageLiteral(resourceName: "block3").withRenderingMode(.alwaysOriginal),
+                                  #imageLiteral(resourceName: "block4").withRenderingMode(.alwaysOriginal),
+                                  #imageLiteral(resourceName: "block5").withRenderingMode(.alwaysOriginal),
+                                  #imageLiteral(resourceName: "block6").withRenderingMode(.alwaysOriginal)]
     
     var missionArray: Array<UILabel?> = []
     
@@ -79,12 +79,12 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         transitioningDelegate = self
         initializeABlockCollectionView()
         
-        missionImage1.image = bImage1
-        missionImage2.image = bImage2
-        missionImage3.image = bImage3
-        missionImage4.image = bImage4
-        missionImage5.image = bImage5
-        missionImage6.image = bImage6
+        missionImage1.image = blockImages[0]
+        missionImage2.image = blockImages[1]
+        missionImage3.image = blockImages[2]
+        missionImage4.image = blockImages[3]
+        missionImage5.image = blockImages[4]
+        missionImage6.image = blockImages[5]
         
         resultView.isHidden = true
         levelView.isHidden = false
@@ -93,12 +93,15 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         setUserInfo()
         
         levelPicker.selectRow(2, inComponent: 0, animated: false)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         alignedHorz()
         alignedVert()
         
-        while(checkSpace()) {
-            fillUp()
+        while checkSpace()  {
             alignedHorz()
             alignedVert()
         }
@@ -230,26 +233,36 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     func alignedHorz() {
-        for m in 0 ... 8 {
-            for j in (9 * m) ... ((9 * m) + 7) {
-                for i in j+1 ... ((9 * m) + 8) {
-                    //                    if blockArray[j].image(for: UIControlState.normal) == blockArray[i].image(for: UIControlState.normal) {
-                    //                        streak += 1
-                    //                    } else {
-                    //                        break
-                    //                    }
+        for m in 0...8 {
+            for j in (9 * m)...((9 * m) + 7) {
+                let beforeIndex = IndexPath(item: j, section: 0)
+                let beforeCell = blockCollectionView.cellForItem(at: beforeIndex) as? BlockCollectionViewCell
+                
+                for i in j + 1...((9 * m) + 8) {
+                    let curIndex = IndexPath(item: i, section: 0)
+                    let curCell = blockCollectionView.cellForItem(at: curIndex) as? BlockCollectionViewCell
+                    
+                    if beforeCell?.blockButton.image(for: .normal) == curCell?.blockButton.image(for: .normal) {
+                        streak += 1
+                    } else {
+                        break
+                    }
                 }
+                
                 if streak >= 2 {
-                    //                    subBlock = blockArray[j].image(for: UIControlState.normal)
-                    //                    for k in 0 ... streak {
-                    //                        if let _ = level {
-                    //                            subMission()
-                    //                        }
-                    //
-                    //                        blockArray[j+k].setImage(nil, for: UIControlState.normal)
-                    //                        score += 250
-                    //                        scoreLabel.text = String(score)
-                    //                    }
+                    subBlock = beforeCell?.blockButton.image(for: .normal)
+                    for k in 0 ... streak {
+                        if let _ = level {
+                            subMission()
+                        }
+                        
+                        let changeIndex = IndexPath(item: j + k, section: 0)
+                        let changeCell = blockCollectionView.cellForItem(at: changeIndex) as? BlockCollectionViewCell
+                        changeCell?.blockButton.setImage(nil, for: .normal)
+                        
+                        score += 250
+                        scoreLabel.text = String(score)
+                    }
                 }
                 streak = 0
             }
@@ -257,33 +270,42 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     func alignedVert() {
-        var i:Int = 0
-        var j:Int = 0
-        var m:Int = 0
+        var i: Int = 0
+        var j: Int = 0
+        var m: Int = 0
         
-        while (m <= 8) {
+        while m <= 8 {
             j = 9 * m
-            while(j <= (9 * m) + 8) {
-                i = j+9
-                while (i <= 80) {
-                    //                    if blockArray[j].image(for: UIControlState.normal) == blockArray[i].image(for: UIControlState.normal) {
-                    //                        streak += 1
-                    //                    } else {
-                    //                        break
-                    //                    }
+            let beforeIndex = IndexPath(item: j, section: 0)
+            let beforeCell = blockCollectionView.cellForItem(at: beforeIndex) as? BlockCollectionViewCell
+            
+            while j <= (9 * m) + 8 {
+                i = j + 9
+                let curIndex = IndexPath(item: i, section: 0)
+                let curCell = blockCollectionView.cellForItem(at: curIndex) as? BlockCollectionViewCell
+                
+                while i <= 80 {
+                    if beforeCell?.blockButton.image(for: .normal) == curCell?.blockButton.image(for: .normal) {
+                        streak += 1
+                    } else {
+                        break
+                    }
                     i += 9
                 }
                 if streak >= 2 {
-                    //                    subBlock = blockArray[j].image(for: UIControlState.normal)
-                    //                    for k in 0 ... streak {
-                    //                        if let _ = level {
-                    //                            subMission()
-                    //                        }
-                    //
-                    //                        blockArray[j+(k*9)].setImage(nil, for: UIControlState.normal)
-                    //                        score += 250
-                    //                        scoreLabel.text = String(score)
-                    //                    }
+                    subBlock = beforeCell?.blockButton.image(for: .normal)
+                    for k in 0 ... streak {
+                        if let _ = level {
+                            subMission()
+                        }
+                        
+                        let changeIndex = IndexPath(item: j + (k * 9), section: 0)
+                        let changeCell = blockCollectionView.cellForItem(at: changeIndex) as? BlockCollectionViewCell
+                        changeCell?.blockButton.setImage(nil, for: .normal)
+                        
+                        score += 250
+                        scoreLabel.text = String(score)
+                    }
                 }
                 streak = 0
                 j += 1
@@ -292,56 +314,38 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         }
     }
     
-    func fillUp() {
-        var i:Int = 0
-        var j:Int = 0
+    func fillUpBlock(_ block: UIButton?) {
+        let randNum = Int.random(in: 0...5)
+        block?.setImage(blockImages[randNum], for: .normal)
+    }
+    
+    func fillUpBlock(index: IndexPath) {
+        var curIndex = index
+        var beforeIndex = IndexPath(item: curIndex.row - 9, section: 0)
         
-        while (j <= 80) {
-            i = 0
-            while (i <= 8) {
-                //                if let _ = blockArray[i+j].image(for: UIControlState.normal) {
-                //                } else {
-                //                    let randNum: UInt32 = arc4random_uniform(UInt32(5))
-                //
-                //                    if randNum == 0 {
-                //                        blockArray[i+j].setImage(bImage1, for: UIControlState.normal)
-                //                    } else if randNum == 1 {
-                //                        blockArray[i+j].setImage(bImage2, for: UIControlState.normal)
-                //                    } else if randNum == 2 {
-                //                        blockArray[i+j].setImage(bImage3, for: UIControlState.normal)
-                //                    } else if randNum == 3 {
-                //                        blockArray[i+j].setImage(bImage4, for: UIControlState.normal)
-                //                    } else if randNum == 4 {
-                //                        blockArray[i+j].setImage(bImage5, for: UIControlState.normal)
-                //                    } else if randNum == 5 {
-                //                        blockArray[i+j].setImage(bImage6, for: UIControlState.normal)
-                //                    }
-                //                }
-                i += 1
-            }
-            j += 9
+        while let beforeCell = blockCollectionView.cellForItem(at: curIndex) as? BlockCollectionViewCell
+            , let curCell = blockCollectionView.cellForItem(at: curIndex) as? BlockCollectionViewCell {
+                curCell.blockButton.imageView?.image = beforeCell.blockButton.image(for: .normal)
+                
+                curIndex = beforeIndex
+                beforeIndex = IndexPath(item: curIndex.row - 9, section: 0)
         }
+        
+        let curCell = blockCollectionView.cellForItem(at: curIndex) as? BlockCollectionViewCell
+        fillUpBlock(curCell?.blockButton)
     }
     
     func checkSpace() -> Bool {
-        var i:Int = 0
-        var j:Int = 0
+        guard let visibleCells = blockCollectionView.visibleCells as? [BlockCollectionViewCell] else { return false }
         
-        var checkSp:Bool = false
-        
-        while (j <= 80) {
-            i = 0
-            while (i <= 8) {
-                //                if let _ = blockArray[i+j].image(for: UIControlState.normal) {
-                //                } else {
-                //                    checkSp = true
-                //                }
-                i += 1
+        for cell in visibleCells {
+            if cell.blockButton.image(for: .normal) == nil {
+                fillUpBlock(cell.blockButton)
+                return true
             }
-            j += 9
         }
         
-        return checkSp
+        return false
     }
     
     func gameEnd() {
@@ -401,27 +405,27 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     func subMission() {
-        if subBlock == bImage1 {
+        if subBlock == blockImages[0] {
             if Int((missionArray[0]?.text)!)! > 0 {
                 missionArray[0]?.text = String(Int((missionArray[0]?.text!)!)! - 1)
             }
-        } else if subBlock == bImage2 {
+        } else if subBlock == blockImages[1] {
             if Int((missionArray[1]?.text)!)! > 0 {
                 missionArray[1]?.text = String(Int((missionArray[1]?.text!)!)! - 1)
             }
-        } else if subBlock == bImage3 {
+        } else if subBlock == blockImages[2] {
             if Int((missionArray[2]?.text)!)! > 0 {
                 missionArray[2]?.text = String(Int((missionArray[2]?.text!)!)! - 1)
             }
-        } else if subBlock == bImage4 {
+        } else if subBlock == blockImages[3] {
             if Int((missionArray[3]?.text)!)! > 0 {
                 missionArray[3]?.text = String(Int((missionArray[3]?.text!)!)! - 1)
             }
-        } else if subBlock == bImage5 {
+        } else if subBlock == blockImages[4] {
             if Int((missionArray[4]?.text)!)! > 0 {
                 missionArray[4]?.text = String(Int((missionArray[4]?.text!)!)! - 1)
             }
-        } else if subBlock == bImage6 {
+        } else if subBlock == blockImages[5] {
             if Int((missionArray[5]?.text)!)! > 0 {
                 missionArray[5]?.text = String(Int((missionArray[5]?.text!)!)! - 1)
             }
@@ -545,8 +549,7 @@ extension GameViewController: BlockCollectionViewCellDelegate {
             alignedHorz()
             alignedVert()
             
-            while(checkSpace()) {
-                fillUp()
+            while checkSpace() {
                 alignedHorz()
                 alignedVert()
             }

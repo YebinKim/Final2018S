@@ -55,9 +55,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     var missionArray: Array<UILabel?> = []
     
-    var arrNum1: Int = 0
-    var arrNum2: Int = 0
-    var flagBtn1: Bool = false
+    var selectedBlock: (block: UIButton, index: IndexPath)?
     
     var streak: Int = 0
     var score: Int = 0
@@ -228,50 +226,6 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
-        }
-    }
-    
-    @IBAction func movedBlock(_ sender: UIButton) {
-        if timerFlag == false {
-            
-            if flagBtn1 == false {
-                var tempLabel:Array<String> = Array(repeating: "", count: 2)
-                tempLabel = (sender.titleLabel?.text?.split(separator: "b").map(String.init))!
-                arrNum1 = Int(tempLabel[0])!
-                
-                SoundManager.clickEffect()
-                
-                flagBtn1 = true
-            } else if flagBtn1 == true {
-                //                var tempLabel:Array<String> = Array(repeating: "", count: 2)
-                //                tempLabel = (sender.titleLabel?.text?.split(separator: "b").map(String.init))!
-                //                arrNum2 = Int(tempLabel[0])!
-                
-                if (arrNum1 == (arrNum2-9)) || (arrNum1 == (arrNum2-1)) || (arrNum1 == (arrNum2+1)) || (arrNum1 == (arrNum2+9)) {
-                    //                    let tempImage:UIImage = (blockArray[arrNum2].image(for: UIControlState.normal))!
-                    //
-                    //                    blockArray[arrNum2].setImage((blockArray[arrNum1].image(for: UIControlState.normal))!, for: UIControlState.normal)
-                    //                    blockArray[arrNum1].setImage(tempImage, for: UIControlState.normal)
-                    
-                    print("Move Success")
-                    
-                    SoundManager.clickEffect()
-                } else {
-                    print("Move Fail")
-                    
-                    SoundManager.clickEffect()
-                }
-                flagBtn1 = false
-                
-                alignedHorz()
-                alignedVert()
-                
-                while(checkSpace()) {
-                    fillUp()
-                    alignedHorz()
-                    alignedVert()
-                }
-            }
         }
     }
     
@@ -562,10 +516,45 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
 extension GameViewController: BlockCollectionViewCellDelegate {
     
     func blockButtonTapped(_ sender: UIButton) {
-        guard let indexPath = blockCollectionView.indexPathForItem(at: blockCollectionView.convert(sender.center,
+        guard !timerFlag,
+            let indexPath = blockCollectionView.indexPathForItem(at: blockCollectionView.convert(sender.center,
                                                                                                    from: sender.superview)) else { return }
         
-        print(indexPath.row)
+        if let selectedBlock = selectedBlock {
+            let index1 = selectedBlock.index.row
+            let index2 = indexPath.row
+            
+            if index1 == (index2 - 9) ||
+                (index1 == (index2 - 1)) ||
+                (index1 == (index2 + 1)) ||
+                (index1 == (index2 + 9)) {
+                guard let changeBlock = blockCollectionView?.cellForItem(at: selectedBlock.index) as? BlockCollectionViewCell,
+                    let blockImage1 = changeBlock.blockButton.image(for: .normal),
+                    let blockImage2 = sender.image(for: .normal) else { return }
+                
+                sender.setImage(blockImage1, for: UIControlState.normal)
+                changeBlock.blockButton.setImage(blockImage2, for: UIControlState.normal)
+                
+                print("Move Success")
+            } else {
+                print("Move Fail")
+            }
+            
+            self.selectedBlock = nil
+            
+            alignedHorz()
+            alignedVert()
+            
+            while(checkSpace()) {
+                fillUp()
+                alignedHorz()
+                alignedVert()
+            }
+        } else {
+            self.selectedBlock = (sender, indexPath)
+        }
+        
+        SoundManager.clickEffect()
     }
     
 }

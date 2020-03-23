@@ -12,7 +12,7 @@ import Firebase
 
 class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    @IBOutlet var blockCollectionView: UICollectionView!
+    @IBOutlet weak var blockCollectionView: UICollectionView!
     
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var menuTableView: UITableView!
@@ -32,7 +32,6 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet var missionLabel5: UILabel!
     @IBOutlet var missionLabel6: UILabel!
     
-    @IBOutlet var maxScoreLabel: UILabel!
     @IBOutlet var timerLabel: UILabel!
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var resultView: UIView!
@@ -89,8 +88,6 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         resultView.isHidden = true
         levelView.isHidden = false
         level = nil
-        
-        setUserInfo()
         
         levelPicker.selectRow(2, inComponent: 0, animated: false)
     }
@@ -162,11 +159,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                     guard let child = snapshot.children.allObjects.first,
                         let snapshot = child as? DataSnapshot,
                         let userInfo = UserInfo(snapshot: snapshot) else { return }
-                    
-                    self.maxScoreLabel.text = String(userInfo.maxScore)
                 })
-        } else {
-            self.maxScoreLabel.text = "0"
         }
     }
     
@@ -358,10 +351,6 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             resultLabel.text = "You Scored \(score) point"
         }
         self.resultView.isHidden = false
-        
-        if (score > Int(maxScoreLabel.text!)!) {
-            maxScoreLabel.text = String(score)
-        }
         
         delay(2) {
             if let user = Auth.auth().currentUser {

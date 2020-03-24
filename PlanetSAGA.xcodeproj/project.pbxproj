@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02A1740ACF8F2778A49D1EFE /* Pods_PlanetSAGA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 714D5A16A460419FE7ABB228 /* Pods_PlanetSAGA.framework */; };
 		3E2066A020D03868000957C1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E20669F20D03868000957C1 /* AVFoundation.framework */; };
 		3E2066A420D05121000957C1 /* BayBreeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E2066A320D05121000957C1 /* BayBreeze.wav */; };
 		3E223FFA20A8A2EE006A7D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E223FF920A8A2EE006A7D07 /* AppDelegate.swift */; };
@@ -32,6 +31,7 @@
 		3ED8464720BD107A003C4F63 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464620BD107A003C4F63 /* MainViewController.swift */; };
 		3ED8464920BD10AD003C4F63 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464820BD10AD003C4F63 /* SettingViewController.swift */; };
 		3ED8464B20BD10E7003C4F63 /* RankingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464A20BD10E7003C4F63 /* RankingTableViewController.swift */; };
+		A61C39189985CC699D8D7884 /* Pods_PlanetSAGA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9612682E8D27342030995DA4 /* Pods_PlanetSAGA.framework */; };
 		C20D90572418C14C001F7281 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90562418C14C001F7281 /* Extensions.swift */; };
 		C20D905B2418C1FA001F7281 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90592418C1FA001F7281 /* UserInfoCell.swift */; };
 		C20D905C2418C1FA001F7281 /* UserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D905A2418C1FA001F7281 /* UserInfoCell.xib */; };
@@ -49,7 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2FD8F206B83F8802C78BC151 /* Pods-PlanetSAGA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetSAGA.debug.xcconfig"; path = "Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA.debug.xcconfig"; sourceTree = "<group>"; };
+		3E1596D9D98A1F909783A1DC /* Pods-PlanetSAGA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetSAGA.debug.xcconfig"; path = "Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA.debug.xcconfig"; sourceTree = "<group>"; };
 		3E20669F20D03868000957C1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3E2066A320D05121000957C1 /* BayBreeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BayBreeze.wav; sourceTree = "<group>"; };
 		3E223FF620A8A2EE006A7D07 /* PlanetSAGA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlanetSAGA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,7 +76,7 @@
 		3ED8464620BD107A003C4F63 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3ED8464820BD10AD003C4F63 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		3ED8464A20BD10E7003C4F63 /* RankingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableViewController.swift; sourceTree = "<group>"; };
-		714D5A16A460419FE7ABB228 /* Pods_PlanetSAGA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanetSAGA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9612682E8D27342030995DA4 /* Pods_PlanetSAGA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanetSAGA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20D90562418C14C001F7281 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C20D90592418C1FA001F7281 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
 		C20D905A2418C1FA001F7281 /* UserInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInfoCell.xib; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		C2FB5A702416147400049CF1 /* PSDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSDatabase.swift; sourceTree = "<group>"; };
 		C2FB5A9424164D1A00049CF1 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		C2FB5A9A24175ECA00049CF1 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
-		ECF3CC9469EA7EAD223FE42A /* Pods-PlanetSAGA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetSAGA.release.xcconfig"; path = "Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA.release.xcconfig"; sourceTree = "<group>"; };
+		CADE71E9FB0088A0B276FCDA /* Pods-PlanetSAGA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetSAGA.release.xcconfig"; path = "Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +100,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E2066A020D03868000957C1 /* AVFoundation.framework in Frameworks */,
-				02A1740ACF8F2778A49D1EFE /* Pods_PlanetSAGA.framework in Frameworks */,
+				A61C39189985CC699D8D7884 /* Pods_PlanetSAGA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				3E20669F20D03868000957C1 /* AVFoundation.framework */,
-				714D5A16A460419FE7ABB228 /* Pods_PlanetSAGA.framework */,
+				9612682E8D27342030995DA4 /* Pods_PlanetSAGA.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -262,8 +262,8 @@
 		D4A3E9A611B345FC67A33C5C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2FD8F206B83F8802C78BC151 /* Pods-PlanetSAGA.debug.xcconfig */,
-				ECF3CC9469EA7EAD223FE42A /* Pods-PlanetSAGA.release.xcconfig */,
+				3E1596D9D98A1F909783A1DC /* Pods-PlanetSAGA.debug.xcconfig */,
+				CADE71E9FB0088A0B276FCDA /* Pods-PlanetSAGA.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -275,11 +275,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E22400B20A8A2EE006A7D07 /* Build configuration list for PBXNativeTarget "PlanetSAGA" */;
 			buildPhases = (
-				2E293E0CA667F0B207575A5A /* [CP] Check Pods Manifest.lock */,
+				8F99D3269DF865CF7EFB4A04 /* [CP] Check Pods Manifest.lock */,
 				3E223FF220A8A2EE006A7D07 /* Sources */,
 				3E223FF320A8A2EE006A7D07 /* Frameworks */,
 				3E223FF420A8A2EE006A7D07 /* Resources */,
-				954BDA815BC568F4E60E7B0C /* [CP] Embed Pods Frameworks */,
+				0E892601F6AB970F5C34EAC4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -347,7 +347,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2E293E0CA667F0B207575A5A /* [CP] Check Pods Manifest.lock */ = {
+		0E892601F6AB970F5C34EAC4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F99D3269DF865CF7EFB4A04 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -367,23 +384,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		954BDA815BC568F4E60E7B0C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -558,7 +558,7 @@
 		};
 		3E22400C20A8A2EE006A7D07 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2FD8F206B83F8802C78BC151 /* Pods-PlanetSAGA.debug.xcconfig */;
+			baseConfigurationReference = 3E1596D9D98A1F909783A1DC /* Pods-PlanetSAGA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -576,7 +576,7 @@
 		};
 		3E22400D20A8A2EE006A7D07 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECF3CC9469EA7EAD223FE42A /* Pods-PlanetSAGA.release.xcconfig */;
+			baseConfigurationReference = CADE71E9FB0088A0B276FCDA /* Pods-PlanetSAGA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

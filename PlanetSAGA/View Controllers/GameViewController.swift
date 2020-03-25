@@ -54,14 +54,12 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     var missionArray: Array<UILabel?> = []
     
-    var selectedBlock: (block: UIButton, index: IndexPath)?
-    
     var streak: Int = 0
     var score: Int = 0
     
     var timer: Timer?
-    var count = 20
-    //    var count = 5
+    //    var count = 20
+    var count = 999
     var timerFlag: Bool = true
     
     private var touchPoint: CGPoint?
@@ -508,42 +506,48 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension GameViewController: BlockCollectionViewCellDelegate {
     
-    func blockButtonTapped(_ sender: UIButton) {
+    func swipeBlock(_ selectBlock: UIButton, direction: UISwipeGestureRecognizer.Direction) {
         guard !timerFlag,
-            let indexPath = blockCollectionView.indexPathForItem(at: blockCollectionView.convert(sender.center,
-                                                                                                   from: sender.superview)) else { return }
+            let indexPath = blockCollectionView.indexPathForItem(at: blockCollectionView.convert(selectBlock.center,
+                                                                                                 from: selectBlock.superview)) else { return }
         
-        if let selectedBlock = selectedBlock {
-            let index1 = selectedBlock.index.row
-            let index2 = indexPath.row
-            
-            if index1 == (index2 - 9) ||
-                (index1 == (index2 - 1)) ||
-                (index1 == (index2 + 1)) ||
-                (index1 == (index2 + 9)) {
-                guard let changeBlock = blockCollectionView?.cellForItem(at: selectedBlock.index) as? BlockCollectionViewCell,
-                    let blockImage1 = changeBlock.blockButton.image(for: .normal),
-                    let blockImage2 = sender.image(for: .normal) else { return }
-                
-                sender.setImage(blockImage1, for: UIControlState.normal)
-                changeBlock.blockButton.setImage(blockImage2, for: UIControlState.normal)
-                
-                print("Move Success")
-            } else {
-                print("Move Fail")
-            }
-            
-            self.selectedBlock = nil
-            
+        var subBlockIndex: IndexPath?
+        
+        switch direction {
+        case .right:
+            subBlockIndex = IndexPath(item: indexPath.row + 1, section: 0)
+        case .left:
+            subBlockIndex = IndexPath(item: indexPath.row - 1, section: 0)
+        case .up:
+            subBlockIndex = IndexPath(item: indexPath.row - 9, section: 0)
+        case .down:
+            subBlockIndex = IndexPath(item: indexPath.row + 9, section: 0)
+        default:
+            print("Undetectable swipe direction")
+        }
+        
+        if let index = subBlockIndex,
+            let subBlockCell = blockCollectionView?.cellForItem(at: index) as? BlockCollectionViewCell {
+            playBlockAction(selectBlock: selectBlock, subBlock: subBlockCell.blockButton)
+            print("Move Success")
+        } else {
+            print("Move Fail")
+        }
+    }
+    
+    private func playBlockAction(selectBlock select: UIButton, subBlock sub: UIButton) {
+        guard let selectImage = select.image(for: .normal),
+            let subImage = sub.image(for: .normal) else { return }
+        
+        sub.setImage(selectImage, for: UIControlState.normal)
+        select.setImage(subImage, for: UIControlState.normal)
+        
+        alignedHorz()
+        alignedVert()
+        
+        while checkSpace() {
             alignedHorz()
             alignedVert()
-            
-            while checkSpace() {
-                alignedHorz()
-                alignedVert()
-            }
-        } else {
-            self.selectedBlock = (sender, indexPath)
         }
         
         SoundManager.clickEffect()

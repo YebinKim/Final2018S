@@ -10,7 +10,7 @@ import UIKit
 
 protocol BlockCollectionViewCellDelegate {
     
-    func blockButtonTapped(_ sender: UIButton)
+    func swipeBlock(_ selectBlock: UIButton, direction: UISwipeGestureRecognizer.Direction)
     
 }
 
@@ -33,6 +33,7 @@ class BlockCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         initializeBlockImage()
+        addGestureRecognizers()
     }
         
     private func initializeBlockImage() {
@@ -53,8 +54,18 @@ class BlockCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    @IBAction func blockButtonTapped(_ sender: UIButton) {
-        delegate.blockButtonTapped(sender)
+    private func addGestureRecognizers() {
+        let directions: [UISwipeGestureRecognizer.Direction] = [.up, .down, .left, .right]
+        
+        for direction in directions {
+            let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeBlock))
+            swipeGesture.direction = direction
+            blockButton.addGestureRecognizer(swipeGesture)
+        }
+    }
+    
+    @objc func swipeBlock(_ sender: UISwipeGestureRecognizer) {
+        delegate.swipeBlock(blockButton, direction: sender.direction)
     }
     
 }

@@ -31,6 +31,7 @@
 		3ED8464720BD107A003C4F63 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464620BD107A003C4F63 /* MainViewController.swift */; };
 		3ED8464920BD10AD003C4F63 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464820BD10AD003C4F63 /* SettingViewController.swift */; };
 		3ED8464B20BD10E7003C4F63 /* RankingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464A20BD10E7003C4F63 /* RankingTableViewController.swift */; };
+		445991CA242CE88800609BED /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445991C9242CE88800609BED /* Properties.swift */; };
 		A61C39189985CC699D8D7884 /* Pods_PlanetSAGA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9612682E8D27342030995DA4 /* Pods_PlanetSAGA.framework */; };
 		C20D90572418C14C001F7281 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90562418C14C001F7281 /* Extensions.swift */; };
 		C20D905B2418C1FA001F7281 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90592418C1FA001F7281 /* UserInfoCell.swift */; };
@@ -76,6 +77,7 @@
 		3ED8464620BD107A003C4F63 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3ED8464820BD10AD003C4F63 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		3ED8464A20BD10E7003C4F63 /* RankingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableViewController.swift; sourceTree = "<group>"; };
+		445991C9242CE88800609BED /* Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
 		9612682E8D27342030995DA4 /* Pods_PlanetSAGA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanetSAGA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20D90562418C14C001F7281 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C20D90592418C1FA001F7281 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		C20D90552418C134001F7281 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				445991C9242CE88800609BED /* Properties.swift */,
 				C20D90562418C14C001F7281 /* Extensions.swift */,
 			);
 			path = Utils;
@@ -413,6 +416,7 @@
 				C2FB5A9524164D1A00049CF1 /* UserInfo.swift in Sources */,
 				C27BCAF4242110F8008ACA2E /* BlockCollectionViewCell.swift in Sources */,
 				3ED8464320BD1019003C4F63 /* SignUpViewController.swift in Sources */,
+				445991CA242CE88800609BED /* Properties.swift in Sources */,
 				C20D90622419106F001F7281 /* OnlineManager.swift in Sources */,
 				3E79687E20D69EDE00F67483 /* LocalRecordTableViewController.swift in Sources */,
 				3ED8464B20BD10E7003C4F63 /* RankingTableViewController.swift in Sources */,

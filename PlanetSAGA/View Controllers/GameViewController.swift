@@ -45,13 +45,6 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     private var backView: UIView!
     
-    let blockImages: [UIImage] = [#imageLiteral(resourceName: "block1").withRenderingMode(.alwaysOriginal),
-                                  #imageLiteral(resourceName: "block2").withRenderingMode(.alwaysOriginal),
-                                  #imageLiteral(resourceName: "block3").withRenderingMode(.alwaysOriginal),
-                                  #imageLiteral(resourceName: "block4").withRenderingMode(.alwaysOriginal),
-                                  #imageLiteral(resourceName: "block5").withRenderingMode(.alwaysOriginal),
-                                  #imageLiteral(resourceName: "block6").withRenderingMode(.alwaysOriginal)]
-    
     var missionArray: Array<UILabel?> = []
     
     var streak: Int = 0
@@ -76,12 +69,12 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         transitioningDelegate = self
         initializeABlockCollectionView()
         
-        missionImage1.image = blockImages[0]
-        missionImage2.image = blockImages[1]
-        missionImage3.image = blockImages[2]
-        missionImage4.image = blockImages[3]
-        missionImage5.image = blockImages[4]
-        missionImage6.image = blockImages[5]
+        missionImage1.image = Properties.blockImages[0]
+        missionImage2.image = Properties.blockImages[1]
+        missionImage3.image = Properties.blockImages[2]
+        missionImage4.image = Properties.blockImages[3]
+        missionImage5.image = Properties.blockImages[4]
+        missionImage6.image = Properties.blockImages[5]
         
         resultView.isHidden = true
         levelView.isHidden = false
@@ -267,10 +260,11 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         
         while m <= 8 {
             j = 9 * m
-            let beforeIndex = IndexPath(item: j, section: 0)
-            let beforeCell = blockCollectionView.cellForItem(at: beforeIndex) as? BlockCollectionViewCell
             
             while j <= (9 * m) + 8 {
+                let beforeIndex = IndexPath(item: j, section: 0)
+                let beforeCell = blockCollectionView.cellForItem(at: beforeIndex) as? BlockCollectionViewCell
+                
                 i = j + 9
                 let curIndex = IndexPath(item: i, section: 0)
                 let curCell = blockCollectionView.cellForItem(at: curIndex) as? BlockCollectionViewCell
@@ -307,7 +301,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     func fillUpBlock(_ block: UIButton?) {
         let randNum = Int.random(in: 0...5)
-        block?.setImage(blockImages[randNum], for: .normal)
+        block?.setImage(Properties.blockImages[randNum], for: .normal)
     }
     
     func fillUpBlock(index: IndexPath) {
@@ -392,27 +386,27 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     func subMission() {
-        if subBlock == blockImages[0] {
+        if subBlock == Properties.blockImages[0] {
             if Int((missionArray[0]?.text)!)! > 0 {
                 missionArray[0]?.text = String(Int((missionArray[0]?.text!)!)! - 1)
             }
-        } else if subBlock == blockImages[1] {
+        } else if subBlock == Properties.blockImages[1] {
             if Int((missionArray[1]?.text)!)! > 0 {
                 missionArray[1]?.text = String(Int((missionArray[1]?.text!)!)! - 1)
             }
-        } else if subBlock == blockImages[2] {
+        } else if subBlock == Properties.blockImages[2] {
             if Int((missionArray[2]?.text)!)! > 0 {
                 missionArray[2]?.text = String(Int((missionArray[2]?.text!)!)! - 1)
             }
-        } else if subBlock == blockImages[3] {
+        } else if subBlock == Properties.blockImages[3] {
             if Int((missionArray[3]?.text)!)! > 0 {
                 missionArray[3]?.text = String(Int((missionArray[3]?.text!)!)! - 1)
             }
-        } else if subBlock == blockImages[4] {
+        } else if subBlock == Properties.blockImages[4] {
             if Int((missionArray[4]?.text)!)! > 0 {
                 missionArray[4]?.text = String(Int((missionArray[4]?.text!)!)! - 1)
             }
-        } else if subBlock == blockImages[5] {
+        } else if subBlock == Properties.blockImages[5] {
             if Int((missionArray[5]?.text)!)! > 0 {
                 missionArray[5]?.text = String(Int((missionArray[5]?.text!)!)! - 1)
             }

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l7H-wI-v6Y">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -367,9 +366,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBo-Ce-H6I" userLabel="Play Btn">
-                                <rect key="frame" x="170.66666666666666" y="389" width="34" height="34"/>
-                                <state key="normal" title="Play">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBo-Ce-H6I" userLabel="Play Btn" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
+                                <rect key="frame" x="163.66666666666666" y="382" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="Mm7-dm-adF"/>
+                                    <constraint firstAttribute="width" secondItem="oBo-Ce-H6I" secondAttribute="height" multiplier="1:1" id="QeN-Hn-frr"/>
+                                </constraints>
+                                <color key="tintColor" red="0.4709182978" green="0.33318966630000002" blue="0.51766544579999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="play.fill" catalog="system">
                                     <color key="titleColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
@@ -377,35 +381,20 @@
                                     <segue destination="v1P-cW-jQ3" kind="presentation" id="lh6-JS-FdN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNn-PP-P2C" userLabel="Menu Btn">
-                                <rect key="frame" x="40" y="52" width="24" height="24"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNn-PP-P2C" userLabel="Menu Btn" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
+                                <rect key="frame" x="24" y="60" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="Mgq-Ya-jp2"/>
-                                    <constraint firstAttribute="height" constant="24" id="rTt-OY-Tso"/>
+                                    <constraint firstAttribute="width" constant="40" id="Mgq-Ya-jp2"/>
+                                    <constraint firstAttribute="width" secondItem="aNn-PP-P2C" secondAttribute="height" multiplier="1:1" id="asv-Lx-9nI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="tintColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.4709182978" green="0.33318966630000002" blue="0.51766544579999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="line.horizontal.3" catalog="system">
                                     <color key="titleColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
                                     <action selector="buttonClicked:" destination="tD7-vQ-yd3" eventType="touchUpInside" id="8Ob-RJ-VMI"/>
                                     <action selector="menuButtonTapped:" destination="tD7-vQ-yd3" eventType="touchUpInside" id="jtj-5h-la4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MeK-PR-psa" userLabel="Sign Btn">
-                                <rect key="frame" x="311" y="52" width="24" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="2C1-lw-loh"/>
-                                    <constraint firstAttribute="width" constant="24" id="x5O-wr-Cf0"/>
-                                </constraints>
-                                <color key="tintColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" image="person.badge.plus" catalog="system">
-                                    <color key="titleColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonClicked:" destination="tD7-vQ-yd3" eventType="touchUpInside" id="Ck2-hG-Exb"/>
-                                    <action selector="signButtonTapped:" destination="tD7-vQ-yd3" eventType="touchUpInside" id="cKW-Wt-nb8"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVX-ra-xZG">
@@ -443,27 +432,44 @@
                                     <constraint firstItem="eEN-rF-AJ9" firstAttribute="top" secondItem="RVX-ra-xZG" secondAttribute="top" constant="48" id="m2O-Q9-Q44"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MeK-PR-psa" userLabel="Sign Btn" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
+                                <rect key="frame" x="311" y="60" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="MeK-PR-psa" secondAttribute="height" multiplier="1:1" id="wpT-Ss-um1"/>
+                                </constraints>
+                                <color key="tintColor" red="0.4709182978" green="0.33318966630000002" blue="0.51766544579999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="person.badge.plus" catalog="system">
+                                    <color key="titleColor" red="0.45107108350000003" green="0.3427583575" blue="0.50589740279999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonClicked:" destination="tD7-vQ-yd3" eventType="touchUpInside" id="Ck2-hG-Exb"/>
+                                    <action selector="signButtonTapped:" destination="tD7-vQ-yd3" eventType="touchUpInside" id="cKW-Wt-nb8"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="oBo-Ce-H6I" firstAttribute="centerY" secondItem="Xwh-7M-iFn" secondAttribute="centerY" id="0pv-Ev-3Wx"/>
+                            <constraint firstItem="MeK-PR-psa" firstAttribute="width" secondItem="aNn-PP-P2C" secondAttribute="width" id="23u-aK-ahw"/>
                             <constraint firstAttribute="bottom" secondItem="RVX-ra-xZG" secondAttribute="bottom" id="8aF-9O-Byd"/>
                             <constraint firstItem="RVX-ra-xZG" firstAttribute="leading" secondItem="Xwh-7M-iFn" secondAttribute="leading" priority="750" constant="-300" id="9yj-u3-lGP"/>
-                            <constraint firstItem="MeK-PR-psa" firstAttribute="top" secondItem="PNJ-70-QOV" secondAttribute="top" constant="8" id="AGP-MM-iIB"/>
+                            <constraint firstItem="MeK-PR-psa" firstAttribute="top" secondItem="PNJ-70-QOV" secondAttribute="top" constant="16" id="AGP-MM-iIB"/>
                             <constraint firstItem="RVX-ra-xZG" firstAttribute="width" secondItem="Xwh-7M-iFn" secondAttribute="width" multiplier="0.8" id="ASK-VA-WeL"/>
                             <constraint firstItem="oBo-Ce-H6I" firstAttribute="centerX" secondItem="Xwh-7M-iFn" secondAttribute="centerX" id="BUm-ae-FJa"/>
-                            <constraint firstItem="aNn-PP-P2C" firstAttribute="leading" secondItem="PNJ-70-QOV" secondAttribute="leading" constant="40" id="FyO-Ei-tkj"/>
-                            <constraint firstItem="aNn-PP-P2C" firstAttribute="top" secondItem="PNJ-70-QOV" secondAttribute="top" constant="8" id="axc-KU-iTJ"/>
-                            <constraint firstItem="PNJ-70-QOV" firstAttribute="trailing" secondItem="MeK-PR-psa" secondAttribute="trailing" constant="40" id="fNt-3b-dsT"/>
+                            <constraint firstItem="aNn-PP-P2C" firstAttribute="leading" secondItem="PNJ-70-QOV" secondAttribute="leading" constant="24" id="FyO-Ei-tkj"/>
+                            <constraint firstItem="aNn-PP-P2C" firstAttribute="top" secondItem="PNJ-70-QOV" secondAttribute="top" constant="16" id="axc-KU-iTJ"/>
+                            <constraint firstItem="PNJ-70-QOV" firstAttribute="trailing" secondItem="MeK-PR-psa" secondAttribute="trailing" constant="24" id="fNt-3b-dsT"/>
                             <constraint firstItem="RVX-ra-xZG" firstAttribute="top" secondItem="PNJ-70-QOV" secondAttribute="top" id="jov-dd-0Sz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PNJ-70-QOV"/>
                     </view>
                     <navigationItem key="navigationItem" id="Rwj-fm-UNh"/>
                     <connections>
+                        <outlet property="menuButton" destination="aNn-PP-P2C" id="GTx-fl-vvh"/>
                         <outlet property="menuTableView" destination="eEN-rF-AJ9" id="1JK-48-3U9"/>
                         <outlet property="menuView" destination="RVX-ra-xZG" id="XPI-pu-bqu"/>
                         <outlet property="menuViewLeadingConstraint" destination="9yj-u3-lGP" id="Jlv-lG-A4h"/>
+                        <outlet property="playButton" destination="oBo-Ce-H6I" id="5K0-n5-F5i"/>
                         <outlet property="signButton" destination="MeK-PR-psa" id="NWd-pa-mqR"/>
                         <segue destination="Ryj-TU-ux2" kind="presentation" identifier="toSignIn" id="qcY-bU-JI1"/>
                         <segue destination="Doy-pX-Gsg" kind="presentation" identifier="toSettingGame" id="w0h-up-oMJ"/>
@@ -1390,5 +1396,6 @@
         <image name="clock" catalog="system" width="128" height="121"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
         <image name="person.badge.plus" catalog="system" width="128" height="116"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
     </resources>
 </document>

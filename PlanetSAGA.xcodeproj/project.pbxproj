@@ -170,13 +170,22 @@
 			path = Sound;
 			sourceTree = "<group>";
 		};
+		445991F3242E3EAE00609BED /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				445991F1242E3B6400609BED /* Style.swift */,
+				445991EF242E3AC800609BED /* StyledView.swift */,
+				445991ED242E399200609BED /* HSBColor.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
 		C20D90552418C134001F7281 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				445991F3242E3EAE00609BED /* Style */,
 				445991C9242CE88800609BED /* Properties.swift */,
 				C20D90562418C14C001F7281 /* Extensions.swift */,
-				445991ED242E399200609BED /* HSBColor.swift */,
-				445991F1242E3B6400609BED /* Style.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -256,7 +265,6 @@
 				C20D90582418C1DE001F7281 /* Cells */,
 				3E223FFD20A8A2EE006A7D07 /* Main.storyboard */,
 				3E22400520A8A2EE006A7D07 /* LaunchScreen.storyboard */,
-				445991EF242E3AC800609BED /* StyledView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

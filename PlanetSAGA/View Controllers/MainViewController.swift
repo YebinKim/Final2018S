@@ -12,7 +12,9 @@ import Firebase
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var signButton: UIButton!
+    @IBOutlet weak var playButton: StyledButton!
+    @IBOutlet weak var signButton: StyledButton!
+    @IBOutlet weak var menuButton: StyledButton!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var menuTableView: UITableView!
     @IBOutlet weak var menuViewLeadingConstraint: NSLayoutConstraint!
@@ -29,6 +31,8 @@ class MainViewController: UIViewController {
         initializeMenuView()
         initializeMenuTableView()
         initializeBackView()
+        
+        applyStyled()
         
         updateView()
     }
@@ -76,6 +80,17 @@ class MainViewController: UIViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissMenuView))
         backView.addGestureRecognizer(tapGesture)
+    }
+    
+    private func applyStyled() {
+        playButton.neumorphicLayer?.cornerRadius = playButton.frame.width / 3
+        playButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        signButton.neumorphicLayer?.cornerRadius = signButton.frame.width / 3
+        signButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        menuButton.neumorphicLayer?.cornerRadius = menuButton.frame.width / 3
+        menuButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
     }
     
     @IBAction func menuButtonTapped(_ sender: UIButton) {

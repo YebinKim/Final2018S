@@ -123,11 +123,11 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
             return
         }
         
-        guard var imageData = UIImageJPEGRepresentation(image, 1.0) else { return }
+        guard var imageData = image.jpegData(compressionQuality: 1.0) else { return }
         
         // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
         while imageData.count > 1 * 1024 * 1024 {
-            imageData = UIImageJPEGRepresentation(UIImage(data: imageData)!, 0.1)!
+            imageData = UIImage(data: imageData)!.jpegData(compressionQuality: 0.1)!
         }
         
         if let user = Auth.auth().currentUser {
@@ -206,7 +206,7 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
     }
     
     func imagePickerController (_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let image = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage {
             self.profileImageview.image = image
         }
         self.dismiss(animated: true, completion: nil)

@@ -72,7 +72,7 @@ class MainViewController: UIViewController {
         backView.isHidden = true
         backView.alpha = 0.0
         self.view.addSubview(backView)
-        self.view.bringSubview(toFront: self.menuView)
+        self.view.bringSubviewToFront(self.menuView)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissMenuView))
         backView.addGestureRecognizer(tapGesture)
@@ -111,21 +111,11 @@ class MainViewController: UIViewController {
     @objc func updateView() {
         if OnlineManager.online {
             DispatchQueue.main.async {
-                if #available(iOS 13.0, *) {
-                    self.signButton.setImage(UIImage(systemName: "person.badge.minus"), for: .normal)
-                } else {
-                    self.signButton.setImage(nil, for: .normal)
-                    self.signButton.setTitle("SignOut", for: .normal)
-                }
+                self.signButton.setImage(UIImage(systemName: "person.badge.minus"), for: .normal)
             }
         } else {
             DispatchQueue.main.async {
-                if #available(iOS 13.0, *) {
-                    self.signButton.setImage(UIImage(systemName: "person.badge.plus"), for: .normal)
-                } else {
-                    self.signButton.setImage(nil, for: .normal)
-                    self.signButton.setTitle("SignIn", for: .normal)
-                }
+                self.signButton.setImage(UIImage(systemName: "person.badge.plus"), for: .normal)
             }
         }
     }

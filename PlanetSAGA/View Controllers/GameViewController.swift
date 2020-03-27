@@ -131,7 +131,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         backView.isHidden = true
         backView.alpha = 0.0
         self.view.addSubview(backView)
-        self.view.bringSubview(toFront: self.menuView)
+        self.view.bringSubviewToFront(self.menuView)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissMenuView))
         backView.addGestureRecognizer(tapGesture)
@@ -533,8 +533,8 @@ extension GameViewController: BlockCollectionViewCellDelegate {
         guard let selectImage = select.image(for: .normal),
             let subImage = sub.image(for: .normal) else { return }
         
-        sub.setImage(selectImage, for: UIControlState.normal)
-        select.setImage(subImage, for: UIControlState.normal)
+        sub.setImage(selectImage, for: UIControl.State.normal)
+        select.setImage(subImage, for: UIControl.State.normal)
         
         alignedHorz()
         alignedVert()

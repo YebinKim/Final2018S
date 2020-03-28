@@ -11,18 +11,42 @@ import Firebase
 
 class SignInViewController: UIViewController {
     
-    @IBOutlet var emailTextfield: UITextField!
-    @IBOutlet var pwTextfield: UITextField!
-    @IBOutlet var statusLabel: UILabel!
+    @IBOutlet weak var backButton: StyledButton!
+    
+    @IBOutlet weak var inputFieldView: StyledView!
+    @IBOutlet weak var emailTextfield: UITextField!
+    @IBOutlet weak var pwTextfield: UITextField!
+    @IBOutlet weak var signInButton: StyledButton!
+    
+    @IBOutlet weak var statusView: UIView!
+    @IBOutlet weak var statusLabel: UILabel!
+    
+    @IBOutlet weak var signUpButton: StyledButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        applyStyled()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         statusLabel.text = ""
+    }
+    
+    private func applyStyled() {
+        backButton.neumorphicLayer?.cornerRadius = backButton.frame.width / 3
+        backButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        signInButton.neumorphicLayer?.cornerRadius = signInButton.frame.height / 6
+        signInButton.neumorphicLayer?.elementBackgroundColor = signInButton.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        signUpButton.neumorphicLayer?.cornerRadius = signUpButton.frame.width / 3
+        signUpButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        inputFieldView.neumorphicLayer?.cornerRadius = inputFieldView.frame.height / 6
+        inputFieldView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {

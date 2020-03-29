@@ -322,8 +322,7 @@ fileprivate class StyledShadowLayer: StyledShadowLayerBase {
         rasterizationScale = UIScreen.main.scale
         if props.depthType == .convex {
             applyOuterShadow(bounds: bounds, mode: mode, props: props, color: color)
-        }
-        else { // .concave
+        } else { // .concave
             applyInnerShadow(bounds: bounds, mode: mode, props: props, color: color)
         }
     }
@@ -350,8 +349,7 @@ fileprivate class StyledShadowLayer: StyledShadowLayerBase {
         if mode == .lightSide {
             shadowY = -offsetWidth
             shadowX = -offsetWidth
-        }
-        else {
+        } else {
             shadowY = offsetWidth
             shadowX = offsetWidth
         }

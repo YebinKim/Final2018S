@@ -13,18 +13,23 @@ class SignInViewController: UIViewController {
     
     @IBOutlet weak var backButton: StyledButton!
     
+    @IBOutlet weak var titleView: StyledView!
+    
     @IBOutlet weak var inputFieldView: StyledView!
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var pwTextfield: UITextField!
     @IBOutlet weak var signInButton: StyledButton!
     
-    @IBOutlet weak var statusView: UIView!
+    @IBOutlet weak var statusView: StyledView!
     @IBOutlet weak var statusLabel: UILabel!
     
-    @IBOutlet weak var signUpButton: StyledButton!
+    @IBOutlet weak var signUpView: StyledView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initializeEmailTextField()
+        initializePwTextField()
         
         applyStyled()
     }
@@ -32,21 +37,42 @@ class SignInViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        resetStatus()
+    }
+    
+    private func initializeEmailTextField() {
+        emailTextfield.delegate = self
+        emailTextfield.text = ""
+    }
+    
+    private func initializePwTextField() {
+        pwTextfield.delegate = self
+        pwTextfield.text = ""
+    }
+    
+    private func resetStatus() {
+        statusView.isHidden = true
         statusLabel.text = ""
     }
     
     private func applyStyled() {
-        backButton.neumorphicLayer?.cornerRadius = backButton.frame.width / 3
+        backButton.neumorphicLayer?.cornerRadius = 12
         backButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
         
-        signInButton.neumorphicLayer?.cornerRadius = signInButton.frame.height / 6
+        titleView.neumorphicLayer?.cornerRadius = 12
+        titleView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        inputFieldView.neumorphicLayer?.cornerRadius = 12
+        inputFieldView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        signInButton.neumorphicLayer?.cornerRadius = 12
         signInButton.neumorphicLayer?.elementBackgroundColor = signInButton.backgroundColor?.cgColor ?? UIColor.white.cgColor
         
-        signUpButton.neumorphicLayer?.cornerRadius = signUpButton.frame.width / 3
-        signUpButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        signUpView.neumorphicLayer?.cornerRadius = 12
+        signUpView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
         
-        inputFieldView.neumorphicLayer?.cornerRadius = inputFieldView.frame.height / 6
-        inputFieldView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        statusView.neumorphicLayer?.cornerRadius = 12
+        statusView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {

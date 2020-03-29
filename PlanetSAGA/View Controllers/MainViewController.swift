@@ -83,13 +83,13 @@ class MainViewController: UIViewController {
     }
     
     private func applyStyled() {
-        playButton.neumorphicLayer?.cornerRadius = playButton.frame.width / 3
+        playButton.neumorphicLayer?.cornerRadius = 12
         playButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
         
-        signButton.neumorphicLayer?.cornerRadius = signButton.frame.width / 3
+        signButton.neumorphicLayer?.cornerRadius = 12
         signButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
         
-        menuButton.neumorphicLayer?.cornerRadius = menuButton.frame.width / 3
+        menuButton.neumorphicLayer?.cornerRadius = 12
         menuButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
     }
     

@@ -80,13 +80,20 @@ class SignUpViewController: UIViewController {
     }
     
     private func playStatusAnimation() {
+        playStatusAnimation(depthType: .convex)
+    }
+    
+    private func playStatusAnimation(depthType: StyledLayerDepthType) {
         statusView.isHidden = false
-        statusView.neumorphicLayer?.depthType = .convex
+        statusView.neumorphicLayer?.depthType = depthType
         statusView.neumorphicLayer?.elementDepth = 5
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.statusLabel.isHidden = false
-        }
+        statusLabel.isHidden = false
+        statusLabel.alpha = 0
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.statusLabel.alpha = 1
+        })
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -99,18 +106,24 @@ class SignUpViewController: UIViewController {
         
         // 필요한 세 가지 자료가 모두 입력 되었는지 확인
         if emailTextfield.text == "" {
-            statusLabel.text = "Insert ID"
-            playStatusAnimation()
+            DispatchQueue.main.async {
+                self.statusLabel.text = "이메일 아이디를 입력해 주세요"
+                self.playStatusAnimation()
+            }
             return
         }
         if pwTextfield.text == "" {
-            statusLabel.text = "Insert Password"
-            playStatusAnimation()
+            DispatchQueue.main.async {
+                self.statusLabel.text = "비밀번호를 입력해 주세요"
+                self.playStatusAnimation()
+            }
             return
         }
         if nameTextfield.text == "" {
-            statusLabel.text = "Insert Name"
-            playStatusAnimation()
+            DispatchQueue.main.async {
+                self.statusLabel.text = "닉네임을 입력해 주세요"
+                self.playStatusAnimation()
+            }
             return
         }
         
@@ -118,8 +131,10 @@ class SignUpViewController: UIViewController {
             let password = pwTextfield.text,
             let name = nameTextfield.text else { return }
         
-        statusLabel.text = "SignUp Success :D"
-        statusView.neumorphicLayer?.depthType = .concave
+        DispatchQueue.main.async {
+            self.statusLabel.text = "SignUp Success :D"
+            self.playStatusAnimation(depthType: .concave)
+        }
         
         OnlineManager.createUser(email: email, password: password, name: name) { error in
             if let error = error {

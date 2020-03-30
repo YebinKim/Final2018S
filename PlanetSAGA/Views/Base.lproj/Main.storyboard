@@ -1327,8 +1327,8 @@
                                 <rect key="frame" x="23.666666666666657" y="463" width="328" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StatusLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dop-pf-gEX">
-                                        <rect key="frame" x="114.66666666666669" y="19.333333333333314" width="98.333333333333314" height="20.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <rect key="frame" x="124" y="20.666666666666686" width="80" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                         <color key="textColor" name="color_main"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1507,7 +1507,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6sz-xM-maf" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
                                 <rect key="frame" x="23.666666666666657" y="208" width="328" height="67"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용 가능한 이메일로 회원가입 해주세요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWl-dp-LqT">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용 가능한 이메일로 회원가입해 주세요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWl-dp-LqT">
                                         <rect key="frame" x="68.999999999999986" y="38.333333333333343" width="189.66666666666663" height="14.333333333333336"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                         <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1668,7 +1668,7 @@
                                                                 <rect key="frame" x="56" y="0.0" width="168" height="32"/>
                                                                 <color key="backgroundColor" name="color_back"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcq-vW-dkD">
                                                                 <rect key="frame" x="224" y="0.0" width="24" height="32"/>
@@ -1732,8 +1732,8 @@
                                 <rect key="frame" x="23.666666666666657" y="483" width="328" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StatusLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhz-EP-mhI">
-                                        <rect key="frame" x="114.66666666666669" y="19.333333333333314" width="98.333333333333314" height="20.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <rect key="frame" x="124" y="20.666666666666686" width="80" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                         <color key="textColor" name="color_main"/>
                                         <nil key="highlightedColor"/>
                                     </label>

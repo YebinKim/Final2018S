@@ -52,6 +52,7 @@ class SignInViewController: UIViewController {
     
     private func resetStatus() {
         statusView.isHidden = true
+        statusLabel.isHidden = true
         statusLabel.text = ""
     }
     
@@ -73,6 +74,24 @@ class SignInViewController: UIViewController {
         
         statusView.neumorphicLayer?.cornerRadius = 12
         statusView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        statusView.neumorphicLayer?.elementDepth = 0
+    }
+    
+    private func playStatusAnimation() {
+        playStatusAnimation(depthType: .convex)
+    }
+    
+    private func playStatusAnimation(depthType: StyledLayerDepthType) {
+        statusView.isHidden = false
+        statusView.neumorphicLayer?.depthType = depthType
+        statusView.neumorphicLayer?.elementDepth = 5
+        
+        statusLabel.isHidden = false
+        statusLabel.alpha = 0
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.statusLabel.alpha = 1
+        })
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {
@@ -84,15 +103,27 @@ class SignInViewController: UIViewController {
         SoundManager.clickEffect()
         
         if emailTextfield.text == "" {
-            statusLabel.text = "Insert ID"
+            DispatchQueue.main.async {
+                self.statusLabel.text = "이메일 아이디를 입력해 주세요"
+                self.playStatusAnimation()
+            }
             return
         }
         if pwTextfield.text == "" {
-            statusLabel.text = "Insert Password"
+            DispatchQueue.main.async {
+                self.statusLabel.text = "비밀번호를 입력해 주세요"
+                self.playStatusAnimation()
+            }
             return
         }
         
-        guard let email = emailTextfield.text, let password = pwTextfield.text else { return }
+        guard let email = emailTextfield.text,
+            let password = pwTextfield.text else { return }
+        
+        DispatchQueue.main.async {
+            self.statusLabel.text = "Welcome ;)"
+            self.playStatusAnimation(depthType: .concave)
+        }
         
         OnlineManager.signInUser(email: email, password: password) { error in
             if let error = error {

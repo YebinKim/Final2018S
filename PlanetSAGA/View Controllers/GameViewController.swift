@@ -43,7 +43,14 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     var level: Int?
     var subBlock: UIImage?
     
-    private var backView: UIView!
+    private lazy var dimmedView: UIView = {
+        let dimmedView = UIView(frame: self.view.frame)
+        dimmedView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        dimmedView.isHidden = true
+        dimmedView.alpha = 0.0
+        
+        return dimmedView
+    }()
     
     var missionArray: Array<UILabel?> = []
     
@@ -64,7 +71,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         
         initializeMenuView()
         initializeMenuTableView()
-        initializeBackView()
+        initializedimmedView()
         
         transitioningDelegate = self
         initializeABlockCollectionView()
@@ -125,16 +132,12 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         menuTableView.tableFooterView = UIView()
     }
     
-    private func initializeBackView() {
-        backView = UIView(frame: self.view.frame)
-        backView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        backView.isHidden = true
-        backView.alpha = 0.0
-        self.view.addSubview(backView)
+    private func initializedimmedView() {
+        self.view.addSubview(dimmedView)
         self.view.bringSubviewToFront(self.menuView)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissMenuView))
-        backView.addGestureRecognizer(tapGesture)
+        dimmedView.addGestureRecognizer(tapGesture)
     }
     
     private func initializeABlockCollectionView() {
@@ -462,21 +465,21 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     @IBAction func pauseButtonTapped(_ sender: UIButton) {
         menuViewLeadingConstraint.constant = 0
-        backView.isHidden = false
+        dimmedView.isHidden = false
         
         UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
             self.view.layoutIfNeeded()
-            self.backView.alpha = 1.0
+            self.dimmedView.alpha = 1.0
         })
     }
     
     @objc func dismissMenuView(sender: UITapGestureRecognizer) {
         menuViewLeadingConstraint.constant = -self.menuView.frame.width
-        backView.isHidden = true
+        dimmedView.isHidden = true
         
         UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
             self.view.layoutIfNeeded()
-            self.backView.alpha = 0.0
+            self.dimmedView.alpha = 0.0
         })
     }
     

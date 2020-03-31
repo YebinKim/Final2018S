@@ -12,31 +12,46 @@ import FirebaseStorage
 
 class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var backButton: StyledButton!
+    
+    @IBOutlet var styledViews: [StyledView]!
+    
+    @IBOutlet weak var oneLabel: UILabel!
+    @IBOutlet weak var twoLabel: UILabel!
+    @IBOutlet weak var threeLabel: UILabel!
+    @IBOutlet weak var fourLabel: UILabel!
+    @IBOutlet weak var fiveLabel: UILabel!
+    
     @IBOutlet weak var settingSegment: UISegmentedControl!
-    
-    @IBOutlet weak var gameSetView: UIView!
-    
-    @IBOutlet weak var maxScoreLabel: UILabel!
-    @IBOutlet weak var playCountsLabel: UILabel!
     
     @IBOutlet weak var backgroundVolume: UISlider!
     @IBOutlet weak var effectVolume: UISlider!
-    
-    @IBOutlet weak var userSetView: UIView!
+    @IBOutlet weak var screenRotateSwitch: UISwitch!
+    @IBOutlet weak var maxScoreLabel: UILabel!
+    @IBOutlet weak var playCountsLabel: UILabel!
     
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
-    
-    @IBOutlet weak var nameTextfield: UITextField!
-    
+    @IBOutlet weak var pwTextField: UITextField!
     @IBOutlet weak var profileImageview: UIImageView!
+    @IBOutlet weak var nameTextfield: UITextField!
+    @IBOutlet weak var rankLabel: UILabel!
+    
+    lazy var gameSetArray: [UIView] = [backgroundVolume,
+                                       effectVolume,
+                                       screenRotateSwitch,
+                                       maxScoreLabel,
+                                       playCountsLabel]
+    
+    lazy var userSetArray: [UIView] = [emailLabel,
+                                       pwTextField,
+                                       profileImageview,
+                                       nameTextfield,
+                                       rankLabel]
     
     var selectedSegmentIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        statusLabel.text = ""
         
         settingSegment.selectedSegmentIndex = selectedSegmentIndex
         
@@ -67,8 +82,7 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
                 })
         }
         
-        self.gameSetView.isHidden = false
-        self.userSetView.isHidden = true
+        applyStyled()
         
         //        backgroundVolume.value = (appDelegate.bakgroundAudioPlayer?.volume)!
         //        effectVolume.value = (appDelegate.clickEffectAudioPlayer?.volume)!
@@ -79,6 +93,16 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
         
         //        appDelegate.userInfoFetchedArray = [] // 배열을 초기화하고 서버에서 자료를 다시 가져옴
         //        self.appDelegate.userInfoDownloadDataFromServer()
+    }
+    
+    private func applyStyled() {
+        backButton.neumorphicLayer?.cornerRadius = 12
+        backButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        styledViews.forEach {
+            $0.neumorphicLayer?.cornerRadius = 12
+            $0.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        }
     }
     
     @IBAction func adjustBackgroundVolume(_ sender: UISlider) {
@@ -94,12 +118,40 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
     @IBAction func selectOption(_ sender: UISegmentedControl) {
         SoundManager.clickEffect()
         
-        if sender.selectedSegmentIndex == 0 {
-            self.gameSetView.isHidden = false
-            self.userSetView.isHidden = true
-        } else {
-            self.gameSetView.isHidden = true
-            self.userSetView.isHidden = false
+        switch sender.selectedSegmentIndex {
+        case 0:
+            DispatchQueue.main.async {
+                self.styledViews.forEach {
+                    $0.neumorphicLayer?.depthType = .convex
+                }
+                
+                self.oneLabel.text = "배경음악"
+                self.twoLabel.text = "효과음"
+                self.threeLabel.text = "화면 회전 잠금"
+                self.fourLabel.text = "최고 점수"
+                self.fiveLabel.text = "플레이 횟수"
+                
+                self.gameSetArray.forEach { $0.isHidden = false }
+                self.userSetArray.forEach { $0.isHidden = true }
+            }
+        case 1:
+            DispatchQueue.main.async {
+                self.styledViews.forEach {
+                    $0.neumorphicLayer?.depthType = .concave
+                }
+                
+                self.oneLabel.text = "이메일"
+                self.twoLabel.text = "비밀번호"
+                self.threeLabel.text = "프로필 사진"
+                self.fourLabel.text = "닉네임"
+                self.fiveLabel.text = "랭킹"
+                
+                self.gameSetArray.forEach { $0.isHidden = true }
+                self.userSetArray.forEach { $0.isHidden = false }
+            }
+        default:
+            print("Error: Unknowned setting index")
+            break
         }
     }
     
@@ -151,8 +203,6 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
             let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
             userInfoRef.updateChildValues(UserInfo.toName(name: nameTextfield.text!))
         }
-        
-        statusLabel.text = "User info changed"
         
     }
     

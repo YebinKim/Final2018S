@@ -12,6 +12,9 @@ import Firebase
 
 class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    @IBOutlet weak var pauseButton: StyledButton!
+    @IBOutlet weak var backButton: StyledButton!
+    
     @IBOutlet weak var blockCollectionView: UICollectionView!
     
     @IBOutlet weak var menuView: UIView!
@@ -32,8 +35,12 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet var missionLabel5: UILabel!
     @IBOutlet var missionLabel6: UILabel!
     
-    @IBOutlet var timerLabel: UILabel!
-    @IBOutlet var scoreLabel: UILabel!
+    @IBOutlet weak var timerView: StyledView!
+    @IBOutlet weak var timerLabel: UILabel!
+    
+    @IBOutlet weak var scoreView: StyledView!
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     @IBOutlet var resultView: UIView!
     @IBOutlet var resultLabel: UILabel!
     
@@ -88,6 +95,8 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         level = nil
         
         levelPicker.selectRow(2, inComponent: 0, animated: false)
+        
+        applyStyled()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -143,6 +152,20 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     private func initializeABlockCollectionView() {
         blockCollectionView.delegate = self
         blockCollectionView.dataSource = self
+    }
+    
+    private func applyStyled() {
+        pauseButton.neumorphicLayer?.cornerRadius = 12
+        pauseButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        backButton.neumorphicLayer?.cornerRadius = 12
+        backButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        timerView.neumorphicLayer?.cornerRadius = 12
+        timerView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        scoreView.neumorphicLayer?.cornerRadius = 12
+        scoreView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
     }
     
     private func setUserInfo() {

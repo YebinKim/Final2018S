@@ -208,7 +208,7 @@ extension MainViewController: UserInfoCellDelegate, MenuCellDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let settingVC = segue.destination as? SettingViewController {
-            if segue.identifier == "toSettingGame" {
+            if segue.identifier == "toSetting" {
                 settingVC.selectedSegmentIndex = 0
             } else {
                 settingVC.selectedSegmentIndex = 1

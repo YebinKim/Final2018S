@@ -25,6 +25,23 @@ public class StyledView: UIView, StyledElementProtocol {
     
 }
 
+public class StyledLabel: UILabel, StyledElementProtocol {
+    
+    public var neumorphicLayer: StyledLayer? {
+        return layer as? StyledLayer
+    }
+    
+    public override class var layerClass: AnyClass {
+        return StyledLayer.self
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        neumorphicLayer?.update()
+    }
+    
+}
+
 public class StyledButton: UIButton, StyledElementProtocol {
     
     public var neumorphicLayer: StyledLayer? {

@@ -13,7 +13,7 @@ protocol UserInfoCellDelegate {
     
     func alertPresent(_ alert: UIAlertController, animated: Bool)
     func alertDismiss(animated: Bool)
-    func performSegue(withIdentifier: String)
+    func performCellSegue(withIdentifier: String, sender: Any?)
     
 }
 
@@ -78,7 +78,7 @@ class UserInfoCell: UITableViewCell {
     }
     
     @IBAction func settingButtonTapped(_ sender: UIButton) {
-        self.delegate.performSegue(withIdentifier: "toSettingUser")
+        self.delegate.performCellSegue(withIdentifier: "toSetting", sender: "user")
     }
     
 }

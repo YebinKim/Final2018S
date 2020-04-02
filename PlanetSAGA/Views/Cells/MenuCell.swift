@@ -10,7 +10,7 @@ import UIKit
 
 protocol MenuCellDelegate {
     
-    func performSegue(withIdentifier: String)
+    func performCellSegue(withIdentifier: String, sender: Any?)
     
 }
 
@@ -47,11 +47,11 @@ class MenuCell: UITableViewCell {
     func selectedCell(_ row: Int) {
         switch row {
         case 1:
-            self.delegate.performSegue(withIdentifier: "toSettingGame")
+            self.delegate.performCellSegue(withIdentifier: "toSetting", sender: "game")
         case 2:
-            self.delegate.performSegue(withIdentifier: "toRecord")
+            self.delegate.performCellSegue(withIdentifier: "toRecord", sender: nil)
         case 3:
-            self.delegate.performSegue(withIdentifier: "toRanking")
+            self.delegate.performCellSegue(withIdentifier: "toRanking", sender: nil)
         default:
             break
         }

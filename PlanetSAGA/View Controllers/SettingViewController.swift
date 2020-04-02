@@ -54,6 +54,7 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
         super.viewDidLoad()
         
         settingSegment.selectedSegmentIndex = selectedSegmentIndex
+        selectOption(settingSegment)
         
         if let user = Auth.auth().currentUser {
             PSDatabase.userInfoRef
@@ -127,7 +128,7 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
                 
                 self.oneLabel.text = "배경음악"
                 self.twoLabel.text = "효과음"
-                self.threeLabel.text = "화면 회전 잠금"
+                self.threeLabel.text = "화면 회전"
                 self.fourLabel.text = "최고 점수"
                 self.fiveLabel.text = "플레이 횟수"
                 

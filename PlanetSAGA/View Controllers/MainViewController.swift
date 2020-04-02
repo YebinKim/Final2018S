@@ -202,13 +202,14 @@ extension MainViewController: UserInfoCellDelegate, MenuCellDelegate {
         self.dismiss(animated: animated)
     }
     
-    func performSegue(withIdentifier: String) {
-        self.performSegue(withIdentifier: withIdentifier, sender: nil)
+    func performCellSegue(withIdentifier: String, sender: Any?) {
+        self.performSegue(withIdentifier: withIdentifier, sender: sender)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let settingVC = segue.destination as? SettingViewController {
-            if segue.identifier == "toSetting" {
+        if let settingVC = segue.destination as? SettingViewController,
+            let sender = sender as? String {
+            if sender == "game" {
                 settingVC.selectedSegmentIndex = 0
             } else {
                 settingVC.selectedSegmentIndex = 1

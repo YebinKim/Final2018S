@@ -25,13 +25,17 @@ class BlockCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        initializeBlockImage()
         addGestureRecognizers()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        initializeBlockImage()
+    }
+    
     private func initializeBlockImage() {
-        let randNum = Int.random(in: 0...5)
-        blockButton.setImage(Properties.blockImages[randNum], for: .normal)
+        blockButton.setTitle("", for: .normal)
     }
     
     private func addGestureRecognizers() {

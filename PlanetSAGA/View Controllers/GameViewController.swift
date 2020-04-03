@@ -38,8 +38,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet weak var timerView: StyledView!
     @IBOutlet weak var timerLabel: UILabel!
     
-    @IBOutlet weak var scoreView: StyledView!
-    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var scoreStackView: UIStackView!
     
     @IBOutlet var resultView: UIView!
     @IBOutlet var resultLabel: UILabel!
@@ -48,7 +47,10 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet var levelLabel: UILabel!
     @IBOutlet var levelView: UIView!
     var level: Int?
-    var subBlock: UIImage?
+    //    var subBlock: UIImage?
+    var subBlock: String?
+    
+    var blockArray: [String?] = (0...80).map { _ in String(Int.random(in: 0...5))}
     
     private lazy var dimmedView: UIView = {
         let dimmedView = UIView(frame: self.view.frame)
@@ -78,17 +80,17 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         
         initializeMenuView()
         initializeMenuTableView()
-        initializedimmedView()
+        initializeDimmedView()
         
         transitioningDelegate = self
-        initializeABlockCollectionView()
+        initializeBlockCollectionView()
         
-        missionImage1.image = Properties.blockImages[0]
-        missionImage2.image = Properties.blockImages[1]
-        missionImage3.image = Properties.blockImages[2]
-        missionImage4.image = Properties.blockImages[3]
-        missionImage5.image = Properties.blockImages[4]
-        missionImage6.image = Properties.blockImages[5]
+        //        missionImage1.image = Properties.blockImages[0]
+        //        missionImage2.image = Properties.blockImages[1]
+        //        missionImage3.image = Properties.blockImages[2]
+        //        missionImage4.image = Properties.blockImages[3]
+        //        missionImage5.image = Properties.blockImages[4]
+        //        missionImage6.image = Properties.blockImages[5]
         
         resultView.isHidden = true
         levelView.isHidden = false
@@ -106,12 +108,13 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         alignedVert()
         
         while checkSpace()  {
+            fillUpBlock()
             alignedHorz()
             alignedVert()
         }
         
         score = 0
-        scoreLabel.text = String(score)
+        //        scoreLabel.text = String(score)
         
         missionArray.append(missionLabel1)
         missionArray.append(missionLabel2)
@@ -141,7 +144,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         menuTableView.tableFooterView = UIView()
     }
     
-    private func initializedimmedView() {
+    private func initializeDimmedView() {
         self.view.addSubview(dimmedView)
         self.view.bringSubviewToFront(self.menuView)
         
@@ -149,7 +152,7 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         dimmedView.addGestureRecognizer(tapGesture)
     }
     
-    private func initializeABlockCollectionView() {
+    private func initializeBlockCollectionView() {
         blockCollectionView.delegate = self
         blockCollectionView.dataSource = self
     }
@@ -164,8 +167,8 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         timerView.neumorphicLayer?.cornerRadius = 12
         timerView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
         
-        scoreView.neumorphicLayer?.cornerRadius = 12
-        scoreView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        //        scoreView.neumorphicLayer?.cornerRadius = 12
+        //        scoreView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
     }
     
     private func setUserInfo() {
@@ -245,14 +248,8 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     func alignedHorz() {
         for m in 0...8 {
             for j in (9 * m)...((9 * m) + 7) {
-                let beforeIndex = IndexPath(item: j, section: 0)
-                let beforeCell = blockCollectionView.cellForItem(at: beforeIndex) as? BlockCollectionViewCell
-                
                 for i in j + 1...((9 * m) + 8) {
-                    let curIndex = IndexPath(item: i, section: 0)
-                    let curCell = blockCollectionView.cellForItem(at: curIndex) as? BlockCollectionViewCell
-                    
-                    if beforeCell?.blockButton.image(for: .normal) == curCell?.blockButton.image(for: .normal) {
+                    if blockArray[j] == blockArray[i] {
                         streak += 1
                     } else {
                         break
@@ -260,18 +257,16 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                 }
                 
                 if streak >= 2 {
-                    subBlock = beforeCell?.blockButton.image(for: .normal)
+                    subBlock = blockArray[j]
                     for k in 0 ... streak {
                         if let _ = level {
                             subMission()
                         }
                         
-                        let changeIndex = IndexPath(item: j + k, section: 0)
-                        let changeCell = blockCollectionView.cellForItem(at: changeIndex) as? BlockCollectionViewCell
-                        changeCell?.blockButton.setImage(nil, for: .normal)
+                        blockArray[j + k] = nil
                         
                         score += 250
-                        scoreLabel.text = String(score)
+                        //                        scoreLabel.text = String(score)
                     }
                 }
                 streak = 0
@@ -288,15 +283,10 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             j = 9 * m
             
             while j <= (9 * m) + 8 {
-                let beforeIndex = IndexPath(item: j, section: 0)
-                let beforeCell = blockCollectionView.cellForItem(at: beforeIndex) as? BlockCollectionViewCell
-                
                 i = j + 9
-                let curIndex = IndexPath(item: i, section: 0)
-                let curCell = blockCollectionView.cellForItem(at: curIndex) as? BlockCollectionViewCell
                 
                 while i <= 80 {
-                    if beforeCell?.blockButton.image(for: .normal) == curCell?.blockButton.image(for: .normal) {
+                    if blockArray[j] == blockArray[i] {
                         streak += 1
                     } else {
                         break
@@ -304,18 +294,17 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
                     i += 9
                 }
                 if streak >= 2 {
-                    subBlock = beforeCell?.blockButton.image(for: .normal)
+                    //                    subBlock = beforeCell?.blockButton.image(for: .normal)
+                    subBlock = blockArray[j]
                     for k in 0 ... streak {
                         if let _ = level {
                             subMission()
                         }
                         
-                        let changeIndex = IndexPath(item: j + (k * 9), section: 0)
-                        let changeCell = blockCollectionView.cellForItem(at: changeIndex) as? BlockCollectionViewCell
-                        changeCell?.blockButton.setImage(nil, for: .normal)
+                        blockArray[j + (k * 9)] = nil
                         
                         score += 250
-                        scoreLabel.text = String(score)
+                        //                        scoreLabel.text = String(score)
                     }
                 }
                 streak = 0
@@ -325,36 +314,35 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         }
     }
     
-    func fillUpBlock(_ block: UIButton?) {
-        let randNum = Int.random(in: 0...5)
-        block?.setImage(Properties.blockImages[randNum], for: .normal)
+    func fillUpBlock() {
+        for (index, block) in blockArray.enumerated() {
+            if block == nil {
+                fillUpBlock(index: index)
+            }
+        }
     }
     
-    func fillUpBlock(index: IndexPath) {
-        var curIndex = index
-        var beforeIndex = IndexPath(item: curIndex.row - 9, section: 0)
+    func fillUpBlock(index curIndex: Int) {
+        let upIndex = curIndex - 9
         
-        while let beforeCell = blockCollectionView.cellForItem(at: curIndex) as? BlockCollectionViewCell
-            , let curCell = blockCollectionView.cellForItem(at: curIndex) as? BlockCollectionViewCell {
-                curCell.blockButton.imageView?.image = beforeCell.blockButton.image(for: .normal)
-                
-                curIndex = beforeIndex
-                beforeIndex = IndexPath(item: curIndex.row - 9, section: 0)
+        if upIndex > 0 {
+            blockArray[curIndex] = blockArray[upIndex]
+            
+            fillUpBlock(index: upIndex)
+        } else {
+            let randNum = Int.random(in: 0...5)
+            blockArray[curIndex] = String(randNum)
         }
-        
-        let curCell = blockCollectionView.cellForItem(at: curIndex) as? BlockCollectionViewCell
-        fillUpBlock(curCell?.blockButton)
     }
     
     func checkSpace() -> Bool {
-        guard let visibleCells = blockCollectionView.visibleCells as? [BlockCollectionViewCell] else { return false }
-        
-        for cell in visibleCells {
-            if cell.blockButton.image(for: .normal) == nil {
-                fillUpBlock(cell.blockButton)
+        for block in blockArray {
+            if block == nil {
                 return true
             }
         }
+        
+        blockCollectionView.reloadData()
         
         return false
     }
@@ -412,31 +400,31 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     func subMission() {
-        if subBlock == Properties.blockImages[0] {
-            if Int((missionArray[0]?.text)!)! > 0 {
-                missionArray[0]?.text = String(Int((missionArray[0]?.text!)!)! - 1)
-            }
-        } else if subBlock == Properties.blockImages[1] {
-            if Int((missionArray[1]?.text)!)! > 0 {
-                missionArray[1]?.text = String(Int((missionArray[1]?.text!)!)! - 1)
-            }
-        } else if subBlock == Properties.blockImages[2] {
-            if Int((missionArray[2]?.text)!)! > 0 {
-                missionArray[2]?.text = String(Int((missionArray[2]?.text!)!)! - 1)
-            }
-        } else if subBlock == Properties.blockImages[3] {
-            if Int((missionArray[3]?.text)!)! > 0 {
-                missionArray[3]?.text = String(Int((missionArray[3]?.text!)!)! - 1)
-            }
-        } else if subBlock == Properties.blockImages[4] {
-            if Int((missionArray[4]?.text)!)! > 0 {
-                missionArray[4]?.text = String(Int((missionArray[4]?.text!)!)! - 1)
-            }
-        } else if subBlock == Properties.blockImages[5] {
-            if Int((missionArray[5]?.text)!)! > 0 {
-                missionArray[5]?.text = String(Int((missionArray[5]?.text!)!)! - 1)
-            }
-        }
+        //        if subBlock == Properties.blockImages[0] {
+        //            if Int((missionArray[0]?.text)!)! > 0 {
+        //                missionArray[0]?.text = String(Int((missionArray[0]?.text!)!)! - 1)
+        //            }
+        //        } else if subBlock == Properties.blockImages[1] {
+        //            if Int((missionArray[1]?.text)!)! > 0 {
+        //                missionArray[1]?.text = String(Int((missionArray[1]?.text!)!)! - 1)
+        //            }
+        //        } else if subBlock == Properties.blockImages[2] {
+        //            if Int((missionArray[2]?.text)!)! > 0 {
+        //                missionArray[2]?.text = String(Int((missionArray[2]?.text!)!)! - 1)
+        //            }
+        //        } else if subBlock == Properties.blockImages[3] {
+        //            if Int((missionArray[3]?.text)!)! > 0 {
+        //                missionArray[3]?.text = String(Int((missionArray[3]?.text!)!)! - 1)
+        //            }
+        //        } else if subBlock == Properties.blockImages[4] {
+        //            if Int((missionArray[4]?.text)!)! > 0 {
+        //                missionArray[4]?.text = String(Int((missionArray[4]?.text!)!)! - 1)
+        //            }
+        //        } else if subBlock == Properties.blockImages[5] {
+        //            if Int((missionArray[5]?.text)!)! > 0 {
+        //                missionArray[5]?.text = String(Int((missionArray[5]?.text!)!)! - 1)
+        //            }
+        //        }
     }
     
     func checkMission() -> Bool {
@@ -518,6 +506,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell: BlockCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: BlockCollectionViewCell.identifier,
                                                                                for: indexPath) as! BlockCollectionViewCell
         cell.delegate = self
+        cell.blockButton.setTitle(blockArray[indexPath.row], for: .normal)
         
         return cell
     }
@@ -528,44 +517,45 @@ extension GameViewController: BlockCollectionViewCellDelegate {
     
     func swipeBlock(_ selectBlock: UIButton, direction: UISwipeGestureRecognizer.Direction) {
         guard !timerFlag,
-            let indexPath = blockCollectionView.indexPathForItem(at: blockCollectionView.convert(selectBlock.center,
-                                                                                                 from: selectBlock.superview)) else { return }
-        
-        var subBlockIndex: IndexPath?
+            let selectIndex = blockCollectionView.indexPathForItem(at: blockCollectionView
+                                                                                .convert(selectBlock.center,
+                                                                                         from: selectBlock.superview)) else { return }
+        var subIndex: IndexPath?
         
         switch direction {
         case .right:
-            subBlockIndex = IndexPath(item: indexPath.row + 1, section: 0)
+            subIndex = IndexPath(item: selectIndex.row + 1, section: 0)
         case .left:
-            subBlockIndex = IndexPath(item: indexPath.row - 1, section: 0)
+            subIndex = IndexPath(item: selectIndex.row - 1, section: 0)
         case .up:
-            subBlockIndex = IndexPath(item: indexPath.row - 9, section: 0)
+            subIndex = IndexPath(item: selectIndex.row - 9, section: 0)
         case .down:
-            subBlockIndex = IndexPath(item: indexPath.row + 9, section: 0)
+            subIndex = IndexPath(item: selectIndex.row + 9, section: 0)
         default:
             print("Undetectable swipe direction")
         }
         
-        if let index = subBlockIndex,
-            let subBlockCell = blockCollectionView?.cellForItem(at: index) as? BlockCollectionViewCell {
-            playBlockAction(selectBlock: selectBlock, subBlock: subBlockCell.blockButton)
+        if let subIndex = subIndex {
+            playBlockAction(selectIndex: selectIndex, subIndex: subIndex)
             print("Move Success")
         } else {
             print("Move Fail")
         }
+        
     }
     
-    private func playBlockAction(selectBlock select: UIButton, subBlock sub: UIButton) {
-        guard let selectImage = select.image(for: .normal),
-            let subImage = sub.image(for: .normal) else { return }
+    private func playBlockAction(selectIndex select: IndexPath, subIndex sub: IndexPath) {
+        blockArray.swapAt(select.row, sub.row)
         
-        sub.setImage(selectImage, for: UIControl.State.normal)
-        select.setImage(subImage, for: UIControl.State.normal)
+        DispatchQueue.main.async {
+            self.blockCollectionView.reloadItems(at: [select, sub])
+        }
         
         alignedHorz()
         alignedVert()
         
         while checkSpace() {
+            fillUpBlock()
             alignedHorz()
             alignedVert()
         }

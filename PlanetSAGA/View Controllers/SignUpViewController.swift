@@ -11,19 +11,89 @@ import Firebase
 
 class SignUpViewController: UIViewController {
     
-    @IBOutlet var emailTextfield: UITextField!
-    @IBOutlet var pwTextfield: UITextField!
-    @IBOutlet var nameTextfield: UITextField!
-    @IBOutlet var statusLabel: UILabel!
+    @IBOutlet weak var backButton: StyledButton!
+    
+    @IBOutlet weak var titleView: StyledView!
+    
+    @IBOutlet weak var inputFieldView: StyledView!
+    @IBOutlet weak var emailTextfield: UITextField!
+    @IBOutlet weak var pwTextfield: UITextField!
+    @IBOutlet weak var nameTextfield: UITextField!
+    @IBOutlet weak var signUpButton: StyledButton!
+    
+    @IBOutlet weak var statusView: StyledView!
+    @IBOutlet weak var statusLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initializeEmailTextField()
+        initializePwTextField()
+        initializeNameTextField()
+        
+        applyStyled()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        resetStatus()
+    }
+    
+    private func initializeEmailTextField() {
+        emailTextfield.delegate = self
+        emailTextfield.text = ""
+    }
+    
+    private func initializePwTextField() {
+        pwTextfield.delegate = self
+        pwTextfield.text = ""
+    }
+    
+    private func initializeNameTextField() {
+        nameTextfield.delegate = self
+        nameTextfield.text = ""
+    }
+    
+    private func resetStatus() {
+        statusView.isHidden = true
+        statusLabel.isHidden = true
         statusLabel.text = ""
+    }
+    
+    private func applyStyled() {
+        backButton.neumorphicLayer?.cornerRadius = 12
+        backButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        titleView.neumorphicLayer?.cornerRadius = 12
+        titleView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        signUpButton.neumorphicLayer?.cornerRadius = 12
+        signUpButton.neumorphicLayer?.elementBackgroundColor = signUpButton.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        inputFieldView.neumorphicLayer?.cornerRadius = 12
+        inputFieldView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        statusView.neumorphicLayer?.cornerRadius = 12
+        statusView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        statusView.neumorphicLayer?.elementDepth = 0
+    }
+    
+    private func playStatusAnimation() {
+        playStatusAnimation(depthType: .convex)
+    }
+    
+    private func playStatusAnimation(depthType: StyledLayerDepthType) {
+        statusView.isHidden = false
+        statusView.neumorphicLayer?.depthType = depthType
+        statusView.neumorphicLayer?.elementDepth = 5
+        
+        statusLabel.isHidden = false
+        statusLabel.alpha = 0
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.statusLabel.alpha = 1
+        })
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -36,21 +106,35 @@ class SignUpViewController: UIViewController {
         
         // 필요한 세 가지 자료가 모두 입력 되었는지 확인
         if emailTextfield.text == "" {
-            statusLabel.text = "Insert ID"
+            DispatchQueue.main.async {
+                self.statusLabel.text = "이메일 아이디를 입력해 주세요"
+                self.playStatusAnimation()
+            }
             return
         }
         if pwTextfield.text == "" {
-            statusLabel.text = "Insert Password"
+            DispatchQueue.main.async {
+                self.statusLabel.text = "비밀번호를 입력해 주세요"
+                self.playStatusAnimation()
+            }
             return
         }
         if nameTextfield.text == "" {
-            statusLabel.text = "Insert Name"
+            DispatchQueue.main.async {
+                self.statusLabel.text = "닉네임을 입력해 주세요"
+                self.playStatusAnimation()
+            }
             return
         }
         
         guard let email = emailTextfield.text,
             let password = pwTextfield.text,
             let name = nameTextfield.text else { return }
+        
+        DispatchQueue.main.async {
+            self.statusLabel.text = "SignUp Success :D"
+            self.playStatusAnimation(depthType: .concave)
+        }
         
         OnlineManager.createUser(email: email, password: password, name: name) { error in
             if let error = error {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,19 +17,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="37.5" height="37.5"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKU-u8-dDi">
-                        <rect key="frame" x="0.0" y="0.0" width="37.5" height="37.5"/>
-                        <connections>
-                            <action selector="blockButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="yrD-Fc-s6c"/>
-                        </connections>
+                    <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKU-u8-dDi" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
+                        <rect key="frame" x="4" y="4" width="29.5" height="29.5"/>
+                        <color key="tintColor" name="color_main"/>
                     </button>
                 </subviews>
             </view>
+            <color key="backgroundColor" name="color_back"/>
             <constraints>
-                <constraint firstItem="rKU-u8-dDi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6pJ-70-DVQ"/>
-                <constraint firstItem="rKU-u8-dDi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JzW-xt-Ld5"/>
-                <constraint firstAttribute="bottom" secondItem="rKU-u8-dDi" secondAttribute="bottom" id="NG0-I8-hZf"/>
-                <constraint firstAttribute="trailing" secondItem="rKU-u8-dDi" secondAttribute="trailing" id="tst-Zg-M6h"/>
+                <constraint firstItem="rKU-u8-dDi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="6pJ-70-DVQ"/>
+                <constraint firstItem="rKU-u8-dDi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="JzW-xt-Ld5"/>
+                <constraint firstAttribute="bottom" secondItem="rKU-u8-dDi" secondAttribute="bottom" constant="4" id="NG0-I8-hZf"/>
+                <constraint firstAttribute="trailing" secondItem="rKU-u8-dDi" secondAttribute="trailing" constant="4" id="tst-Zg-M6h"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
@@ -38,4 +37,12 @@
             <point key="canvasLocation" x="114.49275362318842" y="127.23214285714285"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <namedColor name="color_back">
+            <color red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="color_main">
+            <color red="0.45098039215686275" green="0.3411764705882353" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

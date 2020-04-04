@@ -12,12 +12,21 @@ import Firebase
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var signButton: UIButton!
+    @IBOutlet weak var playButton: StyledButton!
+    @IBOutlet weak var signButton: StyledButton!
+    @IBOutlet weak var menuButton: StyledButton!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var menuTableView: UITableView!
     @IBOutlet weak var menuViewLeadingConstraint: NSLayoutConstraint!
     
-    private var backView: UIView!
+    private lazy var dimmedView: UIView = {
+        let dimmedView = UIView(frame: self.view.frame)
+        dimmedView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        dimmedView.isHidden = true
+        dimmedView.alpha = 0.0
+        
+        return dimmedView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +37,9 @@ class MainViewController: UIViewController {
         
         initializeMenuView()
         initializeMenuTableView()
-        initializeBackView()
+        initializeDimmedView()
+        
+        applyStyled()
         
         updateView()
     }
@@ -66,25 +77,32 @@ class MainViewController: UIViewController {
         menuTableView.tableFooterView = UIView()
     }
     
-    private func initializeBackView() {
-        backView = UIView(frame: self.view.frame)
-        backView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        backView.isHidden = true
-        backView.alpha = 0.0
-        self.view.addSubview(backView)
-        self.view.bringSubview(toFront: self.menuView)
+    private func initializeDimmedView() {
+        self.view.addSubview(dimmedView)
+        self.view.bringSubviewToFront(self.menuView)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissMenuView))
-        backView.addGestureRecognizer(tapGesture)
+        dimmedView.addGestureRecognizer(tapGesture)
+    }
+    
+    private func applyStyled() {
+        playButton.neumorphicLayer?.cornerRadius = 12
+        playButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        signButton.neumorphicLayer?.cornerRadius = 12
+        signButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        menuButton.neumorphicLayer?.cornerRadius = 12
+        menuButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
     }
     
     @IBAction func menuButtonTapped(_ sender: UIButton) {
         menuViewLeadingConstraint.constant = 0
-        backView.isHidden = false
+        dimmedView.isHidden = false
         
         UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
             self.view.layoutIfNeeded()
-            self.backView.alpha = 1.0
+            self.dimmedView.alpha = 1.0
         })
     }
     
@@ -111,32 +129,22 @@ class MainViewController: UIViewController {
     @objc func updateView() {
         if OnlineManager.online {
             DispatchQueue.main.async {
-                if #available(iOS 13.0, *) {
-                    self.signButton.setImage(UIImage(systemName: "person.badge.minus"), for: .normal)
-                } else {
-                    self.signButton.setImage(nil, for: .normal)
-                    self.signButton.setTitle("SignOut", for: .normal)
-                }
+                self.signButton.setImage(UIImage(systemName: "person.badge.minus"), for: .normal)
             }
         } else {
             DispatchQueue.main.async {
-                if #available(iOS 13.0, *) {
-                    self.signButton.setImage(UIImage(systemName: "person.badge.plus"), for: .normal)
-                } else {
-                    self.signButton.setImage(nil, for: .normal)
-                    self.signButton.setTitle("SignIn", for: .normal)
-                }
+                self.signButton.setImage(UIImage(systemName: "person.badge.plus"), for: .normal)
             }
         }
     }
     
     @objc func dismissMenuView(sender: UITapGestureRecognizer) {
         menuViewLeadingConstraint.constant = -self.menuView.frame.width
-        backView.isHidden = true
+        dimmedView.isHidden = true
         
         UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
             self.view.layoutIfNeeded()
-            self.backView.alpha = 0.0
+            self.dimmedView.alpha = 0.0
         })
     }
     
@@ -194,13 +202,14 @@ extension MainViewController: UserInfoCellDelegate, MenuCellDelegate {
         self.dismiss(animated: animated)
     }
     
-    func performSegue(withIdentifier: String) {
-        self.performSegue(withIdentifier: withIdentifier, sender: nil)
+    func performCellSegue(withIdentifier: String, sender: Any?) {
+        self.performSegue(withIdentifier: withIdentifier, sender: sender)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let settingVC = segue.destination as? SettingViewController {
-            if segue.identifier == "toSettingGame" {
+        if let settingVC = segue.destination as? SettingViewController,
+            let sender = sender as? String {
+            if sender == "game" {
                 settingVC.selectedSegmentIndex = 0
             } else {
                 settingVC.selectedSegmentIndex = 1

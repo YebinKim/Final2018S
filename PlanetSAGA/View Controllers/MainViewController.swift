@@ -37,7 +37,7 @@ class MainViewController: UIViewController {
         
         initializeMenuView()
         initializeMenuTableView()
-        initializedimmedView()
+        initializeDimmedView()
         
         applyStyled()
         
@@ -77,7 +77,7 @@ class MainViewController: UIViewController {
         menuTableView.tableFooterView = UIView()
     }
     
-    private func initializedimmedView() {
+    private func initializeDimmedView() {
         self.view.addSubview(dimmedView)
         self.view.bringSubviewToFront(self.menuView)
         

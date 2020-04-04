@@ -18,13 +18,14 @@ class BlockCollectionViewCell: UICollectionViewCell {
     
     static let identifier: String = "blockCollectionViewCell"
     
-    @IBOutlet weak var blockButton: UIButton!
+    @IBOutlet weak var blockButton: StyledButton!
     
     var delegate: BlockCollectionViewCellDelegate!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        applyStyled()
         addGestureRecognizers()
     }
     
@@ -36,6 +37,11 @@ class BlockCollectionViewCell: UICollectionViewCell {
     
     private func initializeBlockImage() {
         blockButton.setTitle("", for: .normal)
+    }
+    
+    private func applyStyled() {
+        blockButton.neumorphicLayer?.cornerRadius = 12
+        blockButton.neumorphicLayer?.elementBackgroundColor = self.backgroundColor?.cgColor ?? UIColor.white.cgColor
     }
     
     private func addGestureRecognizers() {

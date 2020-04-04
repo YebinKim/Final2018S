@@ -10,47 +10,39 @@ import UIKit
 import CoreData
 import Firebase
 
-class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class GameViewController: UIViewController {
     
     @IBOutlet weak var pauseButton: StyledButton!
     @IBOutlet weak var backButton: StyledButton!
     
     @IBOutlet weak var blockCollectionView: UICollectionView!
     
-    @IBOutlet weak var menuView: UIView!
-    @IBOutlet weak var menuTableView: UITableView!
-    @IBOutlet weak var menuViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var missionView: StyledView!
     
-    @IBOutlet var missionImage1: UIImageView!
-    @IBOutlet var missionImage2: UIImageView!
-    @IBOutlet var missionImage3: UIImageView!
-    @IBOutlet var missionImage4: UIImageView!
-    @IBOutlet var missionImage5: UIImageView!
-    @IBOutlet var missionImage6: UIImageView!
+    @IBOutlet weak var missionImage1: UIImageView!
+    @IBOutlet weak var missionImage2: UIImageView!
+    @IBOutlet weak var missionImage3: UIImageView!
+    @IBOutlet weak var missionImage4: UIImageView!
+    @IBOutlet weak var missionImage5: UIImageView!
+    @IBOutlet weak var missionImage6: UIImageView!
     
-    @IBOutlet var missionLabel1: UILabel!
-    @IBOutlet var missionLabel2: UILabel!
-    @IBOutlet var missionLabel3: UILabel!
-    @IBOutlet var missionLabel4: UILabel!
-    @IBOutlet var missionLabel5: UILabel!
-    @IBOutlet var missionLabel6: UILabel!
+    @IBOutlet weak var missionLabel1: UILabel!
+    @IBOutlet weak var missionLabel2: UILabel!
+    @IBOutlet weak var missionLabel3: UILabel!
+    @IBOutlet weak var missionLabel4: UILabel!
+    @IBOutlet weak var missionLabel5: UILabel!
+    @IBOutlet weak var missionLabel6: UILabel!
     
     @IBOutlet weak var timerView: StyledView!
     @IBOutlet weak var timerLabel: UILabel!
     
-    @IBOutlet weak var scoreStackView: UIStackView!
-    
-    @IBOutlet var resultView: UIView!
+    @IBOutlet var resultView: StyledView!
     @IBOutlet var resultLabel: UILabel!
     
     @IBOutlet var levelPicker: UIPickerView!
     @IBOutlet var levelLabel: UILabel!
     @IBOutlet var levelView: UIView!
     var level: Int?
-    //    var subBlock: UIImage?
-    var subBlock: String?
-    
-    var blockArray: [String?] = (0...80).map { _ in String(Int.random(in: 0...5))}
     
     private lazy var dimmedView: UIView = {
         let dimmedView = UIView(frame: self.view.frame)
@@ -61,15 +53,53 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         return dimmedView
     }()
     
-    var missionArray: Array<UILabel?> = []
+    private lazy var scoreStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        stackView.alignment = .center
+        stackView.spacing = 8
+        stackView.distribution = .equalSpacing
+        stackView.axis = .horizontal
+        
+        return stackView
+    }()
     
-    var streak: Int = 0
-    var score: Int = 0
+    private var scoreSubLabels: [CountDownLabel] = []
     
-    var timer: Timer?
-    //    var count = 20
-    var count = 999
-    var timerFlag: Bool = true
+    private var scoreSubLabel: CountDownLabel {
+        let label = CountDownLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.textColor = UIColor(named: "color_main")
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        
+        return label
+    }
+    
+    private var scoreSubView: StyledView {
+        let view = StyledView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        view.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        view.neumorphicLayer?.cornerRadius = 12
+        view.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        return view
+    }
+    
+    private var blockArray: [Int?] = (0...80).map { _ in Int.random(in: 0...5)}
+    
+    private var missionArray: Array<UILabel?> = []
+    
+    private var streak: Int = 0
+    private var score: Int = 0
+    
+    private var count = 20
+    private var timer: Timer?
+    private var timerFlag: Bool = false
     
     private var touchPoint: CGPoint?
     
@@ -78,25 +108,17 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         
         registerCell()
         
-        initializeMenuView()
-        initializeMenuTableView()
-        initializeDimmedView()
-        
         transitioningDelegate = self
-        initializeBlockCollectionView()
         
-        //        missionImage1.image = Properties.blockImages[0]
-        //        missionImage2.image = Properties.blockImages[1]
-        //        missionImage3.image = Properties.blockImages[2]
-        //        missionImage4.image = Properties.blockImages[3]
-        //        missionImage5.image = Properties.blockImages[4]
-        //        missionImage6.image = Properties.blockImages[5]
+        initializeBlockCollectionView()
+        initializeDimmedView()
+        initializeScoreStackView()
+        initializeMissionView()
+        initializeLevelPicker()
         
         resultView.isHidden = true
         levelView.isHidden = false
         level = nil
-        
-        levelPicker.selectRow(2, inComponent: 0, animated: false)
         
         applyStyled()
     }
@@ -112,9 +134,38 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             alignedHorz()
             alignedVert()
         }
+    }
+    
+    private func registerCell() {
+        let blockCellNib = UINib(nibName: String(describing: BlockCollectionViewCell.self), bundle: nil)
+        blockCollectionView.register(blockCellNib, forCellWithReuseIdentifier: BlockCollectionViewCell.identifier)
+    }
+    
+    private func initializeBlockCollectionView() {
+        blockCollectionView.delegate = self
+        blockCollectionView.dataSource = self
+    }
+    
+    private func initializeDimmedView() {
+        self.view.addSubview(dimmedView)
         
-        score = 0
-        //        scoreLabel.text = String(score)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissMenuView))
+        dimmedView.addGestureRecognizer(tapGesture)
+    }
+    
+    private func initializeScoreStackView() {
+        self.view.addSubview(scoreStackView)
+        scoreStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        scoreStackView.topAnchor.constraint(equalTo: self.timerView.bottomAnchor, constant: 64).isActive = true
+    }
+    
+    private func initializeMissionView() {
+        missionImage1.image = Properties.blockImages[0]
+        missionImage2.image = Properties.blockImages[1]
+        missionImage3.image = Properties.blockImages[2]
+        missionImage4.image = Properties.blockImages[3]
+        missionImage5.image = Properties.blockImages[4]
+        missionImage6.image = Properties.blockImages[5]
         
         missionArray.append(missionLabel1)
         missionArray.append(missionLabel2)
@@ -124,37 +175,9 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         missionArray.append(missionLabel6)
     }
     
-    private func registerCell() {
-        let blockCellNib = UINib(nibName: String(describing: BlockCollectionViewCell.self), bundle: nil)
-        blockCollectionView.register(blockCellNib, forCellWithReuseIdentifier: BlockCollectionViewCell.identifier)
-    }
-    
-    private func initializeMenuView() {
-        menuView.translatesAutoresizingMaskIntoConstraints = false
-        menuView.roundCorners(corners: [.topRight, .bottomRight], radius: menuView.frame.width / 10)
-        
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(dismissMenuView))
-        swipeGesture.direction = .left
-        menuView.addGestureRecognizer(swipeGesture)
-    }
-    
-    private func initializeMenuTableView() {
-        menuTableView.delegate = self
-        menuTableView.dataSource = self
-        menuTableView.tableFooterView = UIView()
-    }
-    
-    private func initializeDimmedView() {
-        self.view.addSubview(dimmedView)
-        self.view.bringSubviewToFront(self.menuView)
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissMenuView))
-        dimmedView.addGestureRecognizer(tapGesture)
-    }
-    
-    private func initializeBlockCollectionView() {
-        blockCollectionView.delegate = self
-        blockCollectionView.dataSource = self
+    private func initializeLevelPicker() {
+        levelPicker.setValue(UIColor(named: "color_back"), forKeyPath: "textColor")
+        levelPicker.selectRow(2, inComponent: 0, animated: false)
     }
     
     private func applyStyled() {
@@ -167,8 +190,27 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         timerView.neumorphicLayer?.cornerRadius = 12
         timerView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
         
-        //        scoreView.neumorphicLayer?.cornerRadius = 12
-        //        scoreView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        missionView.neumorphicLayer?.cornerRadius = 12
+        missionView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        
+        resultView.neumorphicLayer?.cornerRadius = 12
+        resultView.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        resultView.neumorphicLayer?.elementDepth = 0
+    }
+    
+    private func addScoreStackView() {
+        let newScoreSubView = scoreSubView
+        let newScoreSubLabel = scoreSubLabel
+        
+        scoreStackView.addArrangedSubview(newScoreSubView)
+        newScoreSubView.addSubview(newScoreSubLabel)
+        
+        newScoreSubLabel.topAnchor.constraint(equalTo: newScoreSubView.topAnchor).isActive = true
+        newScoreSubLabel.bottomAnchor.constraint(equalTo: newScoreSubView.bottomAnchor).isActive = true
+        newScoreSubLabel.leadingAnchor.constraint(equalTo: newScoreSubView.leadingAnchor).isActive = true
+        newScoreSubLabel.trailingAnchor.constraint(equalTo: newScoreSubView.trailingAnchor).isActive = true
+        
+        scoreSubLabels.append(newScoreSubLabel)
     }
     
     private func setUserInfo() {
@@ -183,27 +225,201 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         }
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 5
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        var tempArray: Array<String?> = Array(repeating: "", count: 5)
+    private func updateServer() {
+        guard let user = Auth.auth().currentUser else { return }
         
-        for i in 1 ... 5 {
-            tempArray[i-1] = String(i)
+        PSDatabase.userInfoRef
+            .queryEqual(toValue: nil, childKey: user.uid)
+            .observeSingleEvent(of: .value, with: { snapshot in
+                guard let child = snapshot.children.allObjects.first,
+                    let snapshot = child as? DataSnapshot,
+                    let userInfo = UserInfo(snapshot: snapshot) else { return }
+                
+                let maxScore = max(userInfo.maxScore, self.score)
+                let playCounts = userInfo.playCounts + 1
+                
+                let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
+                userInfoRef.updateChildValues(UserInfo.toPlayScore(maxScore: maxScore, playCounts: playCounts))
+            })
+    }
+    
+    private func calculateScore() {
+        let scoreString = String(score).map { String($0) }
+        
+        while scoreString.count > scoreSubLabels.count {
+            addScoreStackView()
         }
         
-        return tempArray[row]
+        guard scoreSubLabels.count != 0 else { return }
+        
+        for i in 0..<scoreSubLabels.count {
+            scoreSubLabels[i].text = scoreString[i]
+        }
+    }
+    
+    private func alignedHorz() {
+        for m in 0...8 {
+            for j in (9 * m)...((9 * m) + 7) {
+                for i in j + 1...((9 * m) + 8) {
+                    if blockArray[j] == blockArray[i] {
+                        streak += 1
+                    } else {
+                        break
+                    }
+                }
+                
+                if streak >= 2 {
+                    for k in 0 ... streak {
+                        if let index = blockArray[k], timerFlag {
+                            score += 50
+                            calculateScore()
+                            subMission(index: index)
+                        }
+                        
+                        blockArray[j + k] = nil
+                    }
+                }
+                streak = 0
+            }
+        }
+    }
+    
+    private func alignedVert() {
+        var i: Int = 0
+        var j: Int = 0
+        var m: Int = 0
+        
+        while m <= 8 {
+            j = 9 * m
+            
+            while j <= (9 * m) + 8 {
+                i = j + 9
+                
+                while i <= 80 {
+                    if blockArray[j] == blockArray[i] {
+                        streak += 1
+                    } else {
+                        break
+                    }
+                    i += 9
+                }
+                if streak >= 2 {
+                    for k in 0 ... streak {
+                        if let index = blockArray[k], timerFlag {
+                            score += 50
+                            calculateScore()
+                            subMission(index: index)
+                        }
+                        
+                        blockArray[j + (k * 9)] = nil
+                    }
+                }
+                streak = 0
+                j += 1
+            }
+            m += 1
+        }
+    }
+    
+    private func fillUpBlock() {
+        for (index, block) in blockArray.enumerated() {
+            if block == nil {
+                fillUpBlock(index: index)
+            }
+        }
+    }
+    
+    private func fillUpBlock(index curIndex: Int) {
+        let upIndex = curIndex - 9
+        
+        if upIndex > 0 {
+            blockArray[curIndex] = blockArray[upIndex]
+            
+            fillUpBlock(index: upIndex)
+        } else {
+            let randNum = Int.random(in: 0...5)
+            blockArray[curIndex] = randNum
+        }
+    }
+    
+    private func checkSpace() -> Bool {
+        for block in blockArray {
+            if block == nil {
+                return true
+            }
+        }
+        
+        blockCollectionView.reloadData()
+        
+        return false
+    }
+    
+    private func gameEnd() {
+        timerFlag = false
+        
+        resultView.isHidden = false
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+            self.blockCollectionView.alpha = 0.0
+        }) { _ in
+            self.resultView.neumorphicLayer?.elementDepth = 5
+        }
+        
+        if checkMission() {
+            score += (level! * 5000)
+            resultLabel.text = "미션 클리어 보너스: \(String(level! * 5000))\n\(score) 점을 획득하셨습니다"
+        } else {
+            resultLabel.text = "\(score) 점을 획득하셨습니다"
+        }
+        
+        delay(2) {
+            if let user = Auth.auth().currentUser {
+                let now = Date().timeIntervalSince1970
+                let score = Score(score: self.score, scoreDate: String(now))
+                let scoreRef = PSDatabase.scoreRef.child("\(user.uid)\(Int(now))")
+                scoreRef.setValue(score.toAnyObject())
+                
+                self.updateServer()
+                
+                let alert = UIAlertController(title: "점수 저장", message: "점수가 서버에 저장되었습니다", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                let alert = UIAlertController(title: "게스트 플레이", message: "계정을 만들고 서버에 점수를 저장할까요?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "계정 생성", style: .default, handler: { action in
+                    self.dismiss(animated: true, completion: nil)
+                }))
+                alert.addAction(UIAlertAction(title: "다음에 할게요", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    private func subMission(index: Int) {
+        guard let remainText = missionArray[index]?.text, let remain = Int(remainText) else { return }
+        if remain > 0 {
+            missionArray[index]?.text = String(remain - 1)
+        }
+    }
+    
+    private func checkMission() -> Bool {
+        var check: Bool = false
+        
+        for i in 0 ... 5 {
+            if Int((missionArray[i]?.text!)!)! == 0 {
+                check = true
+            } else {
+                check = false
+                break
+            }
+        }
+        return check
     }
     
     @IBAction func selectLevel(_ sender: UIButton) {
-        levelLabel.text = "Level " + String(levelPicker.selectedRow(inComponent: 0) + 1) + " Start"
-        level = Int(levelPicker.selectedRow(inComponent: 0) + 1)
+        let selectLevel = levelPicker.selectedRow(inComponent: 0) + 1
+        levelLabel.text = "난이도 \(selectLevel) 으로 게임을 시작할까요?"
+        level = selectLevel
         
         if levelPicker.selectedRow(inComponent: 0) == 0 {
             for i in 0 ... 5 {
@@ -233,212 +449,16 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     @IBAction func startButton(_ sender: UIButton) {
-        if let _ = level {
-            timerFlag = false
-            self.startTimer()
+        if level != nil {
+            timerFlag = true
+            startTimer()
             levelView.isHidden = true
         } else {
-            let alert = UIAlertController(title: "Select a level", message: "Select a level \nand press the button", preferredStyle: .alert)
+            let alert = UIAlertController(title: "레벨 미선택", message: "레벨을 선택해주세요", preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
-    }
-    
-    func alignedHorz() {
-        for m in 0...8 {
-            for j in (9 * m)...((9 * m) + 7) {
-                for i in j + 1...((9 * m) + 8) {
-                    if blockArray[j] == blockArray[i] {
-                        streak += 1
-                    } else {
-                        break
-                    }
-                }
-                
-                if streak >= 2 {
-                    subBlock = blockArray[j]
-                    for k in 0 ... streak {
-                        if let _ = level {
-                            subMission()
-                        }
-                        
-                        blockArray[j + k] = nil
-                        
-                        score += 250
-                        //                        scoreLabel.text = String(score)
-                    }
-                }
-                streak = 0
-            }
-        }
-    }
-    
-    func alignedVert() {
-        var i: Int = 0
-        var j: Int = 0
-        var m: Int = 0
-        
-        while m <= 8 {
-            j = 9 * m
-            
-            while j <= (9 * m) + 8 {
-                i = j + 9
-                
-                while i <= 80 {
-                    if blockArray[j] == blockArray[i] {
-                        streak += 1
-                    } else {
-                        break
-                    }
-                    i += 9
-                }
-                if streak >= 2 {
-                    //                    subBlock = beforeCell?.blockButton.image(for: .normal)
-                    subBlock = blockArray[j]
-                    for k in 0 ... streak {
-                        if let _ = level {
-                            subMission()
-                        }
-                        
-                        blockArray[j + (k * 9)] = nil
-                        
-                        score += 250
-                        //                        scoreLabel.text = String(score)
-                    }
-                }
-                streak = 0
-                j += 1
-            }
-            m += 1
-        }
-    }
-    
-    func fillUpBlock() {
-        for (index, block) in blockArray.enumerated() {
-            if block == nil {
-                fillUpBlock(index: index)
-            }
-        }
-    }
-    
-    func fillUpBlock(index curIndex: Int) {
-        let upIndex = curIndex - 9
-        
-        if upIndex > 0 {
-            blockArray[curIndex] = blockArray[upIndex]
-            
-            fillUpBlock(index: upIndex)
-        } else {
-            let randNum = Int.random(in: 0...5)
-            blockArray[curIndex] = String(randNum)
-        }
-    }
-    
-    func checkSpace() -> Bool {
-        for block in blockArray {
-            if block == nil {
-                return true
-            }
-        }
-        
-        blockCollectionView.reloadData()
-        
-        return false
-    }
-    
-    func gameEnd() {
-        timerFlag = true
-        
-        if checkMission() {
-            score += (level! * 5000)
-            resultLabel.text = "Mission bonus score : \(String(level! * 5000))\nYou Scored \(score) point"
-        } else {
-            resultLabel.text = "You Scored \(score) point"
-        }
-        self.resultView.isHidden = false
-        
-        delay(2) {
-            if let user = Auth.auth().currentUser {
-                let now = Date().timeIntervalSince1970
-                let score = Score(score: self.score, scoreDate: String(now))
-                let scoreRef = PSDatabase.scoreRef.child("\(user.uid)\(Int(now))")
-                scoreRef.setValue(score.toAnyObject())
-                
-                self.updateServer()
-                
-                let alert = UIAlertController(title: "Score saved", message: "Your score has been \nsaved on the server", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            } else {
-                let alert = UIAlertController(title: "You played as a guest", message: "Can you Join and save score?", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-                    self.dismiss(animated: true, completion: nil)
-                }))
-                alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-        }
-    }
-    
-    func updateServer() {
-        guard let user = Auth.auth().currentUser else { return }
-        
-        PSDatabase.userInfoRef
-            .queryEqual(toValue: nil, childKey: user.uid)
-            .observeSingleEvent(of: .value, with: { snapshot in
-                guard let child = snapshot.children.allObjects.first,
-                    let snapshot = child as? DataSnapshot,
-                    let userInfo = UserInfo(snapshot: snapshot) else { return }
-                
-                let maxScore = max(userInfo.maxScore, self.score)
-                let playCounts = userInfo.playCounts + 1
-                
-                let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
-                userInfoRef.updateChildValues(UserInfo.toPlayScore(maxScore: maxScore, playCounts: playCounts))
-            })
-    }
-    
-    func subMission() {
-        //        if subBlock == Properties.blockImages[0] {
-        //            if Int((missionArray[0]?.text)!)! > 0 {
-        //                missionArray[0]?.text = String(Int((missionArray[0]?.text!)!)! - 1)
-        //            }
-        //        } else if subBlock == Properties.blockImages[1] {
-        //            if Int((missionArray[1]?.text)!)! > 0 {
-        //                missionArray[1]?.text = String(Int((missionArray[1]?.text!)!)! - 1)
-        //            }
-        //        } else if subBlock == Properties.blockImages[2] {
-        //            if Int((missionArray[2]?.text)!)! > 0 {
-        //                missionArray[2]?.text = String(Int((missionArray[2]?.text!)!)! - 1)
-        //            }
-        //        } else if subBlock == Properties.blockImages[3] {
-        //            if Int((missionArray[3]?.text)!)! > 0 {
-        //                missionArray[3]?.text = String(Int((missionArray[3]?.text!)!)! - 1)
-        //            }
-        //        } else if subBlock == Properties.blockImages[4] {
-        //            if Int((missionArray[4]?.text)!)! > 0 {
-        //                missionArray[4]?.text = String(Int((missionArray[4]?.text!)!)! - 1)
-        //            }
-        //        } else if subBlock == Properties.blockImages[5] {
-        //            if Int((missionArray[5]?.text)!)! > 0 {
-        //                missionArray[5]?.text = String(Int((missionArray[5]?.text!)!)! - 1)
-        //            }
-        //        }
-    }
-    
-    func checkMission() -> Bool {
-        var check: Bool = false
-        
-        for i in 0 ... 5 {
-            if Int((missionArray[i]?.text!)!)! == 0 {
-                check = true
-            } else {
-                check = false
-                break
-            }
-        }
-        return check
     }
     
     @IBAction func buttonBackPressed(_ button: UIButton, for event: UIEvent) {
@@ -451,20 +471,23 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     func startTimer() {
-        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+        timerLabel.text = String(count)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
     }
     
     func stopTimer(){
-        self.timer?.invalidate()
-        self.timer = nil
+        timer?.invalidate()
+        timer = nil
     }
     
     @objc func update() {
-        timerLabel.text = String(count)
+        if timerFlag {
+            count -= 1
+            timerLabel.text = String(count)
+        }
         
-        count -= 1
-        if(count < 0) {
-            self.stopTimer()
+        if count < 0 {
+            stopTimer()
             gameEnd()
         }
     }
@@ -475,22 +498,22 @@ class GameViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     @IBAction func pauseButtonTapped(_ sender: UIButton) {
-        menuViewLeadingConstraint.constant = 0
         dimmedView.isHidden = false
+        timerFlag = false
         
         UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
-            self.view.layoutIfNeeded()
             self.dimmedView.alpha = 1.0
+            self.blockCollectionView.alpha = 0.0
         })
     }
     
     @objc func dismissMenuView(sender: UITapGestureRecognizer) {
-        menuViewLeadingConstraint.constant = -self.menuView.frame.width
         dimmedView.isHidden = true
+        timerFlag = true
         
         UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
-            self.view.layoutIfNeeded()
             self.dimmedView.alpha = 0.0
+            self.blockCollectionView.alpha = 1.0
         })
     }
     
@@ -506,7 +529,10 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell: BlockCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: BlockCollectionViewCell.identifier,
                                                                                for: indexPath) as! BlockCollectionViewCell
         cell.delegate = self
-        cell.blockButton.setTitle(blockArray[indexPath.row], for: .normal)
+        
+        if let index = blockArray[indexPath.row] {
+            cell.blockButton.setImage(Properties.blockImages[index], for: .normal)
+        }
         
         return cell
     }
@@ -516,10 +542,10 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
 extension GameViewController: BlockCollectionViewCellDelegate {
     
     func swipeBlock(_ selectBlock: UIButton, direction: UISwipeGestureRecognizer.Direction) {
-        guard !timerFlag,
+        guard timerFlag,
             let selectIndex = blockCollectionView.indexPathForItem(at: blockCollectionView
-                                                                                .convert(selectBlock.center,
-                                                                                         from: selectBlock.superview)) else { return }
+                .convert(selectBlock.center,
+                         from: selectBlock.superview)) else { return }
         var subIndex: IndexPath?
         
         switch direction {
@@ -541,15 +567,10 @@ extension GameViewController: BlockCollectionViewCellDelegate {
         } else {
             print("Move Fail")
         }
-        
     }
     
     private func playBlockAction(selectIndex select: IndexPath, subIndex sub: IndexPath) {
         blockArray.swapAt(select.row, sub.row)
-        
-        DispatchQueue.main.async {
-            self.blockCollectionView.reloadItems(at: [select, sub])
-        }
         
         alignedHorz()
         alignedVert()
@@ -565,14 +586,24 @@ extension GameViewController: BlockCollectionViewCellDelegate {
     
 }
 
-extension GameViewController: UITableViewDelegate, UITableViewDataSource {
+extension GameViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 5
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        var tempArray: Array<String?> = Array(repeating: "", count: 5)
+        
+        for i in 1 ... 5 {
+            tempArray[i-1] = String(i)
+        }
+        
+        return tempArray[row]
     }
     
 }

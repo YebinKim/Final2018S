@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SettingViewController: UIViewController {
     
     @IBOutlet weak var backButton: StyledButton!
     
@@ -36,17 +36,17 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
     @IBOutlet weak var nameTextfield: UITextField!
     @IBOutlet weak var rankLabel: UILabel!
     
-    lazy var gameSetArray: [UIView] = [backgroundVolume,
-                                       effectVolume,
-                                       screenRotateSwitch,
-                                       maxScoreLabel,
-                                       playCountsLabel]
+    private lazy var gameSetArray: [UIView] = [backgroundVolume,
+                                               effectVolume,
+                                               screenRotateSwitch,
+                                               maxScoreLabel,
+                                               playCountsLabel]
     
-    lazy var userSetArray: [UIView] = [emailLabel,
-                                       pwTextField,
-                                       profileImageview,
-                                       nameTextfield,
-                                       rankLabel]
+    private lazy var userSetArray: [UIView] = [emailLabel,
+                                               pwTextField,
+                                               profileImageview,
+                                               nameTextfield,
+                                               rankLabel]
     
     var selectedSegmentIndex: Int = 0
     
@@ -54,34 +54,9 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
         super.viewDidLoad()
         
         settingSegment.selectedSegmentIndex = selectedSegmentIndex
-        selectOption(settingSegment)
+        selectSettingSegment(settingSegment)
         
-        if let user = Auth.auth().currentUser {
-            PSDatabase.userInfoRef
-                .queryEqual(toValue: nil, childKey: user.uid)
-                .observeSingleEvent(of: .value, with: { snapshot in
-                    guard let child = snapshot.children.allObjects.first,
-                        let snapshot = child as? DataSnapshot,
-                        let userInfo = UserInfo(snapshot: snapshot) else { return }
-                    
-                    self.maxScoreLabel.text = String(userInfo.maxScore)
-                    self.playCountsLabel.text = String(userInfo.playCounts)
-                    
-                    self.emailLabel.text = user.email
-                    self.nameTextfield.text = userInfo.name
-                    
-                    let storageRef = PSDatabase.storageRef.child(user.uid)
-                    
-                    // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-                    storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-                        if let error = error, data == nil {
-                            print("Error: \(error.localizedDescription)")
-                        } else {
-                            self.profileImageview.image = UIImage(data: data!)
-                        }
-                    }
-                })
-        }
+        initializeUserSetting()
         
         applyStyled()
         
@@ -96,6 +71,41 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
         //        self.appDelegate.userInfoDownloadDataFromServer()
     }
     
+    private func initializeUserSetting() {
+        if let user = Auth.auth().currentUser {
+            PSDatabase.userInfoRef
+                .queryEqual(toValue: nil, childKey: user.uid)
+                .observeSingleEvent(of: .value, with: { snapshot in
+                    guard let child = snapshot.children.allObjects.first,
+                        let snapshot = child as? DataSnapshot,
+                        let userInfo = UserInfo(snapshot: snapshot) else { return }
+                    
+                    self.emailLabel.text = user.email
+                    self.nameTextfield.text = userInfo.name
+                    
+                    self.maxScoreLabel.text = String(userInfo.maxScore)
+                    self.playCountsLabel.text = String(userInfo.playCounts)
+                    
+                    let storageRef = PSDatabase.storageRef.child(user.uid)
+                    
+                    // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                    storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                        if let error = error, data == nil {
+                            print("Error: \(error.localizedDescription)")
+                        } else {
+                            self.profileImageview.image = UIImage(data: data!)
+                        }
+                    }
+                })
+        } else {
+            emailLabel.text = "Guest"
+            nameTextfield.text = "Guest"
+            
+            maxScoreLabel.text = "0"
+            playCountsLabel.text = "0"
+        }
+    }
+    
     private func applyStyled() {
         backButton.neumorphicLayer?.cornerRadius = 12
         backButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
@@ -107,16 +117,14 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
     }
     
     @IBAction func adjustBackgroundVolume(_ sender: UISlider) {
-        //        appDelegate.bakgroundAudioPlayer?.volume = backgroundVolume.value
+        SoundManager.adjustBackgroundVolume(sender.value)
     }
     
     @IBAction func adjustEffectVolume(_ sender: UISlider) {
-        for i in 0...3 {
-            //            appDelegate.effectArray[i]?.volume = effectVolume.value
-        }
+        SoundManager.adjustEffectVolume(sender.value)
     }
     
-    @IBAction func selectOption(_ sender: UISegmentedControl) {
+    @IBAction func selectSettingSegment(_ sender: UISegmentedControl) {
         SoundManager.clickEffect()
         
         switch sender.selectedSegmentIndex {
@@ -249,12 +257,9 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
         self.dismiss(animated: true, completion: nil)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        nameTextfield.becomeFirstResponder()
-        textField.resignFirstResponder()
-        
-        return true
-    }
+}
+
+extension SettingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController (_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage {
@@ -266,4 +271,16 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
     func imagePickerControllerDidCancel (_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+}
+
+extension SettingViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameTextfield.becomeFirstResponder()
+        textField.resignFirstResponder()
+        
+        return true
+    }
+    
 }

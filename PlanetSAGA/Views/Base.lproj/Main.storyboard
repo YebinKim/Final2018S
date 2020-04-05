@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l7H-wI-v6Y">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -183,7 +184,7 @@
                                 <color key="tintColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="selectedSegmentTintColor" name="color_back"/>
                                 <connections>
-                                    <action selector="selectOption:" destination="Doy-pX-Gsg" eventType="valueChanged" id="00D-OR-ZUN"/>
+                                    <action selector="selectSettingSegment:" destination="Doy-pX-Gsg" eventType="valueChanged" id="9m4-J1-dy9"/>
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksF-oI-njq" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
@@ -1696,7 +1697,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYQ-CW-mrg" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
-                                <rect key="frame" x="16" y="16" width="40" height="40"/>
+                                <rect key="frame" x="24" y="24" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="LYQ-CW-mrg" secondAttribute="height" multiplier="1:1" id="831-Xe-Qap"/>
                                     <constraint firstAttribute="width" constant="40" id="OXK-iG-kkA"/>
@@ -1957,10 +1958,10 @@
                             <constraint firstItem="6sz-xM-maf" firstAttribute="width" secondItem="GEq-Hy-K5v" secondAttribute="width" id="4Y2-ls-P6k"/>
                             <constraint firstItem="sfw-qD-9OD" firstAttribute="centerX" secondItem="xAv-Vk-3cX" secondAttribute="centerX" id="5UV-Tq-rg8"/>
                             <constraint firstItem="sfw-qD-9OD" firstAttribute="width" secondItem="GEq-Hy-K5v" secondAttribute="width" id="5dU-S7-qAc"/>
-                            <constraint firstItem="LYQ-CW-mrg" firstAttribute="leading" secondItem="Nx8-fu-DQj" secondAttribute="leading" constant="16" id="D5r-b4-gjf"/>
+                            <constraint firstItem="LYQ-CW-mrg" firstAttribute="leading" secondItem="Nx8-fu-DQj" secondAttribute="leading" constant="24" id="D5r-b4-gjf"/>
                             <constraint firstItem="GEq-Hy-K5v" firstAttribute="centerY" secondItem="xAv-Vk-3cX" secondAttribute="centerY" id="KbQ-bc-RIj"/>
                             <constraint firstItem="GEq-Hy-K5v" firstAttribute="centerX" secondItem="xAv-Vk-3cX" secondAttribute="centerX" id="Q2R-Bp-erH"/>
-                            <constraint firstItem="LYQ-CW-mrg" firstAttribute="top" secondItem="Nx8-fu-DQj" secondAttribute="top" constant="16" id="dIR-Lc-tXq"/>
+                            <constraint firstItem="LYQ-CW-mrg" firstAttribute="top" secondItem="Nx8-fu-DQj" secondAttribute="top" constant="24" id="dIR-Lc-tXq"/>
                             <constraint firstItem="GEq-Hy-K5v" firstAttribute="top" secondItem="6sz-xM-maf" secondAttribute="bottom" constant="32" id="q3Z-7z-DM2"/>
                             <constraint firstItem="sfw-qD-9OD" firstAttribute="top" secondItem="GEq-Hy-K5v" secondAttribute="bottom" constant="32" id="xaf-FC-psM"/>
                         </constraints>

@@ -20,14 +20,8 @@
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7aH-Lg-hn7">
                         <rect key="frame" x="16" y="8" width="268" height="44"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WfA-3v-b2i">
-                                <rect key="frame" x="0.0" y="0.0" width="8" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="8" id="Ylt-rN-zod"/>
-                                </constraints>
-                            </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="byi-BJ-kuD">
-                                <rect key="frame" x="8" y="0.0" width="44" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                 <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.50350492294520544" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
@@ -36,13 +30,13 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gK8-94-MwC">
-                                <rect key="frame" x="52" y="0.0" width="16" height="44"/>
+                                <rect key="frame" x="44" y="0.0" width="16" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="2pp-GU-kNm"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wk4-WF-tnf">
-                                <rect key="frame" x="68" y="0.0" width="180" height="44"/>
+                                <rect key="frame" x="60" y="0.0" width="188" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

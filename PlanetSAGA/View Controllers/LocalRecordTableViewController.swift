@@ -16,6 +16,8 @@ class LocalRecordTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initializeTableView()
+        
 //        let context = self.getContext()
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LocalRecord")
         
@@ -31,11 +33,14 @@ class LocalRecordTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        // 삭제한 데이터 셀을 없애기 위해 다시 불러옴
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "color_back")
+        self.navigationController?.navigationBar.isTranslucent = false
+        
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         
 //        let context = self.getContext()
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LocalRecord")
@@ -50,14 +55,14 @@ class LocalRecordTableViewController: UITableViewController {
 //        }
         
         self.tableView.reloadData()
+    }
+    
+    private func initializeTableView() {
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
     
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -106,25 +111,9 @@ class LocalRecordTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toLocalDetailView" {
             if let destination = segue.destination as? LocalRecordDetailsViewController {
@@ -140,4 +129,32 @@ class LocalRecordTableViewController: UITableViewController {
         
         self.navigationController?.popViewController(animated: true)
     }
+}
+
+extension LocalRecordTableViewController {
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let navBar = navigationController?.navigationBar else { return }
+
+        if scrollView.contentOffset.y > navBar.frame.height {
+            addShadow(navBar)
+        } else {
+            deleteShadow(navBar)
+        }
+    }
+
+    func addShadow(_ view: UIView) {
+        view.layer.shadowColor = UIColor.gray.cgColor
+        view.layer.shadowOffset = CGSize(width: 0.0, height: 6.0)
+        view.layer.masksToBounds = false
+        view.layer.shadowRadius = 5.0
+        view.layer.shadowOpacity = 0.3
+    }
+
+    func deleteShadow(_ view: UIView) {
+        view.layer.shadowOffset = CGSize(width: 0, height: 0.0)
+        view.layer.shadowRadius = 0
+        view.layer.shadowOpacity = 0
+    }
+    
 }

@@ -220,10 +220,10 @@
 				3ED8464220BD1019003C4F63 /* SignUpViewController.swift */,
 				3ED8464A20BD10E7003C4F63 /* RankingTableViewController.swift */,
 				3E79687120D5636100F67483 /* RankingDetailsViewController.swift */,
-				3E644CF820BD6B0E0089A411 /* RecordTableViewController.swift */,
-				3E79687320D5636F00F67483 /* RecordDetailsViewController.swift */,
 				3E79687D20D69EDE00F67483 /* LocalRecordTableViewController.swift */,
 				3E79687F20D6B00B00F67483 /* LocalRecordDetailsViewController.swift */,
+				3E644CF820BD6B0E0089A411 /* RecordTableViewController.swift */,
+				3E79687320D5636F00F67483 /* RecordDetailsViewController.swift */,
 				3ED8464820BD10AD003C4F63 /* SettingViewController.swift */,
 				3E4285A220BC5A5900AAE028 /* GameViewController.swift */,
 			);

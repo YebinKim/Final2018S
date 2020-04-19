@@ -1632,10 +1632,6 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="IrP-9C-8l9" id="Io8-My-vOj"/>
-                            <outlet property="delegate" destination="IrP-9C-8l9" id="tH2-vG-3SJ"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Record" id="0ca-tb-maE">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Yiu-5x-CWQ"/>

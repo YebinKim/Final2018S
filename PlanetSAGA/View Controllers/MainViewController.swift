@@ -40,14 +40,13 @@ class MainViewController: UIViewController {
         initializeDimmedView()
         
         applyStyled()
-        
-        updateView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        updateView()
     }
     
     private func registerCell() {
@@ -127,6 +126,8 @@ class MainViewController: UIViewController {
     }
     
     @objc func updateView() {
+        OnlineManager.registerUser()
+        
         if OnlineManager.online {
             DispatchQueue.main.async {
                 self.signButton.setImage(UIImage(systemName: "person.badge.minus"), for: .normal)

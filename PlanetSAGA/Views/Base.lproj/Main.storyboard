@@ -295,20 +295,32 @@
                                                 <color key="onTintColor" name="color_main"/>
                                                 <color key="thumbTintColor" name="color_back"/>
                                             </switch>
-                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bbt-H4-1te">
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bbt-H4-1te">
                                                 <rect key="frame" x="188" y="8" width="48" height="48"/>
                                                 <color key="backgroundColor" red="0.8980392157" green="0.66274509800000003" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="Ayz-l9-3uH"/>
                                                     <constraint firstAttribute="width" secondItem="Bbt-H4-1te" secondAttribute="height" multiplier="1:1" id="e0G-JA-rpj"/>
-                                                    <constraint firstAttribute="height" constant="48" id="uoi-iT-nab"/>
                                                 </constraints>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEh-Br-sEz">
+                                                <rect key="frame" x="266" y="18.666666666666686" width="30" height="27"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <state key="normal" title="변경">
+                                                    <color key="titleColor" name="color_main"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="selectProfile:" destination="Doy-pX-Gsg" eventType="touchUpInside" id="6rO-3e-kIR"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="VEh-Br-sEz" secondAttribute="trailing" constant="24" id="8gO-hT-QGy"/>
                                             <constraint firstItem="Xve-yB-biL" firstAttribute="centerX" secondItem="7Fj-Im-4mu" secondAttribute="centerX" constant="52" id="LBp-PR-d8X"/>
                                             <constraint firstAttribute="width" secondItem="7Fj-Im-4mu" secondAttribute="height" multiplier="5:1" id="Pig-hr-AAV"/>
                                             <constraint firstItem="gBa-fu-ur2" firstAttribute="leading" secondItem="7Fj-Im-4mu" secondAttribute="leading" id="QXY-FN-fzh"/>
+                                            <constraint firstItem="VEh-Br-sEz" firstAttribute="centerY" secondItem="7Fj-Im-4mu" secondAttribute="centerY" id="U6R-Jo-16c"/>
                                             <constraint firstItem="Xve-yB-biL" firstAttribute="centerY" secondItem="7Fj-Im-4mu" secondAttribute="centerY" id="azc-Y8-zTf"/>
                                             <constraint firstItem="gBa-fu-ur2" firstAttribute="centerY" secondItem="7Fj-Im-4mu" secondAttribute="centerY" id="bxE-37-CmJ"/>
                                             <constraint firstItem="Bbt-H4-1te" firstAttribute="centerY" secondItem="7Fj-Im-4mu" secondAttribute="centerY" id="g0p-8L-3oR"/>
@@ -438,7 +450,8 @@
                         <outlet property="nameTextfield" destination="ntf-M1-Oun" id="2hr-3r-NxB"/>
                         <outlet property="oneLabel" destination="W3W-Mm-Anb" id="tof-y7-yXY"/>
                         <outlet property="playCountsLabel" destination="Vo3-pw-usT" id="8Va-B7-BBm"/>
-                        <outlet property="profileImageview" destination="Bbt-H4-1te" id="c9d-il-R2L"/>
+                        <outlet property="profileImageChangeButton" destination="VEh-Br-sEz" id="Bmu-Ho-G9u"/>
+                        <outlet property="profileImageView" destination="Bbt-H4-1te" id="qVC-hZ-tLs"/>
                         <outlet property="pwTextField" destination="QCP-JU-obB" id="rXy-lR-HUy"/>
                         <outlet property="rankLabel" destination="I8U-9n-T3x" id="pEf-Zr-7oM"/>
                         <outlet property="screenRotateSwitch" destination="Xve-yB-biL" id="JFA-Oj-fmf"/>

@@ -32,7 +32,8 @@ class SettingViewController: UIViewController {
     
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var pwTextField: UITextField!
-    @IBOutlet weak var profileImageview: UIImageView!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageChangeButton: UIButton!
     @IBOutlet weak var nameTextfield: UITextField!
     @IBOutlet weak var rankLabel: UILabel!
     
@@ -44,7 +45,8 @@ class SettingViewController: UIViewController {
     
     private lazy var userSetArray: [UIView] = [emailLabel,
                                                pwTextField,
-                                               profileImageview,
+                                               profileImageView,
+                                               profileImageChangeButton,
                                                nameTextfield,
                                                rankLabel]
     
@@ -93,7 +95,7 @@ class SettingViewController: UIViewController {
                         if let error = error, data == nil {
                             print("Error: \(error.localizedDescription)")
                         } else {
-                            self.profileImageview.image = UIImage(data: data!)
+                            self.profileImageView.image = UIImage(data: data!)
                         }
                     }
                 })
@@ -107,12 +109,54 @@ class SettingViewController: UIViewController {
     }
     
     private func applyStyled() {
+        profileImageView.layer.cornerRadius = profileImageView.frame.width / 3
+        
         backButton.neumorphicLayer?.cornerRadius = 12
         backButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
         
         styledViews.forEach {
             $0.neumorphicLayer?.cornerRadius = 12
             $0.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
+        }
+    }
+    
+    private func uploadUserName() {
+//        let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
+//        userInfoRef.updateChildValues(UserInfo.toName(name: nameTextfield.text!))
+    }
+    
+    private func uploadUserPassword() {
+        
+    }
+    
+    private func uploadProfileImage() {
+        guard let image = profileImageView.image else {
+            let alert = UIAlertController(title: "Select a Picture", message: "Save Failed", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true)
+            return
+        }
+        
+        guard var imageData = image.jpegData(compressionQuality: 1.0) else { return }
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+        while imageData.count > 1 * 1024 * 1024 {
+            imageData = UIImage(data: imageData)!.jpegData(compressionQuality: 0.1)!
+        }
+        
+        guard let user = OnlineManager.user else { return }
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        let storageRef = PSDatabase.storageRef.child(user.uid)
+        storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            } else {
+                OnlineManager.updateUserInfo(user.uid)
+            }
         }
     }
     
@@ -165,54 +209,12 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction func selectProfile(_ sender: UIButton) {
+        SoundManager.clickEffect()
+        
         let myPicker = UIImagePickerController()
         myPicker.delegate = self;
         myPicker.sourceType = .photoLibrary
         self.present(myPicker, animated: true, completion: nil)
-    }
-    
-    @IBAction func saveChange(_ sender: UIButton) {
-        SoundManager.clickEffect()
-        
-        guard let image = profileImageview.image else {
-            let alert = UIAlertController(title: "Select a Picture", message: "Save Failed", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                alert.dismiss(animated: true, completion: nil)
-            }))
-            self.present(alert, animated: true)
-            return
-        }
-        
-        guard var imageData = image.jpegData(compressionQuality: 1.0) else { return }
-        
-        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-        while imageData.count > 1 * 1024 * 1024 {
-            imageData = UIImage(data: imageData)!.jpegData(compressionQuality: 0.1)!
-        }
-        
-        if let user = Auth.auth().currentUser {
-            let metaData = StorageMetadata()
-            metaData.contentType = "image/jpg"
-            let storageRef = PSDatabase.storageRef.child(user.uid)
-            storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                } else {
-                    storageRef.downloadURL(completion: { (url, error) in
-                        if let urlString = url?.absoluteString {
-                            let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
-                            userInfoRef.updateChildValues(UserInfo.toProfilePic(profileImageURL: urlString))
-                        }
-                    })
-                }
-            }
-            
-            let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
-            userInfoRef.updateChildValues(UserInfo.toName(name: nameTextfield.text!))
-        }
-        
     }
     
     @IBAction func deleteUser(_ sender: UIButton) {
@@ -261,11 +263,13 @@ class SettingViewController: UIViewController {
 
 extension SettingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController (_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage {
-            self.profileImageview.image = image
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as? UIImage {
+            self.profileImageView.image = image
         }
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            self.uploadProfileImage()
+        })
     }
     
     func imagePickerControllerDidCancel (_ picker: UIImagePickerController) {

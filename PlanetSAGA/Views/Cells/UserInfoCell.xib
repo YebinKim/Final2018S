@@ -20,7 +20,7 @@
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7aH-Lg-hn7">
                         <rect key="frame" x="16" y="8" width="268" height="44"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="byi-BJ-kuD">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="byi-BJ-kuD">
                                 <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                 <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.50350492294520544" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>

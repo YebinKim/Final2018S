@@ -110,4 +110,13 @@ class OnlineManager: NSObject {
         updateUserInfo(user.uid)
     }
     
+    static func updateUserPassword(_ password: String?) {
+        guard let password = password else { return }
+        Auth.auth().currentUser?.updatePassword(to: password) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
 }

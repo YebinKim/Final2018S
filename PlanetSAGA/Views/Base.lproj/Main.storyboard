@@ -255,7 +255,7 @@
                                                 <rect key="frame" x="128" y="15" width="168" height="34"/>
                                                 <color key="backgroundColor" name="color_back"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="send" secureTextEntry="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="Doy-pX-Gsg" id="U7B-lP-qUr"/>
                                                 </connections>

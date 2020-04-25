@@ -159,7 +159,7 @@ class SettingViewController: UIViewController {
     
     @objc
     func pwTextFieldDidChange(_ textField: UITextField) {
-        print("password change")
+        OnlineManager.updateUserPassword(textField.text)
     }
     
     @objc

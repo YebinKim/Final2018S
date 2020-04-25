@@ -59,6 +59,7 @@ class SettingViewController: UIViewController {
         selectSettingSegment(settingSegment)
         
         initializeUserSetting()
+        initializingTextField()
         
         applyStyled()
         
@@ -108,6 +109,11 @@ class SettingViewController: UIViewController {
         }
     }
     
+    private func initializingTextField() {
+        pwTextField.addTarget(self, action: #selector(pwTextFieldDidChange), for: .editingDidEnd)
+        nameTextfield.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingDidEnd)
+    }
+    
     private func applyStyled() {
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 3
         
@@ -118,15 +124,6 @@ class SettingViewController: UIViewController {
             $0.neumorphicLayer?.cornerRadius = 12
             $0.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
         }
-    }
-    
-    private func uploadUserName() {
-//        let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
-//        userInfoRef.updateChildValues(UserInfo.toName(name: nameTextfield.text!))
-    }
-    
-    private func uploadUserPassword() {
-        
     }
     
     private func uploadProfileImage() {
@@ -158,6 +155,16 @@ class SettingViewController: UIViewController {
                 OnlineManager.updateUserInfo(user.uid)
             }
         }
+    }
+    
+    @objc
+    func pwTextFieldDidChange(_ textField: UITextField) {
+        print("password change")
+    }
+    
+    @objc
+    func nameTextFieldDidChange(_ textField: UITextField) {
+        OnlineManager.updateUserName(nameTextfield.text)
     }
     
     @IBAction func adjustBackgroundVolume(_ sender: UISlider) {

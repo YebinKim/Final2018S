@@ -34,32 +34,39 @@ class OnlineManager: NSObject {
         }
     }
     
-    static func createUser(email: String, password: String, name: String, completion: @escaping (Error?) -> Void) {
+    static func createUser(email: String?, password: String?, name: String?, completion: @escaping (Error?) -> Void) {
+        guard let email = email,
+            let password = password,
+            let name = name else { return }
+        
         Auth.auth().createUser(withEmail: email,
                                password: password) { user, error in
-            if let error = error, user == nil {
-                print("Error: \(error.localizedDescription)")
-                completion(error)
-            } else {
-                let userInfo = UserInfo(email: email,
-                                        name: name)
-                let userInfoRef = PSDatabase.userInfoRef.child(user!.user.uid)
-                userInfoRef.setValue(userInfo.toAnyObject())
-                
-                completion(nil)
-            }
+                                if let error = error, user == nil {
+                                    print("Error: \(error.localizedDescription)")
+                                    completion(error)
+                                } else {
+                                    let userInfo = UserInfo(email: email,
+                                                            name: name)
+                                    let userInfoRef = PSDatabase.userInfoRef.child(user!.user.uid)
+                                    userInfoRef.setValue(userInfo.toAnyObject())
+                                    
+                                    completion(nil)
+                                }
         }
     }
     
-    static func signInUser(email: String, password: String, completion: @escaping (Error?) -> Void) {
+    static func signInUser(email: String?, password: String?, completion: @escaping (Error?) -> Void) {
+        guard let email = email,
+            let password = password else { return }
+        
         Auth.auth().signIn(withEmail: email,
                            password: password) { user, error in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-                completion(error)
-            } else {
-                completion(nil)
-            }
+                            if let error = error {
+                                print("Error: \(error.localizedDescription)")
+                                completion(error)
+                            } else {
+                                completion(nil)
+                            }
         }
     }
     
@@ -73,7 +80,8 @@ class OnlineManager: NSObject {
         }
     }
     
-    static func updateUserInfo(_ uid: String) {
+    static func updateUserInfo(_ uid: String?) {
+        guard let uid = uid else { return }
         PSDatabase.userInfoRef
             .queryEqual(toValue: nil, childKey: uid)
             .observeSingleEvent(of: .value, with: { snapshot in
@@ -91,6 +99,15 @@ class OnlineManager: NSObject {
                     }
                 }
             })
+    }
+    
+    static func updateUserName(_ name: String?) {
+        guard let user = user,
+            let name = name else { return }
+        let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
+        userInfoRef.updateChildValues(UserInfo.toName(name: name))
+        
+        updateUserInfo(user.uid)
     }
     
 }

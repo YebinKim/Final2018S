@@ -159,7 +159,33 @@ class SettingViewController: UIViewController {
     
     @objc
     func pwTextFieldDidChange(_ textField: UITextField) {
-        OnlineManager.updateUserPassword(textField.text)
+        let confirmAlert = UIAlertController(title: "비밀번호 재확인", message: nil, preferredStyle: .alert)
+        confirmAlert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "비밀번호를 다시 입력해주세요"
+            textField.autocapitalizationType = .none
+            textField.autocorrectionType = .no
+            textField.isSecureTextEntry = true
+        })
+        
+        confirmAlert.addAction(UIAlertAction(title: "입력 완료", style: .default, handler: { action in
+            let password = confirmAlert.textFields![0].text
+            OnlineManager.updateUserPassword(oldPassword: password, newPassword: textField.text, completion: { error in
+                let changeAlert = UIAlertController(title: "비밀번호 변경", message: nil, preferredStyle: .alert)
+                
+                if let error = error {
+                    changeAlert.addAction(UIAlertAction(title: "실패했어요", style: .cancel, handler: nil))
+                    print("Error: \(error.localizedDescription)")
+                    return
+                } else {
+                    changeAlert.addAction(UIAlertAction(title: "성공했어요!", style: .default, handler: nil))
+                }
+                
+                self.present(changeAlert, animated: true, completion: nil)
+            })
+        }))
+        confirmAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: {action in }))
+        
+        self.present(confirmAlert, animated: true, completion: nil)
     }
     
     @objc

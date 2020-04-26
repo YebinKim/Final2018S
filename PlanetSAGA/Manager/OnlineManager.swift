@@ -60,13 +60,8 @@ class OnlineManager: NSObject {
             let password = password else { return }
         
         Auth.auth().signIn(withEmail: email,
-                           password: password) { user, error in
-                            if let error = error {
-                                print("Error: \(error.localizedDescription)")
-                                completion(error)
-                            } else {
-                                completion(nil)
-                            }
+                           password: password) { _, error in
+                            completion(error)
         }
     }
     
@@ -94,6 +89,7 @@ class OnlineManager: NSObject {
                 storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
                     if let error = error, data == nil {
                         print("Error: \(error.localizedDescription)")
+                        return
                     } else {
                         self.userInfo?.profileImage = UIImage(data: data!)
                     }
@@ -110,13 +106,22 @@ class OnlineManager: NSObject {
         updateUserInfo(user.uid)
     }
     
-    static func updateUserPassword(_ password: String?) {
-        guard let password = password else { return }
-        Auth.auth().currentUser?.updatePassword(to: password) { error in
+    static func updateUserPassword(oldPassword: String?, newPassword: String?, completion: @escaping (Error?) -> Void) {
+        guard let user = Auth.auth().currentUser,
+            let oldPassword = oldPassword,
+            let newPassword = newPassword else { return }
+        
+        let credential = EmailAuthProvider.credential(withEmail: user.email ?? "", password: oldPassword)
+        user.reauthenticate(with: credential, completion: { (_, error) in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
+                return
+            } else {
+                Auth.auth().currentUser?.updatePassword(to: newPassword) { error in
+                    completion(error)
+                }
             }
-        }
+        })
     }
     
 }

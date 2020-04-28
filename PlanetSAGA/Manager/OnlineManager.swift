@@ -97,13 +97,14 @@ class OnlineManager: NSObject {
             })
     }
     
-    static func updateUserName(_ name: String?) {
+    static func updateUserName(_ name: String?, completion: @escaping () -> Void) {
         guard let user = user,
             let name = name else { return }
         let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
         userInfoRef.updateChildValues(UserInfo.toName(name: name))
         
         updateUserInfo(user.uid)
+        completion()
     }
     
     static func updateUserPassword(oldPassword: String?, newPassword: String?, completion: @escaping (Error?) -> Void) {

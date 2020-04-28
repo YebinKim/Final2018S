@@ -169,7 +169,7 @@ class SettingViewController: UIViewController {
         
         confirmAlert.addAction(UIAlertAction(title: "입력 완료", style: .default, handler: { action in
             let password = confirmAlert.textFields![0].text
-            OnlineManager.updateUserPassword(oldPassword: password, newPassword: textField.text, completion: { error in
+            OnlineManager.updateUserPassword(oldPassword: password, newPassword: textField.text) { error in
                 let changeAlert = UIAlertController(title: "비밀번호 변경", message: nil, preferredStyle: .alert)
                 
                 if let error = error {
@@ -181,7 +181,7 @@ class SettingViewController: UIViewController {
                 }
                 
                 self.present(changeAlert, animated: true, completion: nil)
-            })
+            }
         }))
         confirmAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: {action in }))
         
@@ -190,7 +190,18 @@ class SettingViewController: UIViewController {
     
     @objc
     func nameTextFieldDidChange(_ textField: UITextField) {
-        OnlineManager.updateUserName(nameTextfield.text)
+        let confirmAlert = UIAlertController(title: "닉네임을 변경할까요?", message: nil, preferredStyle: .alert)
+        
+        confirmAlert.addAction(UIAlertAction(title: "변경", style: .default, handler: { action in
+            OnlineManager.updateUserName(self.nameTextfield.text) {
+                let changeAlert = UIAlertController(title: "닉네임 변경을 성공했어요", message: nil, preferredStyle: .alert)
+                changeAlert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: nil))
+                self.present(changeAlert, animated: true, completion: nil)
+            }
+        }))
+        confirmAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: {action in }))
+        
+        self.present(confirmAlert, animated: true, completion: nil)
     }
     
     @IBAction func adjustBackgroundVolume(_ sender: UISlider) {

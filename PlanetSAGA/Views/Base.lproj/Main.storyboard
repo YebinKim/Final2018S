@@ -425,16 +425,28 @@
                                     <constraint firstItem="zcT-Wt-LAq" firstAttribute="width" secondItem="ell-tm-zYM" secondAttribute="width" id="rPt-76-fkO"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="giq-s5-ywj">
+                                <rect key="frame" x="141.66666666666666" y="627" width="92" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="PlanetSAGA 탈퇴">
+                                    <color key="titleColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteUser:" destination="Doy-pX-Gsg" eventType="touchUpInside" id="Xk9-Hw-7As"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="color_back"/>
                         <constraints>
                             <constraint firstItem="sNU-z4-kfJ" firstAttribute="centerY" secondItem="ksF-oI-njq" secondAttribute="centerY" id="7IG-Fn-BS1"/>
+                            <constraint firstItem="giq-s5-ywj" firstAttribute="top" secondItem="dsM-Uk-SXT" secondAttribute="bottom" constant="40" id="7Od-ue-vHI"/>
                             <constraint firstItem="ksF-oI-njq" firstAttribute="leading" secondItem="p85-mC-KXF" secondAttribute="leading" constant="16" id="B2B-nI-CJA"/>
                             <constraint firstItem="dsM-Uk-SXT" firstAttribute="centerX" secondItem="k7Q-5s-8Um" secondAttribute="centerX" id="Dbk-sc-3FD"/>
                             <constraint firstItem="ksF-oI-njq" firstAttribute="top" secondItem="p85-mC-KXF" secondAttribute="top" constant="16" id="G9L-z2-V1q"/>
                             <constraint firstItem="sNU-z4-kfJ" firstAttribute="centerX" secondItem="k7Q-5s-8Um" secondAttribute="centerX" id="QDY-EH-s6F"/>
                             <constraint firstItem="ksF-oI-njq" firstAttribute="width" secondItem="ksF-oI-njq" secondAttribute="height" multiplier="1:1" id="Ul0-OI-5Em"/>
                             <constraint firstItem="dsM-Uk-SXT" firstAttribute="centerY" secondItem="k7Q-5s-8Um" secondAttribute="centerY" id="WM7-24-mXk"/>
+                            <constraint firstItem="giq-s5-ywj" firstAttribute="centerX" secondItem="k7Q-5s-8Um" secondAttribute="centerX" id="v57-kW-0ri"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="p85-mC-KXF"/>
                     </view>
@@ -442,6 +454,7 @@
                     <connections>
                         <outlet property="backButton" destination="ksF-oI-njq" id="XvL-X2-4TL"/>
                         <outlet property="backgroundVolume" destination="msO-ch-lDk" id="w66-br-JtJ"/>
+                        <outlet property="deleteUserButton" destination="giq-s5-ywj" id="8i0-xf-qt3"/>
                         <outlet property="effectVolume" destination="guB-Qs-QYc" id="PvV-8X-3Id"/>
                         <outlet property="emailLabel" destination="85E-wG-QYY" id="vpa-Ll-KDe"/>
                         <outlet property="fiveLabel" destination="G4n-A9-meK" id="5BB-nM-wtI"/>

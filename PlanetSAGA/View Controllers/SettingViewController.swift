@@ -36,6 +36,7 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var profileImageChangeButton: UIButton!
     @IBOutlet weak var nameTextfield: UITextField!
     @IBOutlet weak var rankLabel: UILabel!
+    @IBOutlet weak var deleteUserButton: UIButton!
     
     private lazy var gameSetArray: [UIView] = [backgroundVolume,
                                                effectVolume,
@@ -48,7 +49,8 @@ class SettingViewController: UIViewController {
                                                profileImageView,
                                                profileImageChangeButton,
                                                nameTextfield,
-                                               rankLabel]
+                                               rankLabel,
+                                               deleteUserButton]
     
     var selectedSegmentIndex: Int = 0
     
@@ -174,7 +176,7 @@ class SettingViewController: UIViewController {
                 
                 if let error = error {
                     changeAlert.addAction(UIAlertAction(title: "실패했어요", style: .cancel, handler: nil))
-                    print("Error: \(error.localizedDescription)")
+                    print("Update Password Error: \(error.localizedDescription)")
                     return
                 } else {
                     changeAlert.addAction(UIAlertAction(title: "성공했어요!", style: .default, handler: nil))
@@ -264,37 +266,33 @@ class SettingViewController: UIViewController {
     @IBAction func deleteUser(_ sender: UIButton) {
         SoundManager.clickEffect()
         
-        let alert = UIAlertController(title: "User Delete", message: "Are you sure you want to delete it?", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
-            let urlString: String = "http://condi.swu.ac.kr/student/W02iphone/USS_deleteUser.php"
-            guard let requestURL = URL(string: urlString) else { return }
-            
-            var request = URLRequest(url: requestURL)
-            request.httpMethod = "POST"
-            
-            //            guard let id = self.appDelegate.ID else { return }
-            
-            //            let restString: String = "id=" + id
-            //            request.httpBody = restString.data(using: .utf8)
-            //
-            //            let session = URLSession.shared
-            //            let task = session.dataTask(with: request) { (responseData, response, responseError) in
-            //                guard responseError == nil else { return }
-            //                guard let receivedData = responseData else { return }
-            //                if let utf8Data = String(data: receivedData, encoding: .utf8) {
-            //                    print(utf8Data)  // php에서 출력한 echo data가 debug 창에 표시됨
-            //                }
-            //            }
-            //            task.resume()
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let MainView = storyboard.instantiateViewController(withIdentifier: "MainView")
-            self.present(MainView, animated: true, completion: nil)
+        let confirmAlert = UIAlertController(title: "사용자 탈퇴", message: "탈퇴를 위해 비밀번호를 재확인합니다", preferredStyle: .alert)
+        confirmAlert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "비밀번호를 다시 입력해주세요"
+            textField.autocapitalizationType = .none
+            textField.autocorrectionType = .no
+            textField.isSecureTextEntry = true
+        })
+        confirmAlert.addAction(UIAlertAction(title: "입력 완료", style: .default, handler: { action in
+            let password = confirmAlert.textFields![0].text
+            OnlineManager.deleteUser(password: password) { error in
+                if let error = error {
+                    print("Delete User Error: \(error.localizedDescription)")
+                    let alert = UIAlertController(title: "탈퇴 실패", message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                } else {
+                    let alert = UIAlertController(title: nil, message: "다음에 다시 만나요!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+                        self.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert, animated: true)
+                }
+            }
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        confirmAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: {action in }))
         
-        self.present(alert, animated: true)
+        self.present(confirmAlert, animated: true)
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {

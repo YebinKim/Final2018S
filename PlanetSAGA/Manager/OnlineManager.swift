@@ -42,7 +42,7 @@ class OnlineManager: NSObject {
         Auth.auth().createUser(withEmail: email,
                                password: password) { user, error in
                                 if let error = error, user == nil {
-                                    print("Error: \(error.localizedDescription)")
+                                    print("Create User Error: \(error.localizedDescription)")
                                     completion(error)
                                 } else {
                                     let userInfo = UserInfo(email: email,
@@ -75,6 +75,27 @@ class OnlineManager: NSObject {
         }
     }
     
+    static func deleteUser(password: String?, completion: @escaping (Error?) -> Void) {
+        guard let user = Auth.auth().currentUser,
+            let password = password else { return }
+        
+        let credential = EmailAuthProvider.credential(withEmail: user.email ?? "", password: password)
+        user.reauthenticate(with: credential, completion: { (_, error) in
+            if let error = error {
+                print("Reauthentication Password Error: \(error.localizedDescription)")
+            } else {
+                user.delete { error in
+                    if error != nil {
+                        self.online = false
+                        self.user = nil
+                        self.userInfo = nil
+                    }
+                    completion(error)
+                }
+            }
+        })
+    }
+    
     static func updateUserInfo(_ uid: String?) {
         guard let uid = uid else { return }
         PSDatabase.userInfoRef
@@ -88,8 +109,7 @@ class OnlineManager: NSObject {
                 let storageRef = PSDatabase.storageRef.child(uid)
                 storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
                     if let error = error, data == nil {
-                        print("Error: \(error.localizedDescription)")
-                        return
+                        print("Update User Error: \(error.localizedDescription)")
                     } else {
                         self.userInfo?.profileImage = UIImage(data: data!)
                     }
@@ -115,8 +135,7 @@ class OnlineManager: NSObject {
         let credential = EmailAuthProvider.credential(withEmail: user.email ?? "", password: oldPassword)
         user.reauthenticate(with: credential, completion: { (_, error) in
             if let error = error {
-                print("Error: \(error.localizedDescription)")
-                return
+                print("Reauthentication Password Error: \(error.localizedDescription)")
             } else {
                 Auth.auth().currentUser?.updatePassword(to: newPassword) { error in
                     completion(error)

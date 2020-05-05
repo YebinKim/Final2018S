@@ -127,16 +127,12 @@ class SignUpViewController: UIViewController {
             return
         }
         
-        guard let email = emailTextfield.text,
-            let password = pwTextfield.text,
-            let name = nameTextfield.text else { return }
-        
         DispatchQueue.main.async {
             self.statusLabel.text = "SignUp Success :D"
             self.playStatusAnimation(depthType: .concave)
         }
         
-        OnlineManager.createUser(email: email, password: password, name: name) { error in
+        OnlineManager.createUser(email: emailTextfield.text, password: pwTextfield.text, name: nameTextfield.text) { error in
             if let error = error {
                 DispatchQueue.main.async {
                     self.statusLabel.text = error.localizedDescription

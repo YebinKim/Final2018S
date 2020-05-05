@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SettingViewController: UIViewController {
     
     @IBOutlet weak var backButton: StyledButton!
     
@@ -32,21 +32,25 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
     
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var pwTextField: UITextField!
-    @IBOutlet weak var profileImageview: UIImageView!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageChangeButton: UIButton!
     @IBOutlet weak var nameTextfield: UITextField!
     @IBOutlet weak var rankLabel: UILabel!
+    @IBOutlet weak var deleteUserButton: UIButton!
     
-    lazy var gameSetArray: [UIView] = [backgroundVolume,
-                                       effectVolume,
-                                       screenRotateSwitch,
-                                       maxScoreLabel,
-                                       playCountsLabel]
+    private lazy var gameSetArray: [UIView] = [backgroundVolume,
+                                               effectVolume,
+                                               screenRotateSwitch,
+                                               maxScoreLabel,
+                                               playCountsLabel]
     
-    lazy var userSetArray: [UIView] = [emailLabel,
-                                       pwTextField,
-                                       profileImageview,
-                                       nameTextfield,
-                                       rankLabel]
+    private lazy var userSetArray: [UIView] = [emailLabel,
+                                               pwTextField,
+                                               profileImageView,
+                                               profileImageChangeButton,
+                                               nameTextfield,
+                                               rankLabel,
+                                               deleteUserButton]
     
     var selectedSegmentIndex: Int = 0
     
@@ -54,34 +58,10 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
         super.viewDidLoad()
         
         settingSegment.selectedSegmentIndex = selectedSegmentIndex
-        selectOption(settingSegment)
+        selectSettingSegment(settingSegment)
         
-        if let user = Auth.auth().currentUser {
-            PSDatabase.userInfoRef
-                .queryEqual(toValue: nil, childKey: user.uid)
-                .observeSingleEvent(of: .value, with: { snapshot in
-                    guard let child = snapshot.children.allObjects.first,
-                        let snapshot = child as? DataSnapshot,
-                        let userInfo = UserInfo(snapshot: snapshot) else { return }
-                    
-                    self.maxScoreLabel.text = String(userInfo.maxScore)
-                    self.playCountsLabel.text = String(userInfo.playCounts)
-                    
-                    self.emailLabel.text = user.email
-                    self.nameTextfield.text = userInfo.name
-                    
-                    let storageRef = PSDatabase.storageRef.child(user.uid)
-                    
-                    // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-                    storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-                        if let error = error, data == nil {
-                            print("Error: \(error.localizedDescription)")
-                        } else {
-                            self.profileImageview.image = UIImage(data: data!)
-                        }
-                    }
-                })
-        }
+        initializeUserSetting()
+        initializingTextField()
         
         applyStyled()
         
@@ -96,7 +76,49 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
         //        self.appDelegate.userInfoDownloadDataFromServer()
     }
     
+    private func initializeUserSetting() {
+        if let user = Auth.auth().currentUser {
+            PSDatabase.userInfoRef
+                .queryEqual(toValue: nil, childKey: user.uid)
+                .observeSingleEvent(of: .value, with: { snapshot in
+                    guard let child = snapshot.children.allObjects.first,
+                        let snapshot = child as? DataSnapshot,
+                        let userInfo = UserInfo(snapshot: snapshot) else { return }
+                    
+                    self.emailLabel.text = user.email
+                    self.nameTextfield.text = userInfo.name
+                    
+                    self.maxScoreLabel.text = String(userInfo.maxScore)
+                    self.playCountsLabel.text = String(userInfo.playCounts)
+                    
+                    let storageRef = PSDatabase.storageRef.child(user.uid)
+                    
+                    // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                    storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                        if let error = error, data == nil {
+                            print("Error: \(error.localizedDescription)")
+                        } else {
+                            self.profileImageView.image = UIImage(data: data!)
+                        }
+                    }
+                })
+        } else {
+            emailLabel.text = "Guest"
+            nameTextfield.text = "Guest"
+            
+            maxScoreLabel.text = "0"
+            playCountsLabel.text = "0"
+        }
+    }
+    
+    private func initializingTextField() {
+        pwTextField.addTarget(self, action: #selector(pwTextFieldDidChange), for: .editingDidEnd)
+        nameTextfield.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingDidEnd)
+    }
+    
     private func applyStyled() {
+        profileImageView.layer.cornerRadius = profileImageView.frame.width / 3
+        
         backButton.neumorphicLayer?.cornerRadius = 12
         backButton.neumorphicLayer?.elementBackgroundColor = self.view.backgroundColor?.cgColor ?? UIColor.white.cgColor
         
@@ -106,17 +128,93 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
         }
     }
     
-    @IBAction func adjustBackgroundVolume(_ sender: UISlider) {
-        //        appDelegate.bakgroundAudioPlayer?.volume = backgroundVolume.value
-    }
-    
-    @IBAction func adjustEffectVolume(_ sender: UISlider) {
-        for i in 0...3 {
-            //            appDelegate.effectArray[i]?.volume = effectVolume.value
+    private func uploadProfileImage() {
+        guard let image = profileImageView.image else {
+            let alert = UIAlertController(title: "Select a Picture", message: "Save Failed", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true)
+            return
+        }
+        
+        guard var imageData = image.jpegData(compressionQuality: 1.0) else { return }
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+        while imageData.count > 1 * 1024 * 1024 {
+            imageData = UIImage(data: imageData)!.jpegData(compressionQuality: 0.1)!
+        }
+        
+        guard let user = OnlineManager.user else { return }
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        let storageRef = PSDatabase.storageRef.child(user.uid)
+        storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            } else {
+                OnlineManager.updateUserInfo(user.uid)
+            }
         }
     }
     
-    @IBAction func selectOption(_ sender: UISegmentedControl) {
+    @objc
+    func pwTextFieldDidChange(_ textField: UITextField) {
+        let confirmAlert = UIAlertController(title: "비밀번호 재확인", message: nil, preferredStyle: .alert)
+        confirmAlert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "비밀번호를 다시 입력해주세요"
+            textField.autocapitalizationType = .none
+            textField.autocorrectionType = .no
+            textField.isSecureTextEntry = true
+        })
+        
+        confirmAlert.addAction(UIAlertAction(title: "입력 완료", style: .default, handler: { action in
+            let password = confirmAlert.textFields![0].text
+            OnlineManager.updateUserPassword(oldPassword: password, newPassword: textField.text) { error in
+                let changeAlert = UIAlertController(title: "비밀번호 변경", message: nil, preferredStyle: .alert)
+                
+                if let error = error {
+                    changeAlert.addAction(UIAlertAction(title: "실패했어요", style: .cancel, handler: nil))
+                    print("Update Password Error: \(error.localizedDescription)")
+                    return
+                } else {
+                    changeAlert.addAction(UIAlertAction(title: "성공했어요!", style: .default, handler: nil))
+                }
+                
+                self.present(changeAlert, animated: true, completion: nil)
+            }
+        }))
+        confirmAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: {action in }))
+        
+        self.present(confirmAlert, animated: true, completion: nil)
+    }
+    
+    @objc
+    func nameTextFieldDidChange(_ textField: UITextField) {
+        let confirmAlert = UIAlertController(title: "닉네임을 변경할까요?", message: nil, preferredStyle: .alert)
+        
+        confirmAlert.addAction(UIAlertAction(title: "변경", style: .default, handler: { action in
+            OnlineManager.updateUserName(self.nameTextfield.text) {
+                let changeAlert = UIAlertController(title: "닉네임 변경을 성공했어요", message: nil, preferredStyle: .alert)
+                changeAlert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: nil))
+                self.present(changeAlert, animated: true, completion: nil)
+            }
+        }))
+        confirmAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: {action in }))
+        
+        self.present(confirmAlert, animated: true, completion: nil)
+    }
+    
+    @IBAction func adjustBackgroundVolume(_ sender: UISlider) {
+        SoundManager.adjustBackgroundVolume(sender.value)
+    }
+    
+    @IBAction func adjustEffectVolume(_ sender: UISlider) {
+        SoundManager.adjustEffectVolume(sender.value)
+    }
+    
+    @IBAction func selectSettingSegment(_ sender: UISegmentedControl) {
         SoundManager.clickEffect()
         
         switch sender.selectedSegmentIndex {
@@ -157,90 +255,44 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
     }
     
     @IBAction func selectProfile(_ sender: UIButton) {
+        SoundManager.clickEffect()
+        
         let myPicker = UIImagePickerController()
         myPicker.delegate = self;
         myPicker.sourceType = .photoLibrary
         self.present(myPicker, animated: true, completion: nil)
     }
     
-    @IBAction func saveChange(_ sender: UIButton) {
-        SoundManager.clickEffect()
-        
-        guard let image = profileImageview.image else {
-            let alert = UIAlertController(title: "Select a Picture", message: "Save Failed", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                alert.dismiss(animated: true, completion: nil)
-            }))
-            self.present(alert, animated: true)
-            return
-        }
-        
-        guard var imageData = image.jpegData(compressionQuality: 1.0) else { return }
-        
-        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-        while imageData.count > 1 * 1024 * 1024 {
-            imageData = UIImage(data: imageData)!.jpegData(compressionQuality: 0.1)!
-        }
-        
-        if let user = Auth.auth().currentUser {
-            let metaData = StorageMetadata()
-            metaData.contentType = "image/jpg"
-            let storageRef = PSDatabase.storageRef.child(user.uid)
-            storageRef.putData(imageData, metadata: metaData) { (metaData, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                } else {
-                    storageRef.downloadURL(completion: { (url, error) in
-                        if let urlString = url?.absoluteString {
-                            let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
-                            userInfoRef.updateChildValues(UserInfo.toProfilePic(profileImageURL: urlString))
-                        }
-                    })
-                }
-            }
-            
-            let userInfoRef = PSDatabase.userInfoRef.child(user.uid)
-            userInfoRef.updateChildValues(UserInfo.toName(name: nameTextfield.text!))
-        }
-        
-    }
-    
     @IBAction func deleteUser(_ sender: UIButton) {
         SoundManager.clickEffect()
         
-        let alert = UIAlertController(title: "User Delete", message: "Are you sure you want to delete it?", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
-            let urlString: String = "http://condi.swu.ac.kr/student/W02iphone/USS_deleteUser.php"
-            guard let requestURL = URL(string: urlString) else { return }
-            
-            var request = URLRequest(url: requestURL)
-            request.httpMethod = "POST"
-            
-            //            guard let id = self.appDelegate.ID else { return }
-            
-            //            let restString: String = "id=" + id
-            //            request.httpBody = restString.data(using: .utf8)
-            //
-            //            let session = URLSession.shared
-            //            let task = session.dataTask(with: request) { (responseData, response, responseError) in
-            //                guard responseError == nil else { return }
-            //                guard let receivedData = responseData else { return }
-            //                if let utf8Data = String(data: receivedData, encoding: .utf8) {
-            //                    print(utf8Data)  // php에서 출력한 echo data가 debug 창에 표시됨
-            //                }
-            //            }
-            //            task.resume()
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let MainView = storyboard.instantiateViewController(withIdentifier: "MainView")
-            self.present(MainView, animated: true, completion: nil)
+        let confirmAlert = UIAlertController(title: "사용자 탈퇴", message: "탈퇴를 위해 비밀번호를 재확인합니다", preferredStyle: .alert)
+        confirmAlert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "비밀번호를 다시 입력해주세요"
+            textField.autocapitalizationType = .none
+            textField.autocorrectionType = .no
+            textField.isSecureTextEntry = true
+        })
+        confirmAlert.addAction(UIAlertAction(title: "입력 완료", style: .default, handler: { action in
+            let password = confirmAlert.textFields![0].text
+            OnlineManager.deleteUser(password: password) { error in
+                if let error = error {
+                    print("Delete User Error: \(error.localizedDescription)")
+                    let alert = UIAlertController(title: "탈퇴 실패", message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                } else {
+                    let alert = UIAlertController(title: nil, message: "다음에 다시 만나요!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+                        self.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert, animated: true)
+                }
+            }
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        confirmAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: {action in }))
         
-        self.present(alert, animated: true)
+        self.present(confirmAlert, animated: true)
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {
@@ -249,6 +301,27 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
         self.dismiss(animated: true, completion: nil)
     }
     
+}
+
+extension SettingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as? UIImage {
+            self.profileImageView.image = image
+        }
+        self.dismiss(animated: true, completion: {
+            self.uploadProfileImage()
+        })
+    }
+    
+    func imagePickerControllerDidCancel (_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension SettingViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextfield.becomeFirstResponder()
         textField.resignFirstResponder()
@@ -256,14 +329,4 @@ class SettingViewController: UIViewController,  UITextFieldDelegate, UIImagePick
         return true
     }
     
-    func imagePickerController (_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage {
-            self.profileImageview.image = image
-        }
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel (_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
-    }
 }

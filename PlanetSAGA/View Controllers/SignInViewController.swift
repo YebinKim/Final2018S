@@ -117,15 +117,12 @@ class SignInViewController: UIViewController {
             return
         }
         
-        guard let email = emailTextfield.text,
-            let password = pwTextfield.text else { return }
-        
         DispatchQueue.main.async {
             self.statusLabel.text = "Welcome ;)"
             self.playStatusAnimation(depthType: .concave)
         }
         
-        OnlineManager.signInUser(email: email, password: password) { error in
+        OnlineManager.signInUser(email: emailTextfield.text, password: pwTextfield.text) { error in
             if let error = error {
                 DispatchQueue.main.async {
                     self.statusLabel.text = error.localizedDescription

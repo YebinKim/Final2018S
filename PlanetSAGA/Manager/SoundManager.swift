@@ -64,11 +64,10 @@ final class SoundManager: NSObject, AVAudioPlayerDelegate {
         
         // 반복재생
         bakgroundAudioPlayer?.numberOfLoops = -1
-//        bakgroundAudioPlayer?.volume = 0.7
-        bakgroundAudioPlayer?.volume = 0.0
+        bakgroundAudioPlayer?.volume = 0.7
         
-        for i in 0...3 {
-            effectArray[i]?.volume = 0.7
+        for effect in effectArray {
+            effect?.volume = 0.7
         }
         
         if let player = bakgroundAudioPlayer {
@@ -79,6 +78,16 @@ final class SoundManager: NSObject, AVAudioPlayerDelegate {
     static func clickEffect() {
         guard let player = clickEffectAudioPlayer else { return }
         player.play()
+    }
+    
+    static func adjustBackgroundVolume(_ value: Float) {
+        bakgroundAudioPlayer?.volume = value
+    }
+    
+    static func adjustEffectVolume(_ value: Float) {
+        for effect in effectArray {
+            effect?.volume = value
+        }
     }
     
 }

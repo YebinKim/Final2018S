@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l7H-wI-v6Y">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -15,7 +15,7 @@
             <objects>
                 <viewController id="vmm-YX-M3V" customClass="RankingDetailsViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jvU-gM-eqc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aYp-yt-lne">
@@ -106,40 +106,45 @@
             <point key="canvasLocation" x="-647" y="123"/>
         </scene>
         <!--Ranking-->
-        <scene sceneID="cSh-cT-8V8">
+        <scene sceneID="ZIu-2M-XnH">
             <objects>
-                <tableViewController id="pBQ-cz-w44" customClass="RankingTableViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8cY-pW-aYR">
+                <collectionViewController id="1Nu-E5-raH" customClass="RankingCollectionViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="pxd-jd-fr9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="color_back"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2Vo-qU-a5L" customClass="RackingViewCell" customModule="PlanetSAGA" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="Ranking Cell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Vo-qU-a5L" id="XMf-Bq-g8g">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rrh-2q-gex">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="rankingCollectionViewCell" id="Q4v-ri-08T" customClass="RankingCollectionViewCell" customModule="PlanetSAGA" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kcB-3g-ry7">
+                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <segue destination="vmm-YX-M3V" kind="presentation" identifier="toRankingDetailView" modalTransitionStyle="coverVertical" id="8dZ-41-k9A"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Ranking" id="MeZ-Rg-Q9G">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="8GK-5B-JxW"/>
-                        <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" id="D36-1U-b13">
-                            <color key="tintColor" red="0.43921568630000002" green="0.33333333329999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </collectionViewCellContentView>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="1Nu-E5-raH" id="GNk-0N-zCU"/>
+                            <outlet property="delegate" destination="1Nu-E5-raH" id="A3t-JG-yu5"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Ranking" id="r30-zS-OXD">
+                        <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" id="bKA-7k-NeJ">
+                            <color key="tintColor" name="color_main"/>
                             <connections>
-                                <action selector="buttonBack:" destination="pBQ-cz-w44" id="9ll-yS-WXu"/>
+                                <action selector="buttonBackTapped:" destination="1Nu-E5-raH" id="fhn-dx-n2p"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jry-D6-otB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YYS-Mg-K3t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1343" y="123"/>
         </scene>
@@ -599,8 +604,8 @@
                         <outlet property="signButton" destination="MeK-PR-psa" id="NWd-pa-mqR"/>
                         <segue destination="Ryj-TU-ux2" kind="presentation" identifier="toSignIn" id="qcY-bU-JI1"/>
                         <segue destination="Doy-pX-Gsg" kind="presentation" identifier="toSetting" id="w0h-up-oMJ"/>
-                        <segue destination="pBQ-cz-w44" kind="show" identifier="toRanking" id="bux-ax-fc1"/>
                         <segue destination="IrP-9C-8l9" kind="show" identifier="toRecord" id="UO7-Xs-10c"/>
+                        <segue destination="1Nu-E5-raH" kind="show" identifier="toRanking" id="f4x-dW-Vxo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQQ-Lc-MHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1662,7 +1667,7 @@
                     <navigationItem key="navigationItem" title="My Record" id="0ca-tb-maE">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Yiu-5x-CWQ"/>
                         <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" id="Hrg-KD-3Na">
-                            <color key="tintColor" red="0.43921568630000002" green="0.33333333329999998" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" name="color_main"/>
                             <connections>
                                 <action selector="buttonBack:" destination="IrP-9C-8l9" id="11X-nu-o3i"/>
                             </connections>

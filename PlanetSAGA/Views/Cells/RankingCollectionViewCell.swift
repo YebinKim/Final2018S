@@ -1,5 +1,5 @@
 //
-//  RankingViewCell.swift
+//  RankingCollectionViewCell.swift
 //  PlanetSAGA
 //
 //  Created by Yebin Kim on 2020/04/06.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class RankingViewCell: UITableViewCell {
+class RankingCollectionViewCell: UICollectionViewCell {
     
-    static let identifier: String = "rankingViewCell"
+    static let identifier: String = "rankingCollectionViewCell"
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -18,10 +18,6 @@ class RankingViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
     
 }

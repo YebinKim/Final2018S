@@ -47,6 +47,11 @@
                     <constraint firstAttribute="bottom" secondItem="9nO-ck-cvI" secondAttribute="bottom" constant="8" id="qTR-nL-jgY"/>
                 </constraints>
             </collectionViewCellContentView>
+            <connections>
+                <outlet property="nameLabel" destination="9nO-ck-cvI" id="NQt-F2-5G2"/>
+                <outlet property="profileImageView" destination="sWL-2k-TQN" id="Kj1-4m-sB9"/>
+                <outlet property="scoreLabel" destination="fMe-4t-faE" id="5j2-Jt-CLd"/>
+            </connections>
             <point key="canvasLocation" x="92.753623188405811" y="507.58928571428567"/>
         </collectionViewCell>
     </objects>

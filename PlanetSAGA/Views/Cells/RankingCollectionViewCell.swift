@@ -13,8 +13,8 @@ class RankingCollectionViewCell: UICollectionViewCell {
     static let identifier: String = "rankingCollectionViewCell"
 
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -11,10 +11,12 @@ import Firebase
 
 class RankingCollectionViewController: UICollectionViewController {
     
-    private var scoreRankingFetchedArray: [UserInfo] = Array()
+    private var userInfoArray: [UserInfo] = Array()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        registerCell()
         
         initializeCollectionView()
     }
@@ -29,10 +31,10 @@ class RankingCollectionViewController: UICollectionViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
         //        userRankingFetchedArray = [] // 배열을 초기화하고 서버에서 자료를 다시 가져옴
-        userRankingDownloadDataFromServer()
+        allRankingDownloadFromServer()
     }
     
-    func userRankingDownloadDataFromServer() -> Void {
+    func allRankingDownloadFromServer() -> Void {
         PSDatabase.userInfoRef.queryOrdered(byChild: "maxScore").observe(.value, with: { snapshot in
             var newItems: [UserInfo] = []
             for child in snapshot.children {
@@ -42,9 +44,14 @@ class RankingCollectionViewController: UICollectionViewController {
                 }
             }
             
-            self.scoreRankingFetchedArray = newItems
+            self.userInfoArray = newItems
             self.collectionView.reloadData()
         })
+    }
+    
+    private func registerCell() {
+        let cellNib = UINib(nibName: String(describing: RankingCollectionViewCell.self), bundle: nil)
+        self.collectionView.register(cellNib, forCellWithReuseIdentifier: RankingCollectionViewCell.identifier)
     }
     
     private func initializeCollectionView() {
@@ -53,22 +60,20 @@ class RankingCollectionViewController: UICollectionViewController {
     }
 
     // MARK: UICollectionViewDataSource
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return userInfoArray.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RankingCollectionViewCell.identifier, for: indexPath)
-    
-        // Configure the cell
-    
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RankingCollectionViewCell.identifier, for: indexPath) as? RankingCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        let userInfo = userInfoArray[indexPath.row]
+        cell.profileImageView.image = userInfo.profileImage
+        cell.scoreLabel.text = "\(userInfo.maxScore)"
+        cell.nameLabel.text = userInfo.name
+        
         return cell
     }
     

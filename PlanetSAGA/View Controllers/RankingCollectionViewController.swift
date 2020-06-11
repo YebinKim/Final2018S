@@ -30,21 +30,22 @@ class RankingCollectionViewController: UICollectionViewController {
         
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
-        //        userRankingFetchedArray = [] // 배열을 초기화하고 서버에서 자료를 다시 가져옴
         allRankingDownloadFromServer()
     }
     
     func allRankingDownloadFromServer() -> Void {
+        userInfoArray = []
+        
         PSDatabase.userInfoRef.queryOrdered(byChild: "maxScore").observe(.value, with: { snapshot in
-            var newItems: [UserInfo] = []
+            var userInfoes: [UserInfo] = []
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
-                    let score = UserInfo(snapshot: snapshot) {
-                    newItems.append(score)
+                    let userInfo = UserInfo(snapshot: snapshot) {
+                    userInfoes.append(userInfo)
                 }
             }
             
-            self.userInfoArray = newItems
+            self.userInfoArray = userInfoes.reversed()
             self.collectionView.reloadData()
         })
     }

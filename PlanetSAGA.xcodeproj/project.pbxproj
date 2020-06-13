@@ -39,6 +39,7 @@
 		448C24662494C89700AB6E67 /* RankingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C24652494C89700AB6E67 /* RankingCollectionViewController.swift */; };
 		448C24682494C91700AB6E67 /* RankingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C24672494C91700AB6E67 /* RankingLayout.swift */; };
 		448C246A24967C6400AB6E67 /* RankingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 448C246924967C6400AB6E67 /* RankingCollectionViewCell.xib */; };
+		4495F96F249E6CAA003D0EBD /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495F96E249E6CAA003D0EBD /* ImageManager.swift */; };
 		A61C39189985CC699D8D7884 /* Pods_PlanetSAGA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9612682E8D27342030995DA4 /* Pods_PlanetSAGA.framework */; };
 		C20D90572418C14C001F7281 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90562418C14C001F7281 /* Extensions.swift */; };
 		C20D905B2418C1FA001F7281 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90592418C1FA001F7281 /* UserInfoCell.swift */; };
@@ -92,6 +93,7 @@
 		448C24652494C89700AB6E67 /* RankingCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCollectionViewController.swift; sourceTree = "<group>"; };
 		448C24672494C91700AB6E67 /* RankingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingLayout.swift; sourceTree = "<group>"; };
 		448C246924967C6400AB6E67 /* RankingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankingCollectionViewCell.xib; sourceTree = "<group>"; };
+		4495F96E249E6CAA003D0EBD /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		9612682E8D27342030995DA4 /* Pods_PlanetSAGA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanetSAGA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20D90562418C14C001F7281 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C20D90592418C1FA001F7281 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				C20D90612419106F001F7281 /* OnlineManager.swift */,
+				4495F96E249E6CAA003D0EBD /* ImageManager.swift */,
 				C2FB5A9A24175ECA00049CF1 /* SoundManager.swift */,
 				C20D9069241A2117001F7281 /* TransitionManager.swift */,
 			);
@@ -437,6 +440,7 @@
 				3ED8464520BD103C003C4F63 /* SignInViewController.swift in Sources */,
 				3E79687A20D6488900F67483 /* Score.swift in Sources */,
 				3E4285A320BC5A5900AAE028 /* GameViewController.swift in Sources */,
+				4495F96F249E6CAA003D0EBD /* ImageManager.swift in Sources */,
 				C20D90572418C14C001F7281 /* Extensions.swift in Sources */,
 				3ED8464920BD10AD003C4F63 /* SettingViewController.swift in Sources */,
 				3E644CF920BD6B0E0089A411 /* RecordTableViewController.swift in Sources */,

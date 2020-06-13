@@ -71,7 +71,9 @@ class RankingCollectionViewController: UICollectionViewController {
         }
         
         let userInfo = userInfoArray[indexPath.row]
-        cell.profileImageView.image = userInfo.profileImage
+        let profileImage = userInfo.profileImage ?? ImageManager.createDefaultProfileImage()
+        
+        cell.profileImageView.image = profileImage
         cell.scoreLabel.text = "\(userInfo.maxScore)"
         cell.nameLabel.text = userInfo.name
         

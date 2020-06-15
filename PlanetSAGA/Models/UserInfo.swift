@@ -15,12 +15,10 @@ struct UserInfo {
     let key: String
     
     let nameKey: String = "name"
-    let profileImageURLKey: String = "profileImageURL"
     let maxScoreKey: String = "maxScore"
     let playCountsKey: String = "playCounts"
     
     var name: String = ""
-    var profileImageURL: String = ""
     var maxScore: Int = 0
     var playCounts: Int = 0
     
@@ -45,9 +43,6 @@ struct UserInfo {
         if let name = value[nameKey] as? String {
             self.name = name
         }
-        if let profileImageURL = value[profileImageURLKey] as? String {
-            self.profileImageURL = profileImageURL
-        }
         if let maxScore = value[maxScoreKey] as? Int {
             self.maxScore = maxScore
         }
@@ -59,7 +54,6 @@ struct UserInfo {
     func toAnyObject() -> [String: Any] {
         return [
             "name": self.name,
-            "profileImageURL": self.profileImageURL,
             "maxScore": self.maxScore,
             "playCounts": self.playCounts
         ]
@@ -68,12 +62,6 @@ struct UserInfo {
     static func toName(name: String) -> [String: Any] {
         return [
             "name": name
-        ]
-    }
-    
-    static func toProfilePic(profileImageURL: String) -> [String: Any] {
-        return [
-            "profileImageURL": profileImageURL
         ]
     }
     

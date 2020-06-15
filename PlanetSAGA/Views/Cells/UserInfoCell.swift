@@ -51,8 +51,8 @@ class UserInfoCell: UITableViewCell {
     }
     
     private func initializeProfileImageView() {
-        self.profileImageView.contentMode = .center
-        self.profileImageView.image = UIImage(systemName: "person")?.withRenderingMode(.alwaysTemplate)
+        profileImageView.contentMode = .scaleAspectFit
+        profileImageView.image = ImageManager.createDefaultProfileImage()
     }
     
     private func initializeNameLabel() {

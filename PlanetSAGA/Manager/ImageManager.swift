@@ -11,11 +11,17 @@ import UIKit
 final class ImageManager: NSObject {
     
     static func createDefaultProfileImage() -> UIImage {
+        let bgColor = UIColor.clear
+        return createDefaultProfileImage(bgColor: bgColor)
+    }
+    
+    static func createDefaultProfileImage(bgColor: UIColor?) -> UIImage {
         guard
-            let profileImage = UIImage(named: "ic_profile")?.withTintColor(UIColor.white),
-            let bgColor = UIColor(named: "color_main") else {
+            let bgColor = bgColor,
+            let profileImage = UIImage(named: "ic_profile")?.withTintColor(UIColor.white) else {
                 return UIImage()
         }
+        
         let newFrame: CGRect = CGRect(x: 0,
                                       y: 0,
                                       width: profileImage.size.width * 1.5,

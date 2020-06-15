@@ -60,7 +60,7 @@ class RankingCollectionViewController: UICollectionViewController {
         self.collectionView.dataSource = self
     }
 
-    // MARK: UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource & UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return userInfoArray.count
     }
@@ -71,13 +71,26 @@ class RankingCollectionViewController: UICollectionViewController {
         }
         
         let userInfo = userInfoArray[indexPath.row]
-        let profileImage = userInfo.profileImage ?? ImageManager.createDefaultProfileImage()
         
-        cell.profileImageView.image = profileImage
+        cell.profileImageView.image = ImageManager.createDefaultProfileImage(bgColor: UIColor(named: "color_main"))
         cell.scoreLabel.text = "\(userInfo.maxScore)"
         cell.nameLabel.text = userInfo.name
         
+        let storageRef = PSDatabase.storageRef.child(userInfo.key)
+        storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if let error = error, data == nil {
+                print("Update User Error: \(error.localizedDescription)")
+            } else {
+                cell.profileImageView.image = UIImage(data: data!)
+            }
+        }
+        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let imageSize: CGFloat = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 2
+        return CGSize(width: imageSize, height: imageSize)
     }
     
     @IBAction func buttonBackTapped(_ sender: UIBarButtonItem) {
@@ -85,7 +98,15 @@ class RankingCollectionViewController: UICollectionViewController {
         
         self.navigationController?.popViewController(animated: true)
     }
+}
 
+extension RankingCollectionViewController: RankingLayoutDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
+        let profileImage = userInfoArray[indexPath.item].profileImage ?? ImageManager.createDefaultProfileImage(bgColor: UIColor(named: "color_main"))
+        return profileImage.size.height
+    }
+    
 }
 
 extension RankingCollectionViewController {

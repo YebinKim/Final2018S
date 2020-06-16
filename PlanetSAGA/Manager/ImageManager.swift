@@ -18,8 +18,12 @@ final class ImageManager: NSObject {
     static func createDefaultProfileImage(bgColor: UIColor?) -> UIImage {
         guard
             let bgColor = bgColor,
-            let profileImage = UIImage(named: "ic_profile")?.withTintColor(UIColor.white) else {
+            var profileImage = UIImage(named: "ic_profile") else {
                 return UIImage()
+        }
+        
+        if bgColor.isDark && bgColor != UIColor.clear {
+            profileImage = profileImage.withTintColor(UIColor.white)
         }
         
         let newFrame: CGRect = CGRect(x: 0,

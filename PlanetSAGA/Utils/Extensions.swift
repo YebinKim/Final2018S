@@ -24,6 +24,12 @@ extension UIView {
 
 extension UIColor {
     
+    var isDark: Bool {
+        var white: CGFloat = 0
+        getWhite(&white, alpha: nil)
+        return white < 0.5
+    }
+    
     public convenience init(RGB: Int) {
         var rgb = RGB
         rgb = rgb > 0xffffff ? 0xffffff : rgb

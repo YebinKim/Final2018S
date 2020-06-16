@@ -12,5 +12,6 @@ target 'PlanetSAGA' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  pod 'Tabman', '~> 2.9'
 
 end

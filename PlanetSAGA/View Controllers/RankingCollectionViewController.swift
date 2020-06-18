@@ -11,6 +11,8 @@ import Firebase
 
 class RankingCollectionViewController: UICollectionViewController {
     
+    static let identifier: String = "rankingCollectionViewController"
+    
     private var userInfoArray: [UserInfo] = Array()
     
     override func viewDidLoad() {

@@ -15,17 +15,15 @@
 		3E22400420A8A2EE006A7D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E22400320A8A2EE006A7D07 /* Assets.xcassets */; };
 		3E22400720A8A2EE006A7D07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E22400520A8A2EE006A7D07 /* LaunchScreen.storyboard */; };
 		3E4285A320BC5A5900AAE028 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4285A220BC5A5900AAE028 /* GameViewController.swift */; };
-		3E644CF920BD6B0E0089A411 /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E644CF820BD6B0E0089A411 /* RecordTableViewController.swift */; };
 		3E78BD9820D9473600AADBC0 /* SoundMoveFail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E78BD9420D9473600AADBC0 /* SoundMoveFail.wav */; };
 		3E78BD9920D9473600AADBC0 /* SoundSelected.WAV in Resources */ = {isa = PBXBuildFile; fileRef = 3E78BD9520D9473600AADBC0 /* SoundSelected.WAV */; };
 		3E78BD9A20D9473600AADBC0 /* SoundMoveSuccess.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E78BD9620D9473600AADBC0 /* SoundMoveSuccess.wav */; };
 		3E78BD9B20D9473600AADBC0 /* SoundClick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E78BD9720D9473600AADBC0 /* SoundClick.wav */; };
 		3E79687220D5636100F67483 /* RankingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79687120D5636100F67483 /* RankingDetailsViewController.swift */; };
-		3E79687420D5636F00F67483 /* RecordDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79687320D5636F00F67483 /* RecordDetailsViewController.swift */; };
 		3E79687820D5A05C00F67483 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79687720D5A05C00F67483 /* User.swift */; };
 		3E79687A20D6488900F67483 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79687920D6488900F67483 /* Score.swift */; };
-		3E79687E20D69EDE00F67483 /* LocalRecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79687D20D69EDE00F67483 /* LocalRecordTableViewController.swift */; };
-		3E79688020D6B00B00F67483 /* LocalRecordDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79687F20D6B00B00F67483 /* LocalRecordDetailsViewController.swift */; };
+		3E79687E20D69EDE00F67483 /* MyScoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79687D20D69EDE00F67483 /* MyScoreTableViewController.swift */; };
+		3E79688020D6B00B00F67483 /* MyScoreDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E79687F20D6B00B00F67483 /* MyScoreDetailsTableViewController.swift */; };
 		3ED8464320BD1019003C4F63 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464220BD1019003C4F63 /* SignUpViewController.swift */; };
 		3ED8464520BD103C003C4F63 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464420BD103C003C4F63 /* SignInViewController.swift */; };
 		3ED8464720BD107A003C4F63 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8464620BD107A003C4F63 /* MainViewController.swift */; };
@@ -40,6 +38,7 @@
 		448C24682494C91700AB6E67 /* RankingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C24672494C91700AB6E67 /* RankingLayout.swift */; };
 		448C246A24967C6400AB6E67 /* RankingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 448C246924967C6400AB6E67 /* RankingCollectionViewCell.xib */; };
 		4495F96F249E6CAA003D0EBD /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495F96E249E6CAA003D0EBD /* ImageManager.swift */; };
+		4495F971249F35D9003D0EBD /* ScorePagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495F970249F35D9003D0EBD /* ScorePagingViewController.swift */; };
 		A61C39189985CC699D8D7884 /* Pods_PlanetSAGA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9612682E8D27342030995DA4 /* Pods_PlanetSAGA.framework */; };
 		C20D90572418C14C001F7281 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90562418C14C001F7281 /* Extensions.swift */; };
 		C20D905B2418C1FA001F7281 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90592418C1FA001F7281 /* UserInfoCell.swift */; };
@@ -69,17 +68,15 @@
 		3E22400620A8A2EE006A7D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E22400820A8A2EE006A7D07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E4285A220BC5A5900AAE028 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		3E644CF820BD6B0E0089A411 /* RecordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		3E78BD9420D9473600AADBC0 /* SoundMoveFail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SoundMoveFail.wav; sourceTree = "<group>"; };
 		3E78BD9520D9473600AADBC0 /* SoundSelected.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SoundSelected.WAV; sourceTree = "<group>"; };
 		3E78BD9620D9473600AADBC0 /* SoundMoveSuccess.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SoundMoveSuccess.wav; sourceTree = "<group>"; };
 		3E78BD9720D9473600AADBC0 /* SoundClick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SoundClick.wav; sourceTree = "<group>"; };
 		3E79687120D5636100F67483 /* RankingDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingDetailsViewController.swift; sourceTree = "<group>"; };
-		3E79687320D5636F00F67483 /* RecordDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailsViewController.swift; sourceTree = "<group>"; };
 		3E79687720D5A05C00F67483 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3E79687920D6488900F67483 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
-		3E79687D20D69EDE00F67483 /* LocalRecordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRecordTableViewController.swift; sourceTree = "<group>"; };
-		3E79687F20D6B00B00F67483 /* LocalRecordDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRecordDetailsViewController.swift; sourceTree = "<group>"; };
+		3E79687D20D69EDE00F67483 /* MyScoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScoreTableViewController.swift; sourceTree = "<group>"; };
+		3E79687F20D6B00B00F67483 /* MyScoreDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScoreDetailsTableViewController.swift; sourceTree = "<group>"; };
 		3ED8464220BD1019003C4F63 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3ED8464420BD103C003C4F63 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		3ED8464620BD107A003C4F63 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +91,7 @@
 		448C24672494C91700AB6E67 /* RankingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingLayout.swift; sourceTree = "<group>"; };
 		448C246924967C6400AB6E67 /* RankingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankingCollectionViewCell.xib; sourceTree = "<group>"; };
 		4495F96E249E6CAA003D0EBD /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		4495F970249F35D9003D0EBD /* ScorePagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorePagingViewController.swift; sourceTree = "<group>"; };
 		9612682E8D27342030995DA4 /* Pods_PlanetSAGA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlanetSAGA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20D90562418C14C001F7281 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C20D90592418C1FA001F7281 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
@@ -223,14 +221,13 @@
 				3ED8464620BD107A003C4F63 /* MainViewController.swift */,
 				3ED8464420BD103C003C4F63 /* SignInViewController.swift */,
 				3ED8464220BD1019003C4F63 /* SignUpViewController.swift */,
+				3E4285A220BC5A5900AAE028 /* GameViewController.swift */,
+				3ED8464820BD10AD003C4F63 /* SettingViewController.swift */,
+				4495F970249F35D9003D0EBD /* ScorePagingViewController.swift */,
 				448C24652494C89700AB6E67 /* RankingCollectionViewController.swift */,
 				3E79687120D5636100F67483 /* RankingDetailsViewController.swift */,
-				3E79687D20D69EDE00F67483 /* LocalRecordTableViewController.swift */,
-				3E79687F20D6B00B00F67483 /* LocalRecordDetailsViewController.swift */,
-				3E644CF820BD6B0E0089A411 /* RecordTableViewController.swift */,
-				3E79687320D5636F00F67483 /* RecordDetailsViewController.swift */,
-				3ED8464820BD10AD003C4F63 /* SettingViewController.swift */,
-				3E4285A220BC5A5900AAE028 /* GameViewController.swift */,
+				3E79687D20D69EDE00F67483 /* MyScoreTableViewController.swift */,
+				3E79687F20D6B00B00F67483 /* MyScoreDetailsTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -431,10 +428,9 @@
 			files = (
 				C20D905B2418C1FA001F7281 /* UserInfoCell.swift in Sources */,
 				C20D906A241A2117001F7281 /* TransitionManager.swift in Sources */,
-				3E79688020D6B00B00F67483 /* LocalRecordDetailsViewController.swift in Sources */,
+				3E79688020D6B00B00F67483 /* MyScoreDetailsTableViewController.swift in Sources */,
 				C20D905F2418C235001F7281 /* MenuCell.swift in Sources */,
 				3ED8464720BD107A003C4F63 /* MainViewController.swift in Sources */,
-				3E79687420D5636F00F67483 /* RecordDetailsViewController.swift in Sources */,
 				3E79687820D5A05C00F67483 /* User.swift in Sources */,
 				445991F0242E3AC800609BED /* StyledView.swift in Sources */,
 				3ED8464520BD103C003C4F63 /* SignInViewController.swift in Sources */,
@@ -443,7 +439,6 @@
 				4495F96F249E6CAA003D0EBD /* ImageManager.swift in Sources */,
 				C20D90572418C14C001F7281 /* Extensions.swift in Sources */,
 				3ED8464920BD10AD003C4F63 /* SettingViewController.swift in Sources */,
-				3E644CF920BD6B0E0089A411 /* RecordTableViewController.swift in Sources */,
 				C2FB5A9B24175ECA00049CF1 /* SoundManager.swift in Sources */,
 				4401FF95243B5C41009A3C61 /* RankingCollectionViewCell.swift in Sources */,
 				3E79687220D5636100F67483 /* RankingDetailsViewController.swift in Sources */,
@@ -452,12 +447,13 @@
 				C2FB5A712416147400049CF1 /* PSDatabase.swift in Sources */,
 				C2FB5A9524164D1A00049CF1 /* UserInfo.swift in Sources */,
 				445991F2242E3B6400609BED /* Style.swift in Sources */,
+				4495F971249F35D9003D0EBD /* ScorePagingViewController.swift in Sources */,
 				C27BCAF4242110F8008ACA2E /* BlockCollectionViewCell.swift in Sources */,
 				3ED8464320BD1019003C4F63 /* SignUpViewController.swift in Sources */,
 				445991CA242CE88800609BED /* Properties.swift in Sources */,
 				445991EE242E399200609BED /* HSBColor.swift in Sources */,
 				C20D90622419106F001F7281 /* OnlineManager.swift in Sources */,
-				3E79687E20D69EDE00F67483 /* LocalRecordTableViewController.swift in Sources */,
+				3E79687E20D69EDE00F67483 /* MyScoreTableViewController.swift in Sources */,
 				448C24682494C91700AB6E67 /* RankingLayout.swift in Sources */,
 				3E223FFA20A8A2EE006A7D07 /* AppDelegate.swift in Sources */,
 				448C24662494C89700AB6E67 /* RankingCollectionViewController.swift in Sources */,

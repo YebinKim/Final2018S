@@ -9,7 +9,7 @@
 import CoreData
 import UIKit
 
-class LocalRecordDetailsViewController: UIViewController, UITextFieldDelegate {
+class MyScoreDetailsViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var localScoreLabel: UILabel!
     @IBOutlet var localDateLabel: UILabel!

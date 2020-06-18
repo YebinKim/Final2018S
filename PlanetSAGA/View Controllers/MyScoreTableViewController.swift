@@ -9,7 +9,9 @@
 import CoreData
 import UIKit
 
-class LocalRecordTableViewController: UITableViewController {
+class MyScoreTableViewController: UITableViewController {
+    
+    static let identifier: String = "myScoreTableViewController"
     
     var localRecords: [NSManagedObject] = []
     
@@ -116,7 +118,7 @@ class LocalRecordTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toLocalDetailView" {
-            if let destination = segue.destination as? LocalRecordDetailsViewController {
+            if let destination = segue.destination as? MyScoreDetailsViewController {
                 if let selectedIndex = self.tableView.indexPathsForSelectedRows?.first?.row {
                     destination.detailLocalScore = localRecords[selectedIndex]
                 }
@@ -131,7 +133,7 @@ class LocalRecordTableViewController: UITableViewController {
     }
 }
 
-extension LocalRecordTableViewController {
+extension MyScoreTableViewController {
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let navBar = navigationController?.navigationBar else { return }

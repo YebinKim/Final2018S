@@ -15,6 +15,8 @@ class ScorePagingViewController: TabmanViewController {
     private var viewControllers: [UIViewController] = []
     private let titles: [String] = ["My Score", "Ranking"]
     
+    var defaultPage: PageboyViewController.Page = .first
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,19 +28,7 @@ class ScorePagingViewController: TabmanViewController {
         
         self.dataSource = self
         
-        let bar = TMBar.ButtonBar()
-        bar.backgroundView.style = .clear
-        bar.layout.separatorColor = UIColor(named: "color_main")
-        bar.layout.contentInset = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
-        bar.layout.transitionStyle = .snap
-        
-        bar.buttons.customize { (button) in
-            button.selectedTintColor = UIColor(named: "color_main")
-            button.tintColor = UIColor(named: "color_main")
-        }
-        bar.indicator.tintColor = UIColor(named: "color_main")
-        
-        addBar(bar, dataSource: self, at: .navigationItem(item: self.navigationItem))
+        initializeTabBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +40,23 @@ class ScorePagingViewController: TabmanViewController {
         self.navigationController?.navigationBar.tintColor = UIColor(named: "color_main")
         
         self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    private func initializeTabBar() {
+        let bar = TMBar.ButtonBar()
+        
+        bar.backgroundView.style = .clear
+        
+        bar.layout.contentInset = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
+        bar.layout.transitionStyle = .snap
+        
+        bar.buttons.customize { button in
+            button.selectedTintColor = UIColor(named: "color_main")
+            button.tintColor = UIColor(named: "color_main")
+        }
+        bar.indicator.tintColor = UIColor(named: "color_main")
+        
+        addBar(bar, dataSource: self, at: .navigationItem(item: self.navigationItem))
     }
     
 }
@@ -66,7 +73,7 @@ extension ScorePagingViewController: PageboyViewControllerDataSource, TMBarDataS
     }
     
     func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
-        return nil
+        return defaultPage
     }
     
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {

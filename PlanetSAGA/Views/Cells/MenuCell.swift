@@ -49,8 +49,14 @@ class MenuCell: UITableViewCell {
         switch row {
         case 1:
             self.delegate.performCellSegue(withIdentifier: "toSetting", sender: "game")
-        case 2, 3:
-            self.delegate.pushCellViewController(ScorePagingViewController(), animated: true)
+        case 2:
+            let scorePagingViewController = ScorePagingViewController()
+            scorePagingViewController.defaultPage = .first
+            self.delegate.pushCellViewController(scorePagingViewController, animated: true)
+        case 3:
+            let scorePagingViewController = ScorePagingViewController()
+            scorePagingViewController.defaultPage = .last
+            self.delegate.pushCellViewController(scorePagingViewController, animated: true)
         default:
             break
         }

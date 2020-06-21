@@ -34,7 +34,7 @@
 		445991EE242E399200609BED /* HSBColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445991ED242E399200609BED /* HSBColor.swift */; };
 		445991F0242E3AC800609BED /* StyledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445991EF242E3AC800609BED /* StyledView.swift */; };
 		445991F2242E3B6400609BED /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445991F1242E3B6400609BED /* Style.swift */; };
-		448C24662494C89700AB6E67 /* RankingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C24652494C89700AB6E67 /* RankingCollectionViewController.swift */; };
+		448C24662494C89700AB6E67 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C24652494C89700AB6E67 /* RankingViewController.swift */; };
 		448C24682494C91700AB6E67 /* RankingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C24672494C91700AB6E67 /* RankingLayout.swift */; };
 		448C246A24967C6400AB6E67 /* RankingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 448C246924967C6400AB6E67 /* RankingCollectionViewCell.xib */; };
 		4495F96F249E6CAA003D0EBD /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495F96E249E6CAA003D0EBD /* ImageManager.swift */; };
@@ -87,7 +87,7 @@
 		445991ED242E399200609BED /* HSBColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSBColor.swift; sourceTree = "<group>"; };
 		445991EF242E3AC800609BED /* StyledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledView.swift; sourceTree = "<group>"; };
 		445991F1242E3B6400609BED /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
-		448C24652494C89700AB6E67 /* RankingCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCollectionViewController.swift; sourceTree = "<group>"; };
+		448C24652494C89700AB6E67 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		448C24672494C91700AB6E67 /* RankingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingLayout.swift; sourceTree = "<group>"; };
 		448C246924967C6400AB6E67 /* RankingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankingCollectionViewCell.xib; sourceTree = "<group>"; };
 		4495F96E249E6CAA003D0EBD /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 				3E4285A220BC5A5900AAE028 /* GameViewController.swift */,
 				3ED8464820BD10AD003C4F63 /* SettingViewController.swift */,
 				4495F970249F35D9003D0EBD /* ScorePagingViewController.swift */,
-				448C24652494C89700AB6E67 /* RankingCollectionViewController.swift */,
+				448C24652494C89700AB6E67 /* RankingViewController.swift */,
 				3E79687120D5636100F67483 /* RankingDetailsViewController.swift */,
 				3E79687D20D69EDE00F67483 /* MyScoreTableViewController.swift */,
 				3E79687F20D6B00B00F67483 /* MyScoreDetailsTableViewController.swift */,
@@ -456,7 +456,7 @@
 				3E79687E20D69EDE00F67483 /* MyScoreTableViewController.swift in Sources */,
 				448C24682494C91700AB6E67 /* RankingLayout.swift in Sources */,
 				3E223FFA20A8A2EE006A7D07 /* AppDelegate.swift in Sources */,
-				448C24662494C89700AB6E67 /* RankingCollectionViewController.swift in Sources */,
+				448C24662494C89700AB6E67 /* RankingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

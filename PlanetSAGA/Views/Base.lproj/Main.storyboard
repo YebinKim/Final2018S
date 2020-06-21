@@ -105,36 +105,52 @@
             </objects>
             <point key="canvasLocation" x="-647" y="123"/>
         </scene>
-        <!--Ranking-->
-        <scene sceneID="ZIu-2M-XnH">
+        <!--Ranking View Controller-->
+        <scene sceneID="lzs-RE-vva">
             <objects>
-                <collectionViewController storyboardIdentifier="rankingCollectionViewController" id="1Nu-E5-raH" customClass="RankingCollectionViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="pxd-jd-fr9">
+                <viewController storyboardIdentifier="rankingViewController" id="cVg-uZ-wWt" customClass="RankingViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EmB-dp-DX8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="AOZ-hm-t0r">
+                                <rect key="frame" x="0.0" y="44" width="375" height="56"/>
+                                <color key="barTintColor" name="color_back"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="f0P-yW-BMA">
+                                <rect key="frame" x="0.0" y="100" width="375" height="678"/>
+                                <color key="backgroundColor" name="color_back"/>
+                                <collectionViewLayout key="collectionViewLayout" id="po6-qn-IgV" customClass="RankingLayout" customModule="PlanetSAGA" customModuleProvider="target"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="rankingCollectionViewCell" id="VX3-Qu-qgf" customClass="RankingCollectionViewCell" customModule="PlanetSAGA" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="J4h-lF-4Hh">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" name="color_back"/>
-                        <collectionViewLayout key="collectionViewLayout" id="hR6-6l-ez2" customClass="RankingLayout" customModule="PlanetSAGA" customModuleProvider="target"/>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="rankingCollectionViewCell" id="Q4v-ri-08T">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kcB-3g-ry7">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionViewCellContentView>
-                            </collectionViewCell>
-                        </cells>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Ranking" id="r30-zS-OXD">
-                        <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" id="bKA-7k-NeJ">
-                            <color key="tintColor" name="color_main"/>
-                            <connections>
-                                <action selector="buttonBackTapped:" destination="1Nu-E5-raH" id="fhn-dx-n2p"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YYS-Mg-K3t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="f0P-yW-BMA" firstAttribute="leading" secondItem="PSC-VT-6ly" secondAttribute="leading" id="7L9-pt-3RJ"/>
+                            <constraint firstItem="f0P-yW-BMA" firstAttribute="top" secondItem="AOZ-hm-t0r" secondAttribute="bottom" id="8Xy-aW-cMy"/>
+                            <constraint firstItem="AOZ-hm-t0r" firstAttribute="leading" secondItem="PSC-VT-6ly" secondAttribute="leading" id="HKc-um-uCf"/>
+                            <constraint firstItem="PSC-VT-6ly" firstAttribute="bottom" secondItem="f0P-yW-BMA" secondAttribute="bottom" id="JoT-Z1-Jkl"/>
+                            <constraint firstItem="AOZ-hm-t0r" firstAttribute="trailing" secondItem="PSC-VT-6ly" secondAttribute="trailing" id="lPC-fE-NZr"/>
+                            <constraint firstItem="AOZ-hm-t0r" firstAttribute="top" secondItem="PSC-VT-6ly" secondAttribute="top" id="o1Q-fX-2F5"/>
+                            <constraint firstItem="PSC-VT-6ly" firstAttribute="trailing" secondItem="f0P-yW-BMA" secondAttribute="trailing" id="rXH-qP-EIm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PSC-VT-6ly"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="f0P-yW-BMA" id="WIC-KZ-kxu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nNN-K5-XOU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1343" y="123"/>
         </scene>
@@ -1463,9 +1479,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="color_back"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="WUW-e9-2gL">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="barTintColor" name="color_back"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="scoreCell" textLabel="CVU-gq-sqh" detailTextLabel="6Td-LH-a2D" style="IBUITableViewCellStyleValue1" id="uHB-0q-Jgy">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uHB-0q-Jgy" id="AQ6-Ux-DkJ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>

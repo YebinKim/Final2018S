@@ -1,5 +1,5 @@
 //
-//  RankingCollectionViewController.swift
+//  RankingViewController.swift
 //  PlanetSAGA
 //
 //  Created by Yebin Kim on 2020/06/10.
@@ -9,9 +9,11 @@
 import UIKit
 import Firebase
 
-class RankingCollectionViewController: UICollectionViewController {
+class RankingViewController: UIViewController {
     
-    static let identifier: String = "rankingCollectionViewController"
+    static let identifier: String = "rankingViewController"
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     
     private var userInfoArray: [UserInfo] = Array()
     
@@ -29,7 +31,6 @@ class RankingCollectionViewController: UICollectionViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.barTintColor = UIColor(named: "color_back")
         self.navigationController?.navigationBar.isTranslucent = false
-        
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
         allRankingDownloadFromServer()
@@ -61,13 +62,22 @@ class RankingCollectionViewController: UICollectionViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
     }
+    
+    @IBAction func buttonBackTapped(_ sender: UIBarButtonItem) {
+        SoundManager.clickEffect()
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+}
 
+extension RankingViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
     // MARK: UICollectionViewDataSource & UICollectionViewDelegate
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return userInfoArray.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RankingCollectionViewCell.identifier, for: indexPath) as? RankingCollectionViewCell else {
             return UICollectionViewCell()
         }
@@ -94,15 +104,10 @@ class RankingCollectionViewController: UICollectionViewController {
         let imageSize: CGFloat = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 2
         return CGSize(width: imageSize, height: imageSize)
     }
-    
-    @IBAction func buttonBackTapped(_ sender: UIBarButtonItem) {
-        SoundManager.clickEffect()
-        
-        self.navigationController?.popViewController(animated: true)
-    }
+
 }
 
-extension RankingCollectionViewController: RankingLayoutDelegate {
+extension RankingViewController: RankingLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
         let profileImage = userInfoArray[indexPath.item].profileImage ?? ImageManager.createDefaultProfileImage(bgColor: UIColor(named: "color_main"))
@@ -111,9 +116,9 @@ extension RankingCollectionViewController: RankingLayoutDelegate {
     
 }
 
-extension RankingCollectionViewController {
+extension RankingViewController: UIScrollViewDelegate {
     
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let navBar = navigationController?.navigationBar else { return }
 
         if scrollView.contentOffset.y > navBar.frame.height {

@@ -22,9 +22,9 @@ class ScorePagingViewController: TabmanViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let myScoreTableViewController = storyboard.instantiateViewController(withIdentifier: MyScoreTableViewController.identifier)
-        let rankingCollectionViewController = storyboard.instantiateViewController(withIdentifier: RankingCollectionViewController.identifier)
+        let rankingViewController = storyboard.instantiateViewController(withIdentifier: RankingViewController.identifier)
         
-        viewControllers = [myScoreTableViewController, rankingCollectionViewController]
+        viewControllers = [myScoreTableViewController, rankingViewController]
         
         self.dataSource = self
         
@@ -38,7 +38,6 @@ class ScorePagingViewController: TabmanViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor(named: "color_back")
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.tintColor = UIColor(named: "color_main")
-        
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     

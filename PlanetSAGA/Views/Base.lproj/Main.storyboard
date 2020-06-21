@@ -1458,13 +1458,13 @@
         <!--My Score-->
         <scene sceneID="6Iw-mp-o6z">
             <objects>
-                <tableViewController storyboardIdentifier="myScoreTableViewController" id="IrP-9C-8l9" customClass="LocalRecordTableViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="myScoreTableViewController" id="IrP-9C-8l9" customClass="MyScoreTableViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="w24-bD-ViU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="color_back"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Local Record Cell" textLabel="CVU-gq-sqh" detailTextLabel="6Td-LH-a2D" style="IBUITableViewCellStyleValue1" id="uHB-0q-Jgy">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="scoreCell" textLabel="CVU-gq-sqh" detailTextLabel="6Td-LH-a2D" style="IBUITableViewCellStyleValue1" id="uHB-0q-Jgy">
                                 <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uHB-0q-Jgy" id="AQ6-Ux-DkJ">

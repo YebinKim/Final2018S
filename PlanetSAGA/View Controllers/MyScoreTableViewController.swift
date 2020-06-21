@@ -6,33 +6,19 @@
 //  Copyright © 2018년 김예빈. All rights reserved.
 //
 
-import CoreData
 import UIKit
+import Firebase
 
 class MyScoreTableViewController: UITableViewController {
     
     static let identifier: String = "myScoreTableViewController"
     
-    var localRecords: [NSManagedObject] = []
+    private var scoreArray: [Score] = Array()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initializeTableView()
-        
-//        let context = self.getContext()
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LocalRecord")
-        
-        let sortDescriptor = NSSortDescriptor (key: "playdate", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-//        do {
-//            localRecords = try context.fetch(fetchRequest)
-//        } catch let error as NSError {
-//            print("Could not fetch. \(error), \(error.userInfo)")
-//        }
-        
-        self.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,22 +27,9 @@ class MyScoreTableViewController: UITableViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.barTintColor = UIColor(named: "color_back")
         self.navigationController?.navigationBar.isTranslucent = false
-        
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
-//        let context = self.getContext()
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LocalRecord")
-        
-        let sortDescriptor = NSSortDescriptor (key: "playdate", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-//        do {
-//            localRecords = try context.fetch(fetchRequest)
-//        } catch let error as NSError {
-//            print("Could not fetch. \(error), \(error.userInfo)")
-//        }
-        
-        self.tableView.reloadData()
+        allScoreDownloadFromServer()
     }
     
     private func initializeTableView() {
@@ -64,65 +37,56 @@ class MyScoreTableViewController: UITableViewController {
         self.tableView.dataSource = self
     }
     
-    // MARK: - Table view data source
-
+    private func allScoreDownloadFromServer() -> Void {
+        scoreArray = []
+        
+        PSDatabase.scoreRef.queryOrdered(byChild: "scoreDate").observe(.value, with: { snapshot in
+            var scores: [Score] = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let score = Score(snapshot: snapshot) {
+                    scores.append(score)
+                }
+            }
+            
+            self.scoreArray = scores.reversed()
+            self.tableView.reloadData()
+        })
+    }
+    
+    // MARK: - UITableViewDataSource & UITableViewDelegate
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return localRecords.count
+        return scoreArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Local Record Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "scoreCell", for: indexPath)
 
-        let localRecord = localRecords[indexPath.row]
+        let score = scoreArray[indexPath.row]
+        
+        cell.backgroundColor = .clear
+        cell.textLabel?.text = "\(score.score)"
         
         let formatter: DateFormatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
+        if let scoreDate = Double(score.scoreDate) {
+            let date = NSDate(timeIntervalSince1970: scoreDate)
+            cell.detailTextLabel?.text = formatter.string(from: date as Date)
+        } else {
+            cell.detailTextLabel?.text = ""
+        }
         
-        cell.textLabel?.text = localRecord.value(forKey: "localscore") as? String
-        cell.detailTextLabel?.text = formatter.string(for: localRecord.value(forKey: "playdate") as? Date)
-
         return cell
-    }
-
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Core Data 내의 해당 자료 삭제
-//            let context = getContext()
-//            context.delete(localRecords[indexPath.row])
-            
-//            do {
-//                try context.save()
-//                print("deleted!")
-//            } catch let error as NSError {
-//                print("Could not delete \(error), \(error.userInfo)")
-//            }
-            
-            // 배열에서 해당 자료 삭제
-            localRecords.remove(at: indexPath.row)
-            // 테이블뷰 Cell 삭제
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
     }
     
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toLocalDetailView" {
-            if let destination = segue.destination as? MyScoreDetailsViewController {
-                if let selectedIndex = self.tableView.indexPathsForSelectedRows?.first?.row {
-                    destination.detailLocalScore = localRecords[selectedIndex]
-                }
-            }
+//            if let destination = segue.destination as? MyScoreDetailsViewController {
+//                if let selectedIndex = self.tableView.indexPathsForSelectedRows?.first?.row {
+//                    destination.detailLocalScore = localRecords[selectedIndex]
+//                }
+//            }
         }
     }
 

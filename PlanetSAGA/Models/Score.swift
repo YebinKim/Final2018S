@@ -41,7 +41,7 @@ struct Score {
         self.scoreDate = scoreDate
     }
     
-    func toAnyObject() -> [AnyHashable: Any] {
+    func toAnyObject() -> [String: Any] {
         return [
             "score": score,
             "scoreDate": scoreDate,

@@ -65,6 +65,8 @@ class SettingViewController: UIViewController {
         
         applyStyled()
         
+        profileImageView.image = ImageManager.createDefaultProfileImage(bgColor: UIColor(named: "color_main"))
+        
         //        backgroundVolume.value = (appDelegate.bakgroundAudioPlayer?.volume)!
         //        effectVolume.value = (appDelegate.clickEffectAudioPlayer?.volume)!
     }

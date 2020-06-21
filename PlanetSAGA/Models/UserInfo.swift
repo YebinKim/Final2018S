@@ -14,8 +14,11 @@ struct UserInfo {
     let ref: DatabaseReference?
     let key: String
     
-    var name: String
-    var profileImageURL: String = ""
+    let nameKey: String = "name"
+    let maxScoreKey: String = "maxScore"
+    let playCountsKey: String = "playCounts"
+    
+    var name: String = ""
     var maxScore: Int = 0
     var playCounts: Int = 0
     
@@ -30,40 +33,39 @@ struct UserInfo {
     }
     
     init?(snapshot: DataSnapshot) {
-        guard
-            let value = snapshot.value as? [String: AnyObject],
-            let name = value["name"] as? String else {
+        guard let value = snapshot.value as? [String: AnyObject] else {
                 return nil
         }
         
         self.ref = snapshot.ref
         self.key = snapshot.key
         
-        self.name = name
+        if let name = value[nameKey] as? String {
+            self.name = name
+        }
+        if let maxScore = value[maxScoreKey] as? Int {
+            self.maxScore = maxScore
+        }
+        if let playCounts = value[playCountsKey] as? Int {
+            self.playCounts = playCounts
+        }
     }
     
-    func toAnyObject() -> [AnyHashable: Any] {
+    func toAnyObject() -> [String: Any] {
         return [
             "name": self.name,
-            "profileImageURL": self.profileImageURL,
             "maxScore": self.maxScore,
             "playCounts": self.playCounts
         ]
     }
     
-    static func toName(name: String) -> [AnyHashable: Any] {
+    static func toName(name: String) -> [String: Any] {
         return [
             "name": name
         ]
     }
     
-    static func toProfilePic(profileImageURL: String) -> [AnyHashable: Any] {
-        return [
-            "profileImageURL": profileImageURL
-        ]
-    }
-    
-    static func toPlayScore(maxScore: Int, playCounts: Int) -> [AnyHashable: Any] {
+    static func toPlayScore(maxScore: Int, playCounts: Int) -> [String: Any] {
         return [
             "maxScore": maxScore,
             "playCounts": playCounts

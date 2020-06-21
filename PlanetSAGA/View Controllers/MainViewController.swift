@@ -207,6 +207,10 @@ extension MainViewController: UserInfoCellDelegate, MenuCellDelegate {
         self.performSegue(withIdentifier: withIdentifier, sender: sender)
     }
     
+    func pushCellViewController(_ viewController: UIViewController, animated: Bool) {
+        self.navigationController?.pushViewController(viewController, animated: animated)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let settingVC = segue.destination as? SettingViewController,
             let sender = sender as? String {

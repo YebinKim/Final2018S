@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3E223FF520A8A2EE006A7D07"
-               BuildableName = "Neumorphism-SAGA.app"
+               BuildableName = "Neu-SAGA.app"
                BlueprintName = "Neumorphism-SAGA"
                ReferencedContainer = "container:Neumorphism-SAGA.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3E223FF520A8A2EE006A7D07"
-            BuildableName = "Neumorphism-SAGA.app"
+            BuildableName = "Neu-SAGA.app"
             BlueprintName = "Neumorphism-SAGA"
             ReferencedContainer = "container:Neumorphism-SAGA.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3E223FF520A8A2EE006A7D07"
-            BuildableName = "Neumorphism-SAGA.app"
+            BuildableName = "Neu-SAGA.app"
             BlueprintName = "Neumorphism-SAGA"
             ReferencedContainer = "container:Neumorphism-SAGA.xcodeproj">
          </BuildableReference>

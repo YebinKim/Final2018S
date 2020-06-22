@@ -58,7 +58,7 @@
 		3E1596D9D98A1F909783A1DC /* Pods-PlanetSAGA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetSAGA.debug.xcconfig"; path = "Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA.debug.xcconfig"; sourceTree = "<group>"; };
 		3E20669F20D03868000957C1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3E2066A320D05121000957C1 /* BayBreeze.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BayBreeze.wav; sourceTree = "<group>"; };
-		3E223FF620A8A2EE006A7D07 /* Neumorphism-SAGA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Neumorphism-SAGA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E223FF620A8A2EE006A7D07 /* Neu-SAGA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Neu-SAGA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E223FF920A8A2EE006A7D07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E223FFE20A8A2EE006A7D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3E22400120A8A2EE006A7D07 /* univerSwuSaga.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = univerSwuSaga.xcdatamodel; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 		3E223FF720A8A2EE006A7D07 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3E223FF620A8A2EE006A7D07 /* Neumorphism-SAGA.app */,
+				3E223FF620A8A2EE006A7D07 /* Neu-SAGA.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -317,7 +317,7 @@
 			);
 			name = "Neumorphism-SAGA";
 			productName = univerSwuSaga;
-			productReference = 3E223FF620A8A2EE006A7D07 /* Neumorphism-SAGA.app */;
+			productReference = 3E223FF620A8A2EE006A7D07 /* Neu-SAGA.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -605,7 +605,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "developer.VIVI.Neumorphism-SAGA";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Neu-SAGA";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -624,7 +624,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "developer.VIVI.Neumorphism-SAGA";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Neu-SAGA";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

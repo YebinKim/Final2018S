@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3E223FF520A8A2EE006A7D07"
-               BuildableName = "PlanetSAGA.app"
-               BlueprintName = "PlanetSAGA"
-               ReferencedContainer = "container:PlanetSAGA.xcodeproj">
+               BuildableName = "Neumorphism-SAGA.app"
+               BlueprintName = "Neumorphism-SAGA"
+               ReferencedContainer = "container:Neumorphism-SAGA.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3E223FF520A8A2EE006A7D07"
-            BuildableName = "PlanetSAGA.app"
-            BlueprintName = "PlanetSAGA"
-            ReferencedContainer = "container:PlanetSAGA.xcodeproj">
+            BuildableName = "Neumorphism-SAGA.app"
+            BlueprintName = "Neumorphism-SAGA"
+            ReferencedContainer = "container:Neumorphism-SAGA.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3E223FF520A8A2EE006A7D07"
-            BuildableName = "PlanetSAGA.app"
-            BlueprintName = "PlanetSAGA"
-            ReferencedContainer = "container:PlanetSAGA.xcodeproj">
+            BuildableName = "Neumorphism-SAGA.app"
+            BlueprintName = "Neumorphism-SAGA"
+            ReferencedContainer = "container:Neumorphism-SAGA.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -486,7 +486,7 @@ class GameViewController: UIViewController {
             timerLabel.text = String(count)
         }
         
-        if count < 0 {
+        if count <= 0 {
             stopTimer()
             gameEnd()
         }

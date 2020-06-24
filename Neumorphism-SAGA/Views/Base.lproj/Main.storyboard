@@ -13,7 +13,7 @@
         <!--Ranking View Controller-->
         <scene sceneID="lzs-RE-vva">
             <objects>
-                <viewController storyboardIdentifier="rankingViewController" id="cVg-uZ-wWt" customClass="RankingViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="rankingViewController" id="cVg-uZ-wWt" customClass="RankingViewController" customModule="Neu_SAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EmB-dp-DX8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,9 +21,9 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="f0P-yW-BMA">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <color key="backgroundColor" name="color_back"/>
-                                <collectionViewLayout key="collectionViewLayout" id="po6-qn-IgV" customClass="RankingLayout" customModule="PlanetSAGA" customModuleProvider="target"/>
+                                <collectionViewLayout key="collectionViewLayout" id="po6-qn-IgV" customClass="RankingLayout" customModule="Neu_SAGA" customModuleProvider="target"/>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="rankingCollectionViewCell" id="VX3-Qu-qgf" customClass="RankingCollectionViewCell" customModule="PlanetSAGA" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="rankingCollectionViewCell" id="VX3-Qu-qgf" customClass="RankingCollectionViewCell" customModule="Neu_SAGA" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="J4h-lF-4Hh">
@@ -54,7 +54,7 @@
         <!--Setting View Controller-->
         <scene sceneID="YtM-tx-iFE">
             <objects>
-                <viewController id="Doy-pX-Gsg" customClass="SettingViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Doy-pX-Gsg" customClass="SettingViewController" customModule="Neu_SAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k7Q-5s-8Um">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -74,7 +74,7 @@
                                     <action selector="selectSettingSegment:" destination="Doy-pX-Gsg" eventType="valueChanged" id="9m4-J1-dy9"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksF-oI-njq" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksF-oI-njq" customClass="StyledButton" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="16" y="16" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="9BO-Hd-Huy"/>
@@ -91,7 +91,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dsM-Uk-SXT">
                                 <rect key="frame" x="27.666666666666657" y="171" width="320" height="416"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ell-tm-zYM" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ell-tm-zYM" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="배경음악" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3W-Mm-Anb">
@@ -139,7 +139,7 @@
                                             <constraint firstAttribute="height" constant="24" id="gpL-Uo-Yjt"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Qa-og-naT" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Qa-og-naT" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="88" width="320" height="64"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="효과음" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAr-jZ-6KD">
@@ -186,7 +186,7 @@
                                         <rect key="frame" x="0.0" y="152" width="320" height="24"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fj-Im-4mu" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fj-Im-4mu" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="176" width="320" height="64"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="화면 회전 잠금" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBa-fu-ur2">
@@ -239,7 +239,7 @@
                                         <rect key="frame" x="0.0" y="240" width="320" height="24"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcT-Wt-LAq" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcT-Wt-LAq" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="264" width="320" height="64"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최고 점수" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6BW-KA-1ET">
@@ -284,7 +284,7 @@
                                         <rect key="frame" x="0.0" y="328" width="320" height="24"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="beb-jq-lZU" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="beb-jq-lZU" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="352" width="320" height="64"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="플레이 횟수" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4n-A9-meK">
@@ -393,12 +393,12 @@
         <!--Main View Controller-->
         <scene sceneID="IWE-Lk-BGe">
             <objects>
-                <viewController storyboardIdentifier="UserViewController" id="tD7-vQ-yd3" customClass="MainViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserViewController" id="tD7-vQ-yd3" customClass="MainViewController" customModule="Neu_SAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xwh-7M-iFn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBo-Ce-H6I" userLabel="Play Btn" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBo-Ce-H6I" userLabel="Play Btn" customClass="StyledButton" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="155.66666666666666" y="374" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="Mm7-dm-adF"/>
@@ -414,7 +414,7 @@
                                     <segue destination="v1P-cW-jQ3" kind="presentation" id="lh6-JS-FdN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNn-PP-P2C" userLabel="Menu Btn" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNn-PP-P2C" userLabel="Menu Btn" customClass="StyledButton" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="24" y="60" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="Mgq-Ya-jp2"/>
@@ -466,7 +466,7 @@
                                     <constraint firstItem="eEN-rF-AJ9" firstAttribute="top" secondItem="RVX-ra-xZG" secondAttribute="top" constant="48" id="m2O-Q9-Q44"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MeK-PR-psa" userLabel="Sign Btn" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MeK-PR-psa" userLabel="Sign Btn" customClass="StyledButton" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="311" y="60" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="MeK-PR-psa" secondAttribute="height" multiplier="1:1" id="wpT-Ss-um1"/>
@@ -516,7 +516,7 @@
         <!--gameView-->
         <scene sceneID="XMM-89-60w">
             <objects>
-                <viewController title="gameView" modalPresentationStyle="fullScreen" id="v1P-cW-jQ3" customClass="GameViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="gameView" modalPresentationStyle="fullScreen" id="v1P-cW-jQ3" customClass="GameViewController" customModule="Neu_SAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eXC-Ng-0w9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -545,7 +545,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rW7-FX-fmB" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rW7-FX-fmB" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="17.666666666666657" y="264" width="340" height="70"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="m05-XZ-Suv">
@@ -730,7 +730,7 @@
                                     <constraint firstItem="m05-XZ-Suv" firstAttribute="leading" secondItem="rW7-FX-fmB" secondAttribute="leading" id="hrm-Y6-aMZ"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3i-44-7Hn" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3i-44-7Hn" customClass="StyledButton" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="24" y="60" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="Ia3-LX-gDi"/>
@@ -744,11 +744,11 @@
                                     <action selector="pauseButtonTapped:" destination="v1P-cW-jQ3" eventType="touchUpInside" id="u8N-7k-DWX"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0cd-bO-oqy" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
-                                <rect key="frame" x="157.66666666666666" y="60" width="60" height="40"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0cd-bO-oqy" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
+                                <rect key="frame" x="147.66666666666666" y="60" width="80" height="40"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8GA-j6-ash">
-                                        <rect key="frame" x="10.666666666666686" y="8" width="38.666666666666664" height="24"/>
+                                        <rect key="frame" x="20.666666666666682" y="8" width="38.666666666666657" height="24"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="m9B-9G-rHu">
                                                 <rect key="frame" x="0.0" y="0.99999999999999822" width="19.666666666666668" height="22.666666666666664"/>
@@ -778,12 +778,12 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="1a8-vD-2sN"/>
+                                    <constraint firstAttribute="width" constant="80" id="A8p-Rm-0W9"/>
                                     <constraint firstItem="8GA-j6-ash" firstAttribute="centerX" secondItem="0cd-bO-oqy" secondAttribute="centerX" id="NrJ-GH-pWl"/>
-                                    <constraint firstAttribute="width" secondItem="8GA-j6-ash" secondAttribute="width" multiplier="1.55172" id="SlH-fq-X1k"/>
                                     <constraint firstItem="8GA-j6-ash" firstAttribute="centerY" secondItem="0cd-bO-oqy" secondAttribute="centerY" id="T3j-MY-XOL"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOc-Fq-Y2g" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOc-Fq-Y2g" customClass="StyledButton" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="311" y="60" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="lxz-dG-LSx"/>
@@ -797,7 +797,7 @@
                                     <action selector="buttonBackPressed:for:" destination="v1P-cW-jQ3" eventType="touchUpInside" id="3Qx-Ss-mdb"/>
                                 </connections>
                             </button>
-                            <view hidden="YES" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Sf-Vf-Fzn" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
+                            <view hidden="YES" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Sf-Vf-Fzn" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="17.666666666666657" y="456" width="340" height="96"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNa-s8-BhK">
@@ -943,12 +943,12 @@
         <!--Sign In View Controller-->
         <scene sceneID="sIK-fu-VJ3">
             <objects>
-                <viewController id="Ryj-TU-ux2" customClass="SignInViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ryj-TU-ux2" customClass="SignInViewController" customModule="Neu_SAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uc4-XE-aI4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEX-0E-E9I" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEX-0E-E9I" customClass="StyledButton" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="24" y="24" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bEX-0E-E9I" secondAttribute="height" multiplier="1:1" id="igs-MZ-s7W"/>
@@ -962,7 +962,7 @@
                                     <action selector="buttonBackPressed:" destination="Ryj-TU-ux2" eventType="touchUpInside" id="VpS-tK-aEr"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="543-aN-WIb" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="543-aN-WIb" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="23.666666666666657" y="228" width="328" height="67"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가입 시 사용한 이메일로 로그인해 주세요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaG-ZW-MGp">
@@ -990,7 +990,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3m-eE-u3v">
                                 <rect key="frame" x="23.666666666666657" y="327" width="328" height="104"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ijG-5d-zDR" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ijG-5d-zDR" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="248" height="104"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7ek-5h-5lf">
@@ -1122,7 +1122,7 @@
                                             <constraint firstAttribute="width" constant="16" id="Hb7-BY-JI5"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Jm-gV-NdU" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Jm-gV-NdU" customClass="StyledButton" customModule="Neu_SAGA" customModuleProvider="target">
                                         <rect key="frame" x="264" y="0.0" width="64" height="104"/>
                                         <color key="backgroundColor" red="0.4709182978" green="0.33318966630000002" blue="0.51766544579999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -1138,7 +1138,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JzI-8P-xtw" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JzI-8P-xtw" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="23.666666666666657" y="463" width="328" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StatusLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dop-pf-gEX">
@@ -1155,7 +1155,7 @@
                                     <constraint firstItem="Dop-pf-gEX" firstAttribute="centerX" secondItem="JzI-8P-xtw" secondAttribute="centerX" id="qK2-OZ-nER"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ba-sp-LoW" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ba-sp-LoW" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="81" y="554" width="213" height="61"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아직 PlanetSAGA 회원이 아니라면?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9x-aM-IvI">
@@ -1227,7 +1227,7 @@
         <!--My Score-->
         <scene sceneID="6Iw-mp-o6z">
             <objects>
-                <tableViewController storyboardIdentifier="myScoreTableViewController" id="IrP-9C-8l9" customClass="MyScoreTableViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="myScoreTableViewController" id="IrP-9C-8l9" customClass="MyScoreTableViewController" customModule="Neu_SAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="w24-bD-ViU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1292,12 +1292,12 @@
         <!--Sign Up View Controller-->
         <scene sceneID="ARo-xr-lpt">
             <objects>
-                <viewController id="Mtv-p5-3ES" customClass="SignUpViewController" customModule="PlanetSAGA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Mtv-p5-3ES" customClass="SignUpViewController" customModule="Neu_SAGA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xAv-Vk-3cX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYQ-CW-mrg" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYQ-CW-mrg" customClass="StyledButton" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="24" y="24" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="LYQ-CW-mrg" secondAttribute="height" multiplier="1:1" id="831-Xe-Qap"/>
@@ -1311,7 +1311,7 @@
                                     <action selector="backButtonTapped:" destination="Mtv-p5-3ES" eventType="touchUpInside" id="7Bl-ad-TKK"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6sz-xM-maf" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6sz-xM-maf" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="23.666666666666657" y="208" width="328" height="67"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용 가능한 이메일로 회원가입해 주세요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWl-dp-LqT">
@@ -1338,7 +1338,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEq-Hy-K5v">
                                 <rect key="frame" x="23.666666666666657" y="307" width="328" height="144"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YL7-Qi-Euu" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YL7-Qi-Euu" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="248" height="144"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cAw-Z9-FgJ">
@@ -1518,7 +1518,7 @@
                                             <constraint firstAttribute="width" constant="16" id="cVv-k2-vKa"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WrU-eH-b6B" customClass="StyledButton" customModule="PlanetSAGA" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WrU-eH-b6B" customClass="StyledButton" customModule="Neu_SAGA" customModuleProvider="target">
                                         <rect key="frame" x="264" y="0.0" width="64" height="144"/>
                                         <color key="backgroundColor" red="0.4709182978" green="0.33318966630000002" blue="0.51766544579999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -1535,7 +1535,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfw-qD-9OD" customClass="StyledView" customModule="PlanetSAGA" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfw-qD-9OD" customClass="StyledView" customModule="Neu_SAGA" customModuleProvider="target">
                                 <rect key="frame" x="23.666666666666657" y="483" width="328" height="59"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StatusLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhz-EP-mhI">

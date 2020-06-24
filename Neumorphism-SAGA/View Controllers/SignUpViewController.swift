@@ -97,12 +97,12 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
-        SoundManager.clickEffect()
+        SoundManager.shared.playClickEffect()
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
-        SoundManager.clickEffect()
+        SoundManager.shared.playClickEffect()
         
         // 필요한 세 가지 자료가 모두 입력 되었는지 확인
         if emailTextfield.text == "" {

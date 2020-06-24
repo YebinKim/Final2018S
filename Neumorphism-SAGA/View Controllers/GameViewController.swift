@@ -462,7 +462,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func buttonBackPressed(_ button: UIButton, for event: UIEvent) {
-        SoundManager.clickEffect()
+        SoundManager.shared.playClickEffect()
         
         guard let touch = event.allTouches?.first else { return }
         self.touchPoint = touch.location(in: self.view)
@@ -581,7 +581,7 @@ extension GameViewController: BlockCollectionViewCellDelegate {
             alignedVert()
         }
         
-        SoundManager.clickEffect()
+        SoundManager.shared.playClickEffect()
     }
     
 }

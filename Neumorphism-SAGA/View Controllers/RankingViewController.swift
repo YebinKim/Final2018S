@@ -64,7 +64,7 @@ class RankingViewController: UIViewController {
     }
     
     @IBAction func buttonBackTapped(_ sender: UIBarButtonItem) {
-        SoundManager.clickEffect()
+        SoundManager.shared.playClickEffect()
         
         self.navigationController?.popViewController(animated: true)
     }

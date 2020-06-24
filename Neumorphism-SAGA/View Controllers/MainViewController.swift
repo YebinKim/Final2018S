@@ -122,7 +122,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func buttonClicked(_ sender: UIButton) {
-        SoundManager.clickEffect()
+        SoundManager.shared.playClickEffect()
     }
     
     @objc func updateView() {

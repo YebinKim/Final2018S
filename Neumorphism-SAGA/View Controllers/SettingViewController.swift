@@ -67,8 +67,8 @@ class SettingViewController: UIViewController {
         
         profileImageView.image = ImageManager.createDefaultProfileImage(bgColor: UIColor(named: "color_main"))
         
-        //        backgroundVolume.value = (appDelegate.bakgroundAudioPlayer?.volume)!
-        //        effectVolume.value = (appDelegate.clickEffectAudioPlayer?.volume)!
+        backgroundVolume.value = SoundManager.shared.backgroundVolumeSize
+        effectVolume.value = SoundManager.shared.effectVolumeSize
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -209,15 +209,15 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction func adjustBackgroundVolume(_ sender: UISlider) {
-        SoundManager.adjustBackgroundVolume(sender.value)
+        SoundManager.shared.adjustBackgroundVolume(sender.value)
     }
     
     @IBAction func adjustEffectVolume(_ sender: UISlider) {
-        SoundManager.adjustEffectVolume(sender.value)
+        SoundManager.shared.adjustEffectVolume(sender.value)
     }
     
     @IBAction func selectSettingSegment(_ sender: UISegmentedControl) {
-        SoundManager.clickEffect()
+        SoundManager.shared.playClickEffect()
         
         switch sender.selectedSegmentIndex {
         case 0:
@@ -257,7 +257,7 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction func selectProfile(_ sender: UIButton) {
-        SoundManager.clickEffect()
+        SoundManager.shared.playClickEffect()
         
         let myPicker = UIImagePickerController()
         myPicker.delegate = self;
@@ -266,7 +266,7 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction func deleteUser(_ sender: UIButton) {
-        SoundManager.clickEffect()
+        SoundManager.shared.playClickEffect()
         
         let confirmAlert = UIAlertController(title: "사용자 탈퇴", message: "탈퇴를 위해 비밀번호를 재확인합니다", preferredStyle: .alert)
         confirmAlert.addTextField(configurationHandler: { textField in
@@ -298,7 +298,7 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {
-        SoundManager.clickEffect()
+        SoundManager.shared.playClickEffect()
         
         self.dismiss(animated: true, completion: nil)
     }

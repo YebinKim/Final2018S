@@ -95,12 +95,12 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func buttonBackPressed(_ sender: UIButton) {
-        SoundManager.clickEffect()
+        SoundManager.shared.playClickEffect()
         self.dismiss(animated: true)
     }
     
     @IBAction func buttonLoginPressed(_ sender: UIButton) {
-        SoundManager.clickEffect()
+        SoundManager.shared.playClickEffect()
         
         if emailTextfield.text == "" {
             DispatchQueue.main.async {

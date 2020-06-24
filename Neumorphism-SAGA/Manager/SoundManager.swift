@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import CoreData
 
 final class SoundManager: NSObject, AVAudioPlayerDelegate {
 

@@ -79,17 +79,6 @@ class MyScoreTableViewController: UITableViewController {
         return cell
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toLocalDetailView" {
-//            if let destination = segue.destination as? MyScoreDetailsViewController {
-//                if let selectedIndex = self.tableView.indexPathsForSelectedRows?.first?.row {
-//                    destination.detailLocalScore = localRecords[selectedIndex]
-//                }
-//            }
-        }
-    }
-
     @IBAction func buttonBack(_ sender: UIBarButtonItem) {
         SoundManager.shared.playClickEffect()
         

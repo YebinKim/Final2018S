@@ -11,7 +11,6 @@
 		3E2066A420D05121000957C1 /* BayBreeze.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3E2066A320D05121000957C1 /* BayBreeze.wav */; };
 		3E223FFA20A8A2EE006A7D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E223FF920A8A2EE006A7D07 /* AppDelegate.swift */; };
 		3E223FFF20A8A2EE006A7D07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E223FFD20A8A2EE006A7D07 /* Main.storyboard */; };
-		3E22400220A8A2EE006A7D07 /* PlanetSAGA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3E22400020A8A2EE006A7D07 /* PlanetSAGA.xcdatamodeld */; };
 		3E22400420A8A2EE006A7D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E22400320A8A2EE006A7D07 /* Assets.xcassets */; };
 		3E22400720A8A2EE006A7D07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E22400520A8A2EE006A7D07 /* LaunchScreen.storyboard */; };
 		3E4285A320BC5A5900AAE028 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4285A220BC5A5900AAE028 /* GameViewController.swift */; };
@@ -37,6 +36,7 @@
 		448C246A24967C6400AB6E67 /* RankingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 448C246924967C6400AB6E67 /* RankingCollectionViewCell.xib */; };
 		4495F96F249E6CAA003D0EBD /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495F96E249E6CAA003D0EBD /* ImageManager.swift */; };
 		4495F971249F35D9003D0EBD /* ScorePagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4495F970249F35D9003D0EBD /* ScorePagingViewController.swift */; };
+		44E3723624C3671700ED5622 /* FBDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3723324C3671700ED5622 /* FBDatabase.swift */; };
 		861BB83BA58C2F3B4ECF30A8 /* Pods_Neumorphism_SAGA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4341165ACFB9AFEAC87D1EAA /* Pods_Neumorphism_SAGA.framework */; };
 		C20D90572418C14C001F7281 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90562418C14C001F7281 /* Extensions.swift */; };
 		C20D905B2418C1FA001F7281 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D90592418C1FA001F7281 /* UserInfoCell.swift */; };
@@ -49,7 +49,6 @@
 		C27BCAF4242110F8008ACA2E /* BlockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27BCAF2242110F8008ACA2E /* BlockCollectionViewCell.swift */; };
 		C27BCAF5242110F8008ACA2E /* BlockCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27BCAF3242110F8008ACA2E /* BlockCollectionViewCell.xib */; };
 		C2FB5A6D2416111E00049CF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2FB5A6C2416111E00049CF1 /* GoogleService-Info.plist */; };
-		C2FB5A712416147400049CF1 /* PSDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A702416147400049CF1 /* PSDatabase.swift */; };
 		C2FB5A9524164D1A00049CF1 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A9424164D1A00049CF1 /* UserInfo.swift */; };
 		C2FB5A9B24175ECA00049CF1 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB5A9A24175ECA00049CF1 /* SoundManager.swift */; };
 /* End PBXBuildFile section */
@@ -61,7 +60,6 @@
 		3E223FF620A8A2EE006A7D07 /* Neu-SAGA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Neu-SAGA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E223FF920A8A2EE006A7D07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E223FFE20A8A2EE006A7D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3E22400120A8A2EE006A7D07 /* univerSwuSaga.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = univerSwuSaga.xcdatamodel; sourceTree = "<group>"; };
 		3E22400320A8A2EE006A7D07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E22400620A8A2EE006A7D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E22400820A8A2EE006A7D07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,6 +87,7 @@
 		448C246924967C6400AB6E67 /* RankingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankingCollectionViewCell.xib; sourceTree = "<group>"; };
 		4495F96E249E6CAA003D0EBD /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		4495F970249F35D9003D0EBD /* ScorePagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorePagingViewController.swift; sourceTree = "<group>"; };
+		44E3723324C3671700ED5622 /* FBDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBDatabase.swift; sourceTree = "<group>"; };
 		4811FFA7A6E3537946074388 /* Pods-Neumorphism-SAGA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neumorphism-SAGA.debug.xcconfig"; path = "Target Support Files/Pods-Neumorphism-SAGA/Pods-Neumorphism-SAGA.debug.xcconfig"; sourceTree = "<group>"; };
 		7FE5AA8AF74322FDAC53A4EE /* Pods-Neumorphism-SAGA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neumorphism-SAGA.release.xcconfig"; path = "Target Support Files/Pods-Neumorphism-SAGA/Pods-Neumorphism-SAGA.release.xcconfig"; sourceTree = "<group>"; };
 		C20D90562418C14C001F7281 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -102,7 +101,6 @@
 		C27BCAF2242110F8008ACA2E /* BlockCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCollectionViewCell.swift; sourceTree = "<group>"; };
 		C27BCAF3242110F8008ACA2E /* BlockCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockCollectionViewCell.xib; sourceTree = "<group>"; };
 		C2FB5A6C2416111E00049CF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		C2FB5A702416147400049CF1 /* PSDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSDatabase.swift; sourceTree = "<group>"; };
 		C2FB5A9424164D1A00049CF1 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		C2FB5A9A24175ECA00049CF1 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		CADE71E9FB0088A0B276FCDA /* Pods-PlanetSAGA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlanetSAGA.release.xcconfig"; path = "Target Support Files/Pods-PlanetSAGA/Pods-PlanetSAGA.release.xcconfig"; sourceTree = "<group>"; };
@@ -260,8 +258,7 @@
 		C212B99224138FBB00B6A472 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				C2FB5A702416147400049CF1 /* PSDatabase.swift */,
-				3E22400020A8A2EE006A7D07 /* PlanetSAGA.xcdatamodeld */,
+				44E3723324C3671700ED5622 /* FBDatabase.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -432,15 +429,14 @@
 				445991F0242E3AC800609BED /* StyledView.swift in Sources */,
 				3ED8464520BD103C003C4F63 /* SignInViewController.swift in Sources */,
 				3E79687A20D6488900F67483 /* Score.swift in Sources */,
+				44E3723624C3671700ED5622 /* FBDatabase.swift in Sources */,
 				3E4285A320BC5A5900AAE028 /* GameViewController.swift in Sources */,
 				4495F96F249E6CAA003D0EBD /* ImageManager.swift in Sources */,
 				C20D90572418C14C001F7281 /* Extensions.swift in Sources */,
 				3ED8464920BD10AD003C4F63 /* SettingViewController.swift in Sources */,
 				C2FB5A9B24175ECA00049CF1 /* SoundManager.swift in Sources */,
 				4401FF95243B5C41009A3C61 /* RankingCollectionViewCell.swift in Sources */,
-				3E22400220A8A2EE006A7D07 /* PlanetSAGA.xcdatamodeld in Sources */,
 				44313F93243617C8009D4987 /* CountDownLabel.swift in Sources */,
-				C2FB5A712416147400049CF1 /* PSDatabase.swift in Sources */,
 				C2FB5A9524164D1A00049CF1 /* UserInfo.swift in Sources */,
 				445991F2242E3B6400609BED /* Style.swift in Sources */,
 				4495F971249F35D9003D0EBD /* ScorePagingViewController.swift in Sources */,
@@ -652,19 +648,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		3E22400020A8A2EE006A7D07 /* PlanetSAGA.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				3E22400120A8A2EE006A7D07 /* univerSwuSaga.xcdatamodel */,
-			);
-			currentVersion = 3E22400120A8A2EE006A7D07 /* univerSwuSaga.xcdatamodel */;
-			path = PlanetSAGA.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 3E223FEE20A8A2EE006A7D07 /* Project object */;
 }

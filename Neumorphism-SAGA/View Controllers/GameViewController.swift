@@ -213,18 +213,6 @@ class GameViewController: UIViewController {
         scoreSubLabels.append(newScoreSubLabel)
     }
     
-    private func setUserInfo() {
-        if let user = Auth.auth().currentUser {
-            PSDatabase.userInfoRef
-                .queryEqual(toValue: nil, childKey: user.uid)
-                .observeSingleEvent(of: .value, with: { snapshot in
-                    guard let child = snapshot.children.allObjects.first,
-                        let snapshot = child as? DataSnapshot,
-                        let userInfo = UserInfo(snapshot: snapshot) else { return }
-                })
-        }
-    }
-    
     private func updateServer() {
         guard let user = Auth.auth().currentUser else { return }
         

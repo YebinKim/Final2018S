@@ -73,9 +73,6 @@ class SettingViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        //        appDelegate.userInfoFetchedArray = [] // 배열을 초기화하고 서버에서 자료를 다시 가져옴
-        //        self.appDelegate.userInfoDownloadDataFromServer()
     }
     
     private func initializeUserSetting() {

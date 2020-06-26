@@ -74,10 +74,13 @@ final class SoundManager: NSObject, AVAudioPlayerDelegate {
 
         // 반복재생
         bakgroundAudioPlayer?.numberOfLoops = -1
-        bakgroundAudioPlayer?.volume = initialVolumSize
 
+        let backgroundVolumeSizeString: String = String(describing: backgroundVolumeSize)
+        bakgroundAudioPlayer?.volume = UserDefaults.standard.float(forKey: backgroundVolumeSizeString)
+
+        let effectVolumeSizeString: String = String(describing: effectVolumeSize)
         for effect in effectArray {
-            effect?.volume = initialVolumSize
+            effect?.volume = UserDefaults.standard.float(forKey: effectVolumeSizeString)
         }
 
         if let player = bakgroundAudioPlayer {
@@ -91,12 +94,16 @@ final class SoundManager: NSObject, AVAudioPlayerDelegate {
     
     func adjustBackgroundVolume(_ value: Float) {
         bakgroundAudioPlayer?.volume = value
+        let backgroundVolumeSizeString: String = String(describing: backgroundVolumeSize)
+        UserDefaults.standard.set(value, forKey: backgroundVolumeSizeString)
     }
     
     func adjustEffectVolume(_ value: Float) {
         for effect in effectArray {
             effect?.volume = value
         }
+        let effectVolumeSizeString: String = String(describing: effectVolumeSize)
+        UserDefaults.standard.set(value, forKey: effectVolumeSizeString)
     }
     
 }

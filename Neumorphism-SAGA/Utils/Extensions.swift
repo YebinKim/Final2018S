@@ -9,6 +9,26 @@
 import UIKit
 import Foundation
 
+extension UserDefaults {
+
+    static var backgroundVolumeSizeString: String {
+        return "backgroundVolume"
+    }
+
+    static var effectVolumeSizeString: String {
+        return "effectVolumeSize"
+    }
+
+    static var isFirstLaunchString: String {
+        return "isFirstLaunch"
+    }
+
+    static func isFirstLaunch() -> Bool {
+        let isFirstLaunch = !UserDefaults.standard.bool(forKey: isFirstLaunchString)
+        return isFirstLaunch
+    }
+}
+
 extension UIView {
     
     func roundCorners(corners: UIRectCorner, radius: CGFloat) {

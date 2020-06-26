@@ -48,6 +48,13 @@ class MainViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         updateView()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // 최초 실행 시 배경음악/효과음 볼륨 초기화 크기로 설정
+        UserDefaults.standard.set(true, forKey: UserDefaults.isFirstLaunchString)
+    }
     
     private func registerCell() {
         let userInfoCellNib = UINib(nibName: String(describing: UserInfoCell.self), bundle: nil)

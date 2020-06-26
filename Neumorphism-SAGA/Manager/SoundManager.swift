@@ -27,11 +27,17 @@ final class SoundManager: NSObject, AVAudioPlayerDelegate {
     private var effectArray: [AVAudioPlayer?] = []
 
     var backgroundVolumeSize: Float {
-        return bakgroundAudioPlayer?.volume ?? initialVolumSize
+        if UserDefaults.isFirstLaunch() {
+            UserDefaults.standard.set(initialVolumSize, forKey: UserDefaults.backgroundVolumeSizeString)
+        }
+        return UserDefaults.standard.float(forKey: UserDefaults.backgroundVolumeSizeString)
     }
 
     var effectVolumeSize: Float {
-        return clickEffectAudioPlayer?.volume ?? initialVolumSize
+        if UserDefaults.isFirstLaunch() {
+            UserDefaults.standard.set(initialVolumSize, forKey: UserDefaults.effectVolumeSizeString)
+        }
+        return UserDefaults.standard.float(forKey: UserDefaults.effectVolumeSizeString)
     }
 
     func registerSound() {
@@ -74,13 +80,10 @@ final class SoundManager: NSObject, AVAudioPlayerDelegate {
 
         // 반복재생
         bakgroundAudioPlayer?.numberOfLoops = -1
+        bakgroundAudioPlayer?.volume = backgroundVolumeSize
 
-        let backgroundVolumeSizeString: String = String(describing: backgroundVolumeSize)
-        bakgroundAudioPlayer?.volume = UserDefaults.standard.float(forKey: backgroundVolumeSizeString)
-
-        let effectVolumeSizeString: String = String(describing: effectVolumeSize)
         for effect in effectArray {
-            effect?.volume = UserDefaults.standard.float(forKey: effectVolumeSizeString)
+            effect?.volume = effectVolumeSize
         }
 
         if let player = bakgroundAudioPlayer {
@@ -94,16 +97,14 @@ final class SoundManager: NSObject, AVAudioPlayerDelegate {
     
     func adjustBackgroundVolume(_ value: Float) {
         bakgroundAudioPlayer?.volume = value
-        let backgroundVolumeSizeString: String = String(describing: backgroundVolumeSize)
-        UserDefaults.standard.set(value, forKey: backgroundVolumeSizeString)
+        UserDefaults.standard.set(value, forKey: UserDefaults.backgroundVolumeSizeString)
     }
     
     func adjustEffectVolume(_ value: Float) {
         for effect in effectArray {
             effect?.volume = value
         }
-        let effectVolumeSizeString: String = String(describing: effectVolumeSize)
-        UserDefaults.standard.set(value, forKey: effectVolumeSizeString)
+        UserDefaults.standard.set(value, forKey: UserDefaults.effectVolumeSizeString)
     }
     
 }
